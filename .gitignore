@@ -1,2 +1,6 @@
 
 Item 3/Acme-Rookies/target/m2e-wtp/web-resources/META-INF/maven/Acme.com/Acme-HackerRank/pom.properties
+
+*.class
+
+Item 3/Acme-Rookies/\.classpath
