@@ -82,6 +82,30 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccountProvider1" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccountProvider2" class="security.UserAccount">
+		<property name="username" value="provider2" />
+		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	<!-- ========================= SYSTEM =========================== -->
 	<bean id="userAccountSystem" class="security.UserAccount">
@@ -699,6 +723,25 @@
 		<property name="expirationYear" value="20" />
 		<property name="cvv" value="988" />
 	</bean>
+	
+	<!-- Credit cards asignadas a Providers 1 y 2 -->
+	<bean id="creditCard8" class="domain.CreditCard">
+		<property name="holderName" value="Provider 1" />
+		<property name="make" value="MASTERCARD" />
+		<property name="number" value="5547165664775350" />
+		<property name="expirationMonth" value="11" />
+		<property name="expirationYear" value="20" />
+		<property name="cvv" value="475" />
+	</bean>
+	
+	<bean id="creditCard9" class="domain.CreditCard">
+		<property name="holderName" value="Provider 1" />
+		<property name="make" value="VISA" />
+		<property name="number" value="4410435734979051" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="27" />
+		<property name="cvv" value="941" />
+	</bean>
 
 	<!-- =================================================================== 
 		======= Configuration Parameters ========= =================================================================== -->
@@ -1299,6 +1342,97 @@
 				<value> Attachment 2 of Miscellaneous Data 2</value>
 			</list>
 		</property>
+	</bean>
+
+<!-- =================================================================== 
+		======= PROVIDER ========= 
+		=================================================================== -->
+
+	<bean id="provider1" class="domain.Provider">
+		<!-- Actor -->
+		<property name="name" value="Provider1" />
+		<property name="surname">
+			<list>
+				<value>Provider one</value>
+			</list>
+		</property>
+		<property name="photo" value="http://tinyurl.com/picture.png" />
+		<property name="email" value="provider1@gmail.es" />
+		<property name="phone" value="+34647307480" />
+		<property name="address" value="Reina Mercedes 1" />
+		<property name="vat" value="0.21" />
+		<property name="creditCard" ref="creditCard8" />
+		<property name="userAccount" ref="userAccountProvider1" />
+		<property name="make" value="make Provider1" />
+	</bean>
+
+	<bean id="provider2" class="domain.Provider">
+		<!-- Actor -->
+		<property name="name" value="Provider2" />
+		<property name="surname">
+			<list>
+				<value>Provider two</value>
+			</list>
+		</property>
+		<property name="photo" value="http://tinyurl.com/picture.png" />
+		<property name="email" value="provider2@gmail.es" />
+		<property name="phone" value="+34647307480" />
+		<property name="address" value="Reina Mercedes 2" />
+		<property name="vat" value="0.21" />
+		<property name="creditCard" ref="creditCard9" />
+		<property name="userAccount" ref="userAccountProvider2" />
+		<property name="make" value="make Provider2" />
+	</bean>
+
+<!-- =================================================================== 
+		======= ITEM ========= 
+		=================================================================== -->
+		
+		<bean id="item1" class="domain.Item">
+			<property name="name" value="Item 1"/>
+			<property name="description" value="Description Item 1"/>
+			<property name="link" value="http://www.linkItem1.com"/>
+			<property name="provider" ref="provider1"/>
+		</bean>
+		
+		<bean id="item2" class="domain.Item">
+			<property name="name" value="Item 2"/>
+			<property name="description" value="Description Item 2"/>
+			<property name="link" value="http://www.linkItem2.com"/>
+			<property name="provider" ref="provider1"/>
+		</bean>
+		
+		<bean id="item3" class="domain.Item">
+			<property name="name" value="Item 3"/>
+			<property name="description" value="Description Item 3"/>
+			<property name="link" value="http://www.linkItem3.com"/>
+			<property name="provider" ref="provider2"/>
+		</bean>
+		
+		<bean id="item4" class="domain.Item">
+			<property name="name" value="Item 4"/>
+			<property name="description" value="Description Item 4"/>
+			<property name="link" value="http://www.linkItem4.com"/>
+			<property name="provider" ref="provider2"/>
+		</bean>	
+		
+		<!-- =================================================================== 
+		======= AUDIT ========= =================================================================== -->
+
+	<bean id="audit1" class="domain.Audit">
+		<property name="text" value="Text audit 1"/>
+		<property name="score" value="6"/>
+		<property name="moment" value="2019/03/16 15:20"/>
+		<property name="auditor" ref="auditor1"/>
+		<property name="position" ref="position1"/>
+	</bean>
+	
+	<bean id="audit2" class="domain.Audit">
+		<property name="text" value="Text audit 2"/>
+		<property name="score" value="8"/>
+		<property name="moment" value="2019/04/23 16:30"/>
+		<property name="auditor" ref="auditor2"/>
+		<property name="position" ref="position2"/>
 	</bean>
 
 </beans>

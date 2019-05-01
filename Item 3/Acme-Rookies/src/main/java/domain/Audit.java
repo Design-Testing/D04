@@ -28,6 +28,7 @@ public class Audit extends DomainEntity {
 	private Date		moment;
 
 	private Position	position;
+	private Auditor		auditor;
 
 
 	@NotBlank
@@ -69,6 +70,16 @@ public class Audit extends DomainEntity {
 
 	public void setPosition(final Position position) {
 		this.position = position;
+	}
+
+	@Valid
+	@ManyToOne(optional = false)
+	public Auditor getAuditor() {
+		return this.auditor;
+	}
+
+	public void setAuditor(final Auditor auditor) {
+		this.auditor = auditor;
 	}
 
 }
