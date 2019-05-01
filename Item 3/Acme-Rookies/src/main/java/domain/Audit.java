@@ -12,6 +12,7 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -26,6 +27,7 @@ public class Audit extends DomainEntity {
 	private String		text;
 	private Integer		score;
 	private Date		moment;
+	private String		mode;
 
 	private Position	position;
 	private Auditor		auditor;
@@ -60,6 +62,16 @@ public class Audit extends DomainEntity {
 
 	public void setMoment(final Date moment) {
 		this.moment = moment;
+	}
+
+	@NotBlank
+	@Pattern(regexp = "^(DRAFT|FINAL)$")
+	public String getMode() {
+		return this.mode;
+	}
+
+	public void setMode(final String mode) {
+		this.mode = mode;
 	}
 
 	@Valid
