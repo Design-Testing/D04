@@ -18,7 +18,7 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Company;
 import domain.CreditCard;
-import domain.Hacker;
+import domain.Rooky;
 import forms.ActorForm;
 import forms.CompanyForm;
 
@@ -72,8 +72,8 @@ public class RegisterService {
 		return result;
 	}
 
-	public Hacker saveHacker(final Hacker hacker, final BindingResult binding) {
-		Hacker result;
+	public Rooky saveHacker(final Rooky hacker, final BindingResult binding) {
+		Rooky result;
 		final UserAccount ua = hacker.getUserAccount();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String hash = encoder.encodePassword(ua.getPassword(), null);
@@ -89,7 +89,7 @@ public class RegisterService {
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
 		} else {
-			final Hacker old = this.hackerService.findOne(hacker.getId());
+			final Rooky old = this.hackerService.findOne(hacker.getId());
 
 			ua.setPassword(hash);
 			if (!old.getUserAccount().getUsername().equals(ua.getUsername()))

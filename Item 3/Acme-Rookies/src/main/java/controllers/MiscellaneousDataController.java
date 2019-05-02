@@ -21,7 +21,7 @@ import services.HackerService;
 import services.MiscellaneousDataService;
 import domain.Company;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.MiscellaneousData;
 
 @Controller
@@ -60,7 +60,7 @@ public class MiscellaneousDataController {
 		ModelAndView result;
 		try {
 			final MiscellaneousData miscellaneousData;
-			final Hacker hacker = this.hackerService.findByPrincipal();
+			final Rooky hacker = this.hackerService.findByPrincipal();
 			miscellaneousData = this.miscellaneousDataService.findOne(miscellaneousDataId);
 
 			Assert.isTrue(this.hackerService.hasMiscellaneousData(hacker.getId(), miscellaneousDataId), "This personal data is not of your property");
@@ -125,7 +125,7 @@ public class MiscellaneousDataController {
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
 			if (logged.getAuthorities().contains(authHacker)) {
-				final Hacker hacker = this.hackerService.findByPrincipal();
+				final Rooky hacker = this.hackerService.findByPrincipal();
 				if (curricula.getHacker() != null)
 					Assert.isTrue(curricula.getHacker().equals(hacker));
 				else if (curricula.getHacker() == null)

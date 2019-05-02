@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import repositories.EducationDataRepository;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rooky;
 
 @Service
 @Transactional
@@ -53,7 +53,7 @@ public class EducationDataService {
 	}
 
 	public EducationData save(final EducationData educationData, final int curriculaId) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.notNull(educationData);
 		if (educationData.getEndDate() != null)
@@ -75,7 +75,7 @@ public class EducationDataService {
 	}
 
 	public void delete(final EducationData mR) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.isTrue(this.hackerService.findHackerByEducationDatas(mR.getId()) == me, "No puede borrar un EducationData que no pertenezca a su historia.");
 		Assert.notNull(mR);

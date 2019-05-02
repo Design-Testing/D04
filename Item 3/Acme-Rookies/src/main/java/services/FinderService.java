@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 
 import repositories.FinderRepository;
 import domain.Finder;
-import domain.Hacker;
+import domain.Rooky;
 import domain.Position;
 
 @Service
@@ -97,7 +97,7 @@ public class FinderService {
 	}
 
 	public Finder save(final Finder finder) {
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		Assert.notNull(finder);
 		Assert.isTrue(finder.getId() != 0);
 		Assert.isTrue(this.finderRepository.findHackerFinder(hacker.getId()).getId() == finder.getId(), "You're not owner of this finder, you cannot modify it");
@@ -127,7 +127,7 @@ public class FinderService {
 
 	public void delete(final Finder finder) {
 		Assert.notNull(finder);
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		Assert.isTrue(finder.getId() != 0);
 		Assert.isTrue(this.finderRepository.exists(finder.getId()));
 		Assert.isTrue(this.finderRepository.findHackerFinder(hacker.getId()).getId() == finder.getId(), "You're not owner of this finder, you cannot delete it");
@@ -135,7 +135,7 @@ public class FinderService {
 	}
 
 	public Finder findHackerFinder() {
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rooky principal = this.hackerService.findByPrincipal();
 
 		final Finder finder = this.finderRepository.findHackerFinder(principal.getId());
 		Assert.notNull(finder);
@@ -152,7 +152,7 @@ public class FinderService {
 	}
 
 	public Finder clear(final Finder finder) {
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Finder result = this.finderRepository.findHackerFinder(hacker.getId());
 		Assert.isTrue(result.equals(finder), "You're not owner of this finder");
 		Assert.notNull(result);

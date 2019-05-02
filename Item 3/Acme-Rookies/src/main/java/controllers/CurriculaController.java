@@ -23,7 +23,7 @@ import services.HackerService;
 import domain.Company;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rooky;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
@@ -97,7 +97,7 @@ public class CurriculaController extends AbstractController {
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
 			if (logged.getAuthorities().contains(authHacker)) {
-				final Hacker hacker = this.hackerService.findByPrincipal();
+				final Rooky hacker = this.hackerService.findByPrincipal();
 				if (curricula.getHacker() != null) {
 					Assert.isTrue(curricula.getHacker().equals(hacker));
 					res.addObject("buttons", true);
@@ -121,7 +121,7 @@ public class CurriculaController extends AbstractController {
 	@RequestMapping(value = "/displayAll", method = RequestMethod.GET)
 	public ModelAndView displayAll() {
 		final ModelAndView res;
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Collection<Curricula> curricula = this.curriculaService.findCurriculaByHacker(hacker.getId());
 		if (!(curricula == null)) {
 
@@ -193,7 +193,7 @@ public class CurriculaController extends AbstractController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam final int curriculaId) {
 		ModelAndView result;
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		this.curriculaService.delete(curricula);
 		result = new ModelAndView("curricula/displayAll");

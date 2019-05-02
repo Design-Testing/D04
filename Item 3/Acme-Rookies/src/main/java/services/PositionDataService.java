@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.PositionDataRepository;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.PositionData;
 
 @Service
@@ -52,7 +52,7 @@ public class PositionDataService {
 	}
 
 	public PositionData save(final PositionData positionData, final int curriculaId) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.notNull(positionData);
 		if (positionData.getEndDate() != null)
@@ -75,7 +75,7 @@ public class PositionDataService {
 	}
 
 	public void delete(final PositionData mR) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.isTrue(this.hackerService.findHackerByPositionDatas(mR.getId()) == me, "No puede borrar un PositionData que no pertenezca a su historia.");
 		Assert.notNull(mR);

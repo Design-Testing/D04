@@ -21,7 +21,7 @@ import domain.Actor;
 import domain.Application;
 import domain.Company;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.Position;
 import domain.Problem;
 import forms.ApplicationForm;
@@ -57,7 +57,7 @@ public class ApplicationService {
 
 	public Application create(final int positionId) {
 		final Application application = new Application();
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Position position = this.positionService.findOne(positionId);
 
 		//Se asigna un problema aleatorio del conjunto de problemas que posee esa position.
@@ -185,28 +185,28 @@ public class ApplicationService {
 	}
 
 	public Collection<Application> findAllPendingByHacker() {
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rooky principal = this.hackerService.findByPrincipal();
 		final Collection<Application> res = this.applicationRepository.findAllPendingByHacker(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
 
 	public Collection<Application> findAllSubmittedByHacker() {
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rooky principal = this.hackerService.findByPrincipal();
 		final Collection<Application> res = this.applicationRepository.findAllSubmittedByHacker(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
 
 	public Collection<Application> findAllAcceptedByHacker() {
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rooky principal = this.hackerService.findByPrincipal();
 		final Collection<Application> res = this.applicationRepository.findAllAcceptedByHacker(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
 
 	public Collection<Application> findAllRejectedByHacker() {
-		final Hacker principal = this.hackerService.findByPrincipal();
+		final Rooky principal = this.hackerService.findByPrincipal();
 		final Collection<Application> res = this.applicationRepository.findAllRejectedByHacker(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
@@ -244,7 +244,7 @@ public class ApplicationService {
 
 		return result;
 	}
-	public Problem problemAssign(final int positionId, final Hacker hacker) {
+	public Problem problemAssign(final int positionId, final Rooky hacker) {
 
 		final List<Problem> free = (List<Problem>) this.problemsFree(positionId, hacker);
 		final Integer numRandom = (int) (Math.random() * (free.size() - 1));
@@ -254,7 +254,7 @@ public class ApplicationService {
 
 	}
 
-	public Collection<Problem> problemsFree(final int positionId, final Hacker hacker) {
+	public Collection<Problem> problemsFree(final int positionId, final Rooky hacker) {
 		final List<Problem> allProblems = (List<Problem>) this.problemService.findProblemsByPosition(positionId);
 		final List<Problem> problems = (List<Problem>) this.problemService.findProblemsByPositionAndHacker(positionId, hacker.getUserAccount().getId());
 

@@ -22,7 +22,7 @@ import services.HackerService;
 import services.PersonalDataService;
 import domain.Company;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.PersonalData;
 
 @Controller
@@ -60,7 +60,7 @@ public class PersonalDataController extends AbstractController {
 		ModelAndView result;
 		try {
 			final PersonalData personalData;
-			final Hacker hacker = this.hackerService.findByPrincipal();
+			final Rooky hacker = this.hackerService.findByPrincipal();
 			personalData = this.personalDataService.findOne(personalDataId);
 			Assert.isTrue(this.hackerService.hasPersonalData(hacker.getId(), personalDataId), "This personal data is not of your property");
 
@@ -118,7 +118,7 @@ public class PersonalDataController extends AbstractController {
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
 			if (logged.getAuthorities().contains(authHacker)) {
-				final Hacker hacker = this.hackerService.findByPrincipal();
+				final Rooky hacker = this.hackerService.findByPrincipal();
 				if (curricula.getHacker() != null)
 					Assert.isTrue(curricula.getHacker().equals(hacker));
 				else if (curricula.getHacker() == null)

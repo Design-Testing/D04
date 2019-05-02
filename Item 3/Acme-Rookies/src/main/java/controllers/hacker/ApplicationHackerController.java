@@ -23,7 +23,7 @@ import services.PositionService;
 import controllers.AbstractController;
 import domain.Application;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.Position;
 import forms.ApplicationForm;
 
@@ -50,7 +50,7 @@ public class ApplicationHackerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int positionId) {
 		ModelAndView result = new ModelAndView();
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 
 		try {
 
@@ -72,7 +72,7 @@ public class ApplicationHackerController extends AbstractController {
 	@RequestMapping(value = "/apply", method = RequestMethod.GET)
 	public ModelAndView apply(@RequestParam final int positionId, @RequestParam final int curriculaId) {
 		ModelAndView result = new ModelAndView();
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Position position = this.positionService.findOne(positionId);
 
 		try {
@@ -99,7 +99,7 @@ public class ApplicationHackerController extends AbstractController {
 	public ModelAndView display(@RequestParam final int applicationId) {
 		final ModelAndView result;
 		final Application application;
-		final Hacker hacker;
+		final Rooky hacker;
 
 		application = this.applicationService.findOne(applicationId);
 		hacker = this.hackerService.findByPrincipal();
@@ -232,7 +232,7 @@ public class ApplicationHackerController extends AbstractController {
 
 		application = this.applicationService.findOne(applicationId);
 
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 
 		if ((application.getStatus().equals("PENDING") && application.getHacker() == hacker) && application.getExplanation() == null && application.getLink() == null)
 			result = this.createEditModelAndView(application);
