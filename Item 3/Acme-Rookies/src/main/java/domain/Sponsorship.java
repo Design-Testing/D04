@@ -19,6 +19,7 @@ public class Sponsorship extends DomainEntity {
 	private CreditCard	creditCard;
 
 	private Position	position;
+	private Provider	provider;
 
 
 	@NotBlank
@@ -57,6 +58,15 @@ public class Sponsorship extends DomainEntity {
 
 	public void setPosition(final Position position) {
 		this.position = position;
+	}
+
+	@ManyToOne(optional = false)
+	public Provider getProvider() {
+		return this.provider;
+	}
+
+	public void setProvider(final Provider provider) {
+		this.provider = provider;
 	}
 
 }
