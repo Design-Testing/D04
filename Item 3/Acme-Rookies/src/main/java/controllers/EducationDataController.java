@@ -22,7 +22,7 @@ import services.HackerService;
 import domain.Company;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rooky;
 
 @Controller
 @RequestMapping("/educationData")
@@ -61,7 +61,7 @@ public class EducationDataController {
 		ModelAndView result;
 		try {
 			final EducationData educationData;
-			final Hacker hacker = this.hackerService.findByPrincipal();
+			final Rooky hacker = this.hackerService.findByPrincipal();
 			educationData = this.educationDataService.findOne(educationDataId);
 
 			Assert.isTrue(this.hackerService.hasEducationData(hacker.getId(), educationDataId), "This personal data is not of your property");
@@ -134,7 +134,7 @@ public class EducationDataController {
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
 			if (logged.getAuthorities().contains(authHacker)) {
-				final Hacker hacker = this.hackerService.findByPrincipal();
+				final Rooky hacker = this.hackerService.findByPrincipal();
 				if (curricula.getHacker() != null)
 					Assert.isTrue(curricula.getHacker().equals(hacker));
 				else if (curricula.getHacker() == null)

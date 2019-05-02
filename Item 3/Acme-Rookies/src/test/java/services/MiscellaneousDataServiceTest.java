@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 
@@ -126,7 +126,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Hacker principal = this.hackerService.findByPrincipal();
+			final Rooky principal = this.hackerService.findByPrincipal();
 			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(principal.getId());
 			final Curricula curricula = curriculas.iterator().next();
 			final MiscellaneousData lR = curricula.getMiscellaneous().iterator().next();
@@ -171,7 +171,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(actor);
-			final Hacker hacker = this.hackerService.findByPrincipal();
+			final Rooky hacker = this.hackerService.findByPrincipal();
 			final MiscellaneousData lRec = this.curriculaService.findCurriculaByHacker(hacker.getId()).iterator().next().getMiscellaneous().iterator().next();
 			this.miscellaneousDataService.delete(lRec);
 			this.miscellaneousDataService.flush();

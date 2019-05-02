@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rooky;
 import domain.PersonalData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -124,7 +124,7 @@ public class PersonalDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Hacker owner = this.hackerService.findOne(this.getEntityId(userProp));
+			final Rooky owner = this.hackerService.findOne(this.getEntityId(userProp));
 			final PersonalData iR;
 			final Curricula curricula = this.curriculaService.findCurriculaByHacker(owner.getId()).iterator().next();
 			iR = curricula.getPersonalRecord();

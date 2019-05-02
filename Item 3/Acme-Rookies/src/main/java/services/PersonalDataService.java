@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.PersonalDataRepository;
-import domain.Hacker;
+import domain.Rooky;
 import domain.PersonalData;
 
 @Service
@@ -49,7 +49,7 @@ public class PersonalDataService {
 	}
 
 	public PersonalData save(final PersonalData personalData) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.notNull(personalData);
 		if (personalData.getId() != 0)
@@ -60,7 +60,7 @@ public class PersonalDataService {
 	}
 
 	public PersonalData saveCopy(final PersonalData personalData) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.notNull(personalData);
 		Assert.notNull(personalData.getFullName());

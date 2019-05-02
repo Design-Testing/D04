@@ -27,7 +27,7 @@ import services.ConfigurationParametersService;
 import services.HackerService;
 import services.UserAccountService;
 import services.auxiliary.RegisterService;
-import domain.Hacker;
+import domain.Rooky;
 import forms.ActorForm;
 
 @Controller
@@ -68,7 +68,7 @@ public class HackerController extends AbstractController {
 	@RequestMapping(value = "/displayTabla", method = RequestMethod.GET)
 	public ModelAndView displayTabla(@RequestParam final int hackerId) {
 		final ModelAndView result;
-		final Hacker hacker = this.hackerService.findOne(hackerId);
+		final Rooky hacker = this.hackerService.findOne(hackerId);
 		if (hacker != null) {
 			result = new ModelAndView("hacker/display");
 			result.addObject("hacker", hacker);
@@ -85,7 +85,7 @@ public class HackerController extends AbstractController {
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {
 		final ModelAndView result;
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		if (hacker != null) {
 			result = new ModelAndView("hacker/display");
 			result.addObject("hacker", hacker);
@@ -103,7 +103,7 @@ public class HackerController extends AbstractController {
 	public ModelAndView edit() {
 		ModelAndView result;
 		result = new ModelAndView("hacker/edit");
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final ActorForm actor = this.registerService.inyect(hacker);
 		actor.setTermsAndCondicions(true);
 		result.addObject("actorForm", actor);
@@ -118,7 +118,7 @@ public class HackerController extends AbstractController {
 	public ModelAndView save(@Valid final ActorForm actorForm, final BindingResult binding) {
 		ModelAndView result;
 		result = new ModelAndView("hacker/edit");
-		Hacker hacker;
+		Rooky hacker;
 		if (binding.hasErrors()) {
 			result.addObject("errors", binding.getAllErrors());
 			actorForm.setTermsAndCondicions(false);

@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import repositories.CurriculaRepository;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rooky;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
@@ -42,7 +42,7 @@ public class CurriculaService {
 
 	public Curricula create() {
 		final Curricula curricula = new Curricula();
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 
 		final PersonalData personalData = this.personalDataService.create();
 
@@ -105,7 +105,7 @@ public class CurriculaService {
 	public Curricula save(final Curricula curricula) {
 		Assert.notNull(curricula);
 		final Curricula res;
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		if (curricula.getId() != 0)
 			Assert.isTrue(this.hackerService.findHackerByCurricula(curricula.getId()).equals(hacker), "logged actor doesnt match curricula's owner");
 		else
@@ -117,7 +117,7 @@ public class CurriculaService {
 	public void delete(final Curricula curricula) {
 		Assert.notNull(curricula);
 		Assert.isTrue(curricula.getId() != 0);
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Curricula retrieved = this.findOne(curricula.getId());
 		Assert.isTrue(this.hackerService.findHackerByCurricula(retrieved.getId()) == hacker, "Not possible to delete the curricula of other hacker.");
 		this.curriculaRepository.delete(retrieved.getId());
