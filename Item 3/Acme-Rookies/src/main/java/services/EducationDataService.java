@@ -22,7 +22,7 @@ public class EducationDataService {
 	private EducationDataRepository	educationDataRepository;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookyService			hackerService;
 
 	@Autowired
 	private CurriculaService		curriculaService;
@@ -77,7 +77,7 @@ public class EducationDataService {
 	public void delete(final EducationData mR) {
 		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
-		Assert.isTrue(this.hackerService.findHackerByEducationDatas(mR.getId()) == me, "No puede borrar un EducationData que no pertenezca a su historia.");
+		Assert.isTrue(this.hackerService.findRookyByEducationDatas(mR.getId()) == me, "No puede borrar un EducationData que no pertenezca a su historia.");
 		Assert.notNull(mR);
 		Assert.isTrue(mR.getId() != 0);
 		final EducationData res = this.findOne(mR.getId());

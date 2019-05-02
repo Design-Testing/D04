@@ -28,7 +28,7 @@ import forms.ActorForm;
 
 @Service
 @Transactional
-public class HackerService {
+public class AuditorService {
 
 	@Autowired
 	private RookyRepository	hackerRepository;

@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 
 import repositories.MiscellaneousDataRepository;
 import domain.Curricula;
-import domain.Rooky;
 import domain.MiscellaneousData;
+import domain.Rooky;
 
 @Service
 @Transactional
@@ -22,7 +22,7 @@ public class MiscellaneousDataService {
 	private MiscellaneousDataRepository	miscellaneousDataRepository;
 
 	@Autowired
-	private HackerService				hackerService;
+	private RookyService				hackerService;
 
 	@Autowired
 	private CurriculaService			curriculaService;
@@ -76,7 +76,7 @@ public class MiscellaneousDataService {
 	public void delete(final MiscellaneousData mR) {
 		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
-		Assert.isTrue(this.hackerService.findHackerByMiscellaneous(mR.getId()) == me, "No puede borrar un MiscellaneousData que no pertenezca a su historia.");
+		Assert.isTrue(this.hackerService.findRookyByMiscellaneous(mR.getId()) == me, "No puede borrar un MiscellaneousData que no pertenezca a su historia.");
 		Assert.notNull(mR);
 		Assert.isTrue(mR.getId() != 0);
 		final MiscellaneousData res = this.findOne(mR.getId());

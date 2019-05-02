@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 
 import repositories.PositionDataRepository;
 import domain.Curricula;
-import domain.Rooky;
 import domain.PositionData;
+import domain.Rooky;
 
 @Service
 @Transactional
@@ -22,7 +22,7 @@ public class PositionDataService {
 	private PositionDataRepository	positionDataRepository;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookyService			hackerService;
 
 	@Autowired
 	private CurriculaService		curriculaService;
@@ -58,7 +58,7 @@ public class PositionDataService {
 		if (positionData.getEndDate() != null)
 			Assert.isTrue(positionData.getEndDate().after(positionData.getStartDate()), "End date must be after start date");
 		if (positionData.getId() != 0)
-			Assert.isTrue(this.hackerService.findHackerByPositionDatas(positionData.getId()) == me);
+			Assert.isTrue(this.hackerService.findRookyByPositionDatas(positionData.getId()) == me);
 
 		final PositionData res = this.positionDataRepository.save(positionData);
 
@@ -77,7 +77,7 @@ public class PositionDataService {
 	public void delete(final PositionData mR) {
 		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
-		Assert.isTrue(this.hackerService.findHackerByPositionDatas(mR.getId()) == me, "No puede borrar un PositionData que no pertenezca a su historia.");
+		Assert.isTrue(this.hackerService.findRookyByPositionDatas(mR.getId()) == me, "No puede borrar un PositionData que no pertenezca a su historia.");
 		Assert.notNull(mR);
 		Assert.isTrue(mR.getId() != 0);
 		final PositionData res = this.findOne(mR.getId());

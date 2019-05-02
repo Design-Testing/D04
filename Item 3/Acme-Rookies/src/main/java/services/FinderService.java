@@ -14,8 +14,8 @@ import org.springframework.util.Assert;
 
 import repositories.FinderRepository;
 import domain.Finder;
-import domain.Rooky;
 import domain.Position;
+import domain.Rooky;
 
 @Service
 @Transactional
@@ -28,7 +28,7 @@ public class FinderService {
 	private ConfigurationParametersService	configParamService;
 
 	@Autowired
-	private HackerService					hackerService;
+	private RookyService					rookyService;
 
 	@Autowired
 	private PositionService					positionService;
@@ -85,7 +85,7 @@ public class FinderService {
 
 	// Antes de guardar tengo que pasar por este metodo para setearle las nuevas procesiones segun los nuevos parametros
 	public Finder find(final Finder finder) {
-		this.hackerService.findByPrincipal();
+		this.rookyService.findByPrincipal();
 		List<Position> result = new ArrayList<>(this.positionService.findPositions(finder.getKeyword(), finder.getMinSalary(), finder.getMaxSalary(), finder.getMinDeadline(), finder.getMaxDeadline()));
 		final int maxResults = this.configParamService.find().getMaxFinderResults();
 		if (result.size() > maxResults) {
@@ -97,21 +97,21 @@ public class FinderService {
 	}
 
 	public Finder save(final Finder finder) {
-		final Rooky hacker = this.hackerService.findByPrincipal();
+		final Rooky rooky = this.rookyService.findByPrincipal();
 		Assert.notNull(finder);
 		Assert.isTrue(finder.getId() != 0);
-		Assert.isTrue(this.finderRepository.findHackerFinder(hacker.getId()).getId() == finder.getId(), "You're not owner of this finder, you cannot modify it");
+		Assert.isTrue(this.finderRepository.findRookyFinder(rooky.getId()).getId() == finder.getId(), "You're not owner of this finder, you cannot modify it");
 
 		finder.setCreationDate(new Date(System.currentTimeMillis()));
 		final Finder res = this.finderRepository.save(finder);
 		Assert.notNull(res);
 
-		hacker.setFinder(finder);
-		this.hackerService.save(hacker);
+		rooky.setFinder(finder);
+		this.rookyService.save(rooky);
 		return res;
 	}
 
-	public Finder createForNewHacker() {
+	public Finder createForNewRooky() {
 		final Finder finder = new Finder();
 		finder.setKeyword("");
 		finder.setMinSalary(null);
@@ -127,17 +127,17 @@ public class FinderService {
 
 	public void delete(final Finder finder) {
 		Assert.notNull(finder);
-		final Rooky hacker = this.hackerService.findByPrincipal();
+		final Rooky rooky = this.rookyService.findByPrincipal();
 		Assert.isTrue(finder.getId() != 0);
 		Assert.isTrue(this.finderRepository.exists(finder.getId()));
-		Assert.isTrue(this.finderRepository.findHackerFinder(hacker.getId()).getId() == finder.getId(), "You're not owner of this finder, you cannot delete it");
+		Assert.isTrue(this.finderRepository.findRookyFinder(rooky.getId()).getId() == finder.getId(), "You're not owner of this finder, you cannot delete it");
 		this.finderRepository.delete(finder);
 	}
 
-	public Finder findHackerFinder() {
-		final Rooky principal = this.hackerService.findByPrincipal();
+	public Finder findRookyFinder() {
+		final Rooky principal = this.rookyService.findByPrincipal();
 
-		final Finder finder = this.finderRepository.findHackerFinder(principal.getId());
+		final Finder finder = this.finderRepository.findRookyFinder(principal.getId());
 		Assert.notNull(finder);
 
 		// final int finderTime = this.configParamService.find().getFinderTime();
@@ -152,8 +152,8 @@ public class FinderService {
 	}
 
 	public Finder clear(final Finder finder) {
-		final Rooky hacker = this.hackerService.findByPrincipal();
-		final Finder result = this.finderRepository.findHackerFinder(hacker.getId());
+		final Rooky rooky = this.rookyService.findByPrincipal();
+		final Finder result = this.finderRepository.findRookyFinder(rooky.getId());
 		Assert.isTrue(result.equals(finder), "You're not owner of this finder");
 		Assert.notNull(result);
 		result.setKeyword("");

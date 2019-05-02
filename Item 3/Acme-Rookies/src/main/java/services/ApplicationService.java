@@ -21,9 +21,9 @@ import domain.Actor;
 import domain.Application;
 import domain.Company;
 import domain.Curricula;
-import domain.Rooky;
 import domain.Position;
 import domain.Problem;
+import domain.Rooky;
 import forms.ApplicationForm;
 
 @Service
@@ -40,7 +40,7 @@ public class ApplicationService {
 	private CompanyService			companyService;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookyService			hackerService;
 
 	@Autowired
 	private ProblemService			problemService;
@@ -67,7 +67,7 @@ public class ApplicationService {
 		application.setStatus("PENDING");
 		final Date moment = new Date(System.currentTimeMillis() - 1);
 		application.setMoment(moment);
-		application.setHacker(hacker);
+		application.setRooky(hacker);
 		application.setPosition(position);
 
 		return application;
@@ -76,11 +76,11 @@ public class ApplicationService {
 	public Collection<Application> findAll() {
 		Collection<Application> res = new ArrayList<>();
 		final Actor principal = this.actorService.findByPrincipal();
-		final Boolean isHacker = this.actorService.checkAuthority(principal, Authority.HACKER);
+		final Boolean isRooky = this.actorService.checkAuthority(principal, Authority.HACKER);
 		final Boolean isCompany = this.actorService.checkAuthority(principal, Authority.COMPANY);
 
-		if (isHacker)
-			res = this.applicationRepository.findAllByHackerId(principal.getUserAccount().getId());
+		if (isRooky)
+			res = this.applicationRepository.findAllByRookyId(principal.getUserAccount().getId());
 		else if (isCompany)
 			res = this.applicationRepository.findAllByCompanyId(principal.getUserAccount().getId());
 		//Si salta puede ser un Admin
@@ -100,12 +100,12 @@ public class ApplicationService {
 		Assert.isTrue(positionId != 0);
 		final Actor principal = this.actorService.findByPrincipal();
 		final Application result;
-		final Boolean isHacker = this.actorService.checkAuthority(principal, Authority.HACKER);
+		final Boolean isRooky = this.actorService.checkAuthority(principal, Authority.HACKER);
 
-		if (isHacker) {
+		if (isRooky) {
 			if (application.getId() != 0) {
 				Assert.isTrue(application.getStatus().equals("PENDING"), "No puede actualizar una solicitud que no est� en estado PENDING.");
-				Assert.isTrue(application.getHacker() == principal, "No puede actualizar una solicitud que no le pertenece.");
+				Assert.isTrue(application.getRooky() == principal, "No puede actualizar una solicitud que no le pertenece.");
 				// Assert.isTrue(application.getExplanation() != "", "Debe adjuntar una explicaci�n de su soluci�n.");
 				// Assert.isTrue(application.getLink() != "", "Debe adjuntar un link de su soluci�n.");
 				application.setStatus("SUBMITTED");
@@ -184,30 +184,30 @@ public class ApplicationService {
 		return res;
 	}
 
-	public Collection<Application> findAllPendingByHacker() {
+	public Collection<Application> findAllPendingByRooky() {
 		final Rooky principal = this.hackerService.findByPrincipal();
-		final Collection<Application> res = this.applicationRepository.findAllPendingByHacker(principal.getUserAccount().getId());
+		final Collection<Application> res = this.applicationRepository.findAllPendingByRooky(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
 
-	public Collection<Application> findAllSubmittedByHacker() {
+	public Collection<Application> findAllSubmittedByRooky() {
 		final Rooky principal = this.hackerService.findByPrincipal();
-		final Collection<Application> res = this.applicationRepository.findAllSubmittedByHacker(principal.getUserAccount().getId());
+		final Collection<Application> res = this.applicationRepository.findAllSubmittedByRooky(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
 
-	public Collection<Application> findAllAcceptedByHacker() {
+	public Collection<Application> findAllAcceptedByRooky() {
 		final Rooky principal = this.hackerService.findByPrincipal();
-		final Collection<Application> res = this.applicationRepository.findAllAcceptedByHacker(principal.getUserAccount().getId());
+		final Collection<Application> res = this.applicationRepository.findAllAcceptedByRooky(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
 
-	public Collection<Application> findAllRejectedByHacker() {
+	public Collection<Application> findAllRejectedByRooky() {
 		final Rooky principal = this.hackerService.findByPrincipal();
-		final Collection<Application> res = this.applicationRepository.findAllRejectedByHacker(principal.getUserAccount().getId());
+		final Collection<Application> res = this.applicationRepository.findAllRejectedByRooky(principal.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}
@@ -256,7 +256,7 @@ public class ApplicationService {
 
 	public Collection<Problem> problemsFree(final int positionId, final Rooky hacker) {
 		final List<Problem> allProblems = (List<Problem>) this.problemService.findProblemsByPosition(positionId);
-		final List<Problem> problems = (List<Problem>) this.problemService.findProblemsByPositionAndHacker(positionId, hacker.getUserAccount().getId());
+		final List<Problem> problems = (List<Problem>) this.problemService.findProblemsByPositionAndRooky(positionId, hacker.getUserAccount().getId());
 
 		allProblems.removeAll(problems);
 

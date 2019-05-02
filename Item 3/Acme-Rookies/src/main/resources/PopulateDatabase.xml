@@ -107,6 +107,30 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccountAuditor1" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccountAuditor2" class="security.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="04dd94ba3212ac52ad3a1f4cbfb52d4f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 		<bean id="userAccountSponsorship1" class="security.UserAccount">
 		<property name="username" value="sponsorship1" />
 		<property name="password" value="a5c67ddcc0df74ff25648afee675f6c0" />
@@ -677,6 +701,123 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- ========================================= -->
+
+	<bean id="outBoxAuditor1" class="domain.Folder">
+		<property name="name" value="Out box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor1" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="inBoxAuditor1" class="domain.Folder">
+		<property name="name" value="In box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor1" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="trashBoxAuditor1" class="domain.Folder">
+		<property name="name" value="Trash box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor1" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="notificationBoxAuditor1" class="domain.Folder">
+		<property name="name" value="Notification box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor1" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="spamBoxAuditor1" class="domain.Folder">
+		<property name="name" value="Spam box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor1" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ========================================= -->
+
+	<bean id="outBoxAuditor2" class="domain.Folder">
+		<property name="name" value="Out box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor2" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="inBoxAuditor2" class="domain.Folder">
+		<property name="name" value="In box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor2" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="trashBoxAuditor2" class="domain.Folder">
+		<property name="name" value="Trash box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor2" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="notificationBoxAuditor2" class="domain.Folder">
+		<property name="name" value="Notification box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor2" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="spamBoxAuditor2" class="domain.Folder">
+		<property name="name" value="Spam box" />
+		<property name="isSystemFolder" value="true" />
+		<property name="actor" ref="auditor2" />
+		<property name="messages">
+			<list>
+				<!-- <ref bean="message1"/> -->
+			</list>
+		</property>
+	</bean>
+	
 
 	<!-- =================================================================== 
 		======= ADMINISTRATOR ========= =================================================================== -->
@@ -795,6 +936,45 @@
 		<property name="commercialName" value="commercialName2" />
 	</bean>
 
+	<!-- =================================================================== 
+		======= Auditor ========= =================================================================== -->
+	
+	
+	<bean id="auditor1" class="domain.Auditor">
+		<!-- Actor -->
+		<property name="name" value="Auditor1" />
+		<property name="surname">
+			<list>
+				<value>Admin</value>
+			</list>
+		</property>
+		<property name="photo" value="http://tinyurl.com/picture.png" />
+		<property name="email" value="conwdasto@jmsx.es" />
+		<property name="phone" value="+34647607406" />
+		<property name="address" value="Reina Mercedes" />
+		<property name="vat" value="0.21" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="userAccount" ref="userAccountAdmin1" />
+	</bean>
+
+	<bean id="administrator2" class="domain.Administrator">
+		<!-- Actor -->
+		<property name="name" value="Admin2" />
+		<property name="surname">
+			<list>
+				<value>Gonzalez</value>
+			</list>
+		</property>
+		<property name="photo" value="http://tinyurl.com/picture.png" />
+		<property name="email" value="lusi@gamil.es" />
+		<property name="phone" value="+34647307406" />
+		<property name="address" value="Reina Mercedes" />
+		<property name="vat" value="0.21" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="userAccount" ref="userAccountAdmin2" />
+	</bean>
+	
+
 
 	<!-- =================================================================== 
 		======= CreditCard ========= =================================================================== -->
@@ -893,6 +1073,25 @@
 
 	<bean id="creditCard11" class="domain.CreditCard">
 		<property name="holderName" value="Sponsorship 2" />
+		<property name="make" value="MASTERCARD" />
+		<property name="number" value="5384948404521051" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="20" />
+		<property name="cvv" value="906" />
+	</bean>
+	
+		<!-- Credit cards asignadas a Auditor 1 y 2 -->
+	<bean id="creditCard12" class="domain.CreditCard">
+		<property name="holderName" value="Auditor 1" />
+		<property name="make" value="MASTERCARD" />
+		<property name="number" value="5316710759043864" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="26" />
+		<property name="cvv" value="408" />
+	</bean>
+
+	<bean id="creditCard13" class="domain.CreditCard">
+		<property name="holderName" value="Auditor 2" />
 		<property name="make" value="MASTERCARD" />
 		<property name="number" value="5384948404521051" />
 		<property name="expirationMonth" value="01" />
@@ -1578,7 +1777,7 @@
 		<property name="text" value="Text audit 1" />
 		<property name="score" value="6" />
 		<property name="moment" value="2019/03/16 15:20" />
-		<property name="auditor" ref="auditor1" />
+		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position1" />
 	</bean>
 
