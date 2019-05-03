@@ -289,4 +289,12 @@ public class PositionService {
 		Assert.notNull(res);
 		return res;
 	}
+
+	public Collection<Position> findFreePositionsByAuditor(final int auditorId) {
+		final Collection<Position> audited = this.positionRepository.findAuditedPositionsByAuditor(auditorId);
+		final Collection<Position> res = this.positionRepository.findAll();
+		res.removeAll(audited);
+		Assert.notNull(res);
+		return res;
+	}
 }

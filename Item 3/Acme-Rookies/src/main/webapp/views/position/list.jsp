@@ -37,6 +37,9 @@
 	<jstl:when test="${rol eq 'company' }">
 		<acme:button url="position/company/display.do?positionId=${row.id}" name="display" code="position.display"/>
 	</jstl:when>
+	<jstl:when test="${rol eq 'auditor' }">
+		<acme:button url="audit/auditor/create.do?positionId=${row.id}" name="create" code="position.create.audit"/>
+	</jstl:when>
 	<jstl:otherwise>
 		<acme:button url="position/display.do?positionId=${row.id}" name="display" code="position.display"/>
 	</jstl:otherwise>

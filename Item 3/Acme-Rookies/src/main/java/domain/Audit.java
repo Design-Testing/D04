@@ -26,6 +26,7 @@ public class Audit extends DomainEntity {
 	private String		text;
 	private Integer		score;
 	private Date		moment;
+	private Boolean		isDraft;
 
 	private Position	position;
 	private Auditor		auditor;
@@ -51,6 +52,7 @@ public class Audit extends DomainEntity {
 		this.score = score;
 	}
 
+	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -80,6 +82,15 @@ public class Audit extends DomainEntity {
 
 	public void setAuditor(final Auditor auditor) {
 		this.auditor = auditor;
+	}
+
+	@NotNull
+	public Boolean getIsDraft() {
+		return this.isDraft;
+	}
+
+	public void setIsDraft(final Boolean isDraft) {
+		this.isDraft = isDraft;
 	}
 
 }

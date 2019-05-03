@@ -1779,6 +1779,7 @@
 		<property name="moment" value="2019/03/16 15:20" />
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position1" />
+		<property name="isDraft" ref="true" />
 	</bean>
 
 	<bean id="audit2" class="domain.Audit">
@@ -1787,6 +1788,7 @@
 		<property name="moment" value="2019/04/23 16:30" />
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position2" />
+		<property name="isDraft" ref="true" />
 	</bean>
 	
 	<!-- =================================================================== 

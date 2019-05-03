@@ -39,6 +39,7 @@
 			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="dashboard/administrator/statistics.do"><spring:message	code="master.page.dashboard" /></a></li>
 			<li><a href="administrator/create.do"><spring:message	code="master.page.create.administrator" /></a></li>
+			<li><a href="auditor/create.do"><spring:message	code="master.page.create.auditor" /></a></li>
 				
 		</security:authorize>
 		
@@ -91,6 +92,24 @@
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a href="position/hacker/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="curricula/displayAll.do"><spring:message code="master.page.curricula" /></a></li>
+			
+		</security:authorize>
+		
+		<!-- ========================================================================================================= -->
+		<!-- ========================================  AUDITOR  ================================================ -->
+		<!-- ========================================================================================================= -->
+		
+		<security:authorize access="hasRole('AUDITOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.audits" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="application/hacker/listPending.do"><spring:message code="master.page.application.listPending" /></a></li>
+					<li><a href="application/hacker/listSubmitted.do"><spring:message code="master.page.application.listSubmitted" /></a></li>
+					<li><a href="application/hacker/listAccepted.do"><spring:message code="master.page.application.listAccepted" /></a></li>
+					<li><a href="application/hacker/listRejected.do"><spring:message code="master.page.application.listRejected" /></a></li>
+				</ul>
+			</li>
+			<li><a href="position/hacker/list.do"><spring:message code="master.page.position.list" /></a></li>
 			
 		</security:authorize>
 		
