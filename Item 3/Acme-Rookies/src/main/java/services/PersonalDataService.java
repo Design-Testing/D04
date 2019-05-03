@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.PersonalDataRepository;
-import domain.Hacker;
 import domain.PersonalData;
+import domain.Rooky;
 
 @Service
 @Transactional
@@ -20,7 +20,7 @@ public class PersonalDataService {
 	private PersonalDataRepository	personalDataRepository;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookyService			hackerService;
 
 
 	//Metodos CRUD
@@ -49,18 +49,18 @@ public class PersonalDataService {
 	}
 
 	public PersonalData save(final PersonalData personalData) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.notNull(personalData);
 		if (personalData.getId() != 0)
-			Assert.isTrue(this.hackerService.findHackerByPersonalData(personalData.getId()) == me);
+			Assert.isTrue(this.hackerService.findRookyByPersonalData(personalData.getId()) == me);
 		final PersonalData saved = this.personalDataRepository.save(personalData);
 		Assert.notNull(this.findOne(saved.getId()));
 		return saved;
 	}
 
 	public PersonalData saveCopy(final PersonalData personalData) {
-		final Hacker me = this.hackerService.findByPrincipal();
+		final Rooky me = this.hackerService.findByPrincipal();
 		Assert.notNull(me, "You must be logged in the system");
 		Assert.notNull(personalData);
 		Assert.notNull(personalData.getFullName());
@@ -69,7 +69,7 @@ public class PersonalDataService {
 		Assert.notNull(personalData.getLinkedin());
 		Assert.notNull(personalData.getPhone());
 		if (personalData.getId() != 0)
-			Assert.isTrue(this.hackerService.findHackerByPersonalData(personalData.getId()) == me);
+			Assert.isTrue(this.hackerService.findRookyByPersonalData(personalData.getId()) == me);
 		final PersonalData saved = this.personalDataRepository.save(personalData);
 		Assert.notNull(this.findOne(saved.getId()));
 		return saved;

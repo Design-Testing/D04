@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 import utilities.AbstractTest;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rooky;
 import domain.PersonalData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -145,7 +145,7 @@ public class EducationDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Hacker principal = this.hackerService.findByPrincipal();
+			final Rooky principal = this.hackerService.findByPrincipal();
 			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(principal.getId());
 			final Curricula curricula = curriculas.iterator().next();
 			final EducationData lR = curricula.getEducations().iterator().next();
@@ -197,7 +197,7 @@ public class EducationDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(actor);
-			final Hacker hacker = this.hackerService.findByPrincipal();
+			final Rooky hacker = this.hackerService.findByPrincipal();
 			final EducationData lRec = this.curriculaService.findCurriculaByHacker(hacker.getId()).iterator().next().getEducations().iterator().next();
 			this.educationDataService.delete(lRec);
 			this.educationDataService.flush();

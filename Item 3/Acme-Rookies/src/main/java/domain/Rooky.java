@@ -9,7 +9,7 @@ import javax.validation.Valid;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Hacker extends Actor {
+public class Rooky extends Actor {
 
 	private Finder	finder;
 

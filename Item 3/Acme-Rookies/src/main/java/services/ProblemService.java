@@ -138,9 +138,9 @@ public class ProblemService {
 		return res;
 	}
 
-	public Collection<Problem> findProblemsByPositionAndHacker(final Integer positionId, final Integer hackerUAId) {
+	public Collection<Problem> findProblemsByPositionAndRooky(final Integer positionId, final Integer hackerUAId) {
 		Collection<Problem> res = new ArrayList<>();
-		res = this.problemRepository.findProblemsByPositionAndHacker(positionId, hackerUAId);
+		res = this.problemRepository.findProblemsByPositionAndRooky(positionId, hackerUAId);
 		return res;
 	}
 

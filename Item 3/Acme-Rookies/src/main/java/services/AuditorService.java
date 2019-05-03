@@ -15,7 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CurriculaRepository;
-import repositories.HackerRepository;
+import repositories.RookyRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
@@ -23,15 +23,15 @@ import domain.Actor;
 import domain.CreditCard;
 import domain.Curricula;
 import domain.Finder;
-import domain.Hacker;
+import domain.Rooky;
 import forms.ActorForm;
 
 @Service
 @Transactional
-public class HackerService {
+public class AuditorService {
 
 	@Autowired
-	private HackerRepository	hackerRepository;
+	private RookyRepository	hackerRepository;
 
 	@Autowired
 	private ActorService		actorService;
@@ -52,23 +52,23 @@ public class HackerService {
 	private Validator			validator;
 
 
-	public Hacker create() {
-		final Hacker hacker = new Hacker();
+	public Rooky create() {
+		final Rooky hacker = new Rooky();
 		this.actorService.setAuthorityUserAccount(Authority.HACKER, hacker);
 
 		return hacker;
 	}
 
-	public Hacker findOne(final int hackerId) {
+	public Rooky findOne(final int hackerId) {
 		Assert.isTrue(hackerId != 0);
-		final Hacker result = this.hackerRepository.findOne(hackerId);
+		final Rooky result = this.hackerRepository.findOne(hackerId);
 		Assert.notNull(result);
 		return result;
 	}
 
-	public Hacker save(final Hacker hacker) {
+	public Rooky save(final Rooky hacker) {
 		Assert.notNull(hacker);
-		Hacker result;
+		Rooky result;
 
 		if (hacker.getId() == 0) {
 			final Finder finder = this.finderService.createForNewHacker();
@@ -86,13 +86,13 @@ public class HackerService {
 			this.actorService.checkForSpamWords(hacker);
 			final Actor principal = this.actorService.findByPrincipal();
 			Assert.isTrue(principal.getId() == hacker.getId(), "You only can edit your info");
-			result = (Hacker) this.actorService.save(hacker);
+			result = (Rooky) this.actorService.save(hacker);
 		}
 		return result;
 	}
 
 	// TODO: delete all information but name including folders and their messages (but no as senders!!)
-	public void delete(final Hacker hacker) {
+	public void delete(final Rooky hacker) {
 		Assert.notNull(hacker);
 		Assert.isTrue(this.findByPrincipal().equals(hacker));
 		Assert.isTrue(hacker.getId() != 0);
@@ -103,7 +103,7 @@ public class HackerService {
 	}
 
 	public void deletePersonalData() {
-		final Hacker principal = this.findByPrincipal();
+		final Rooky principal = this.findByPrincipal();
 		this.finderService.clear(this.finderService.findHackerFinder());
 		final List<String> s = new ArrayList<>();
 		s.add("DELETED");
@@ -123,11 +123,11 @@ public class HackerService {
 
 	/* ========================= OTHER METHODS =========================== */
 
-	public Hacker findByPrincipal() {
+	public Rooky findByPrincipal() {
 		final UserAccount user = LoginService.getPrincipal();
 		Assert.notNull(user);
 
-		final Hacker hacker = this.findByUserId(user.getId());
+		final Rooky hacker = this.findByUserId(user.getId());
 		Assert.notNull(hacker);
 		final boolean bool = this.actorService.checkAuthority(hacker, Authority.HACKER);
 		Assert.isTrue(bool);
@@ -135,9 +135,9 @@ public class HackerService {
 		return hacker;
 	}
 
-	public Hacker findByUserId(final int id) {
+	public Rooky findByUserId(final int id) {
 		Assert.isTrue(id != 0);
-		final Hacker hacker = this.hackerRepository.findByUserId(id);
+		final Rooky hacker = this.hackerRepository.findByUserId(id);
 		return hacker;
 	}
 
@@ -157,8 +157,8 @@ public class HackerService {
 	 * 
 	 * @author a8081
 	 */
-	public Collection<Hacker> getHackersMoreApplications() {
-		final Collection<Hacker> res = this.hackerRepository.getHackersMoreApplications();
+	public Collection<Rooky> getHackersMoreApplications() {
+		final Collection<Rooky> res = this.hackerRepository.getHackersMoreApplications();
 		Assert.notNull(res);
 		return res;
 	}
@@ -167,8 +167,8 @@ public class HackerService {
 		this.hackerRepository.flush();
 	}
 
-	public Hacker reconstruct(final ActorForm actorForm, final BindingResult binding) {
-		Hacker hacker;
+	public Rooky reconstruct(final ActorForm actorForm, final BindingResult binding) {
+		Rooky hacker;
 		final CreditCard c = new CreditCard();
 		c.setHolderName(actorForm.getHolderName());
 		final String cardNumber = actorForm.getNumber().replace(" ", "");
@@ -224,28 +224,28 @@ public class HackerService {
 		return hacker;
 	}
 
-	public Hacker findHackerByCurricula(final int id) {
-		final Hacker result = this.hackerRepository.findHackerByCurricula(id);
+	public Rooky findHackerByCurricula(final int id) {
+		final Rooky result = this.hackerRepository.findHackerByCurricula(id);
 		return result;
 	}
 
-	public Hacker findHackerByPersonalData(final int id) {
-		final Hacker result = this.hackerRepository.findHackerByPersonalData(id);
+	public Rooky findHackerByPersonalData(final int id) {
+		final Rooky result = this.hackerRepository.findHackerByPersonalData(id);
 		return result;
 	}
 
-	public Hacker findHackerByMiscellaneous(final int id) {
-		final Hacker result = this.hackerRepository.findHackerByMiscellaneous(id);
+	public Rooky findHackerByMiscellaneous(final int id) {
+		final Rooky result = this.hackerRepository.findHackerByMiscellaneous(id);
 		return result;
 	}
 
-	public Hacker findHackerByEducationDatas(final int id) {
-		final Hacker result = this.hackerRepository.findHackerByEducationDatas(id);
+	public Rooky findHackerByEducationDatas(final int id) {
+		final Rooky result = this.hackerRepository.findHackerByEducationDatas(id);
 		return result;
 	}
 
-	public Hacker findHackerByPositionDatas(final int id) {
-		final Hacker result = this.hackerRepository.findHackerByPositionDatas(id);
+	public Rooky findHackerByPositionDatas(final int id) {
+		final Rooky result = this.hackerRepository.findHackerByPositionDatas(id);
 		return result;
 	}
 
@@ -279,8 +279,8 @@ public class HackerService {
 		return result;
 	}
 
-	public Hacker findHackerByCopyCurricula(final int id) {
-		final Hacker result = this.hackerRepository.findHackerByCopyCurricula(id);
+	public Rooky findHackerByCopyCurricula(final int id) {
+		final Rooky result = this.hackerRepository.findHackerByCopyCurricula(id);
 		Assert.notNull(result, "hacker found by copy of curricula is null");
 		return result;
 	}

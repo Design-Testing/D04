@@ -13,11 +13,11 @@ import domain.Curricula;
 public interface CurriculaRepository extends JpaRepository<Curricula, Integer> {
 
 	/** The average, minimum, maximum and standard deviation of the number of curricula per hacker */
-	@Query("select avg(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0), min(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0), max(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0), stddev(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0) from Hacker c")
-	Double[] getStatisticsOfCurriculaPerHacker();
+	@Query("select avg(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0), min(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0), max(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0), stddev(1.0+ (select count(p) from Curricula p where p.hacker.id=c.id) -1.0) from Rooky c")
+	Double[] getStatisticsOfCurriculaPerRooky();
 
 	@Query("select c from Curricula c where c.hacker.id=?1")
-	Collection<Curricula> findCurriculaByHacker(int id);
+	Collection<Curricula> findCurriculaByRooky(int id);
 
 	@Query("select c from Curricula c where c.personalRecord.id=?1")
 	Curricula findCurriculaByPersonalData(int id);

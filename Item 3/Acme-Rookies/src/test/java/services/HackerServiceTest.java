@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import security.UserAccount;
 import utilities.AbstractTest;
-import domain.Hacker;
+import domain.Rooky;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -99,7 +99,7 @@ public class HackerServiceTest extends AbstractTest {
 	private void templateCreateAndSave(final String username, final String password, final String name, final Collection<String> surname, final String email, final String phone, final Class<?> expected) {
 
 		Class<?> caught;
-		Hacker hacker;
+		Rooky hacker;
 		final UserAccount userAccount;
 
 		caught = null;
@@ -170,7 +170,7 @@ public class HackerServiceTest extends AbstractTest {
 
 	private void templateEditHacker(final String username, final String password, final String name, final Collection<String> surname, final String email, final String phone, final Class<?> expected) {
 		Class<?> caught;
-		Hacker hacker;
+		Rooky hacker;
 		hacker = this.hackerService.findOne(this.getEntityId(username));
 
 		caught = null;

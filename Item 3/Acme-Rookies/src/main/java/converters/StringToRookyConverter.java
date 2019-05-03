@@ -8,21 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import repositories.HackerRepository;
-import domain.Hacker;
+import repositories.RookyRepository;
+import domain.Rooky;
 
 @Component
 @Transactional
-public class StringToHackerConverter implements Converter<String, Hacker> {
+public class StringToRookyConverter implements Converter<String, Rooky> {
 
 	@Autowired
-	private HackerRepository	hackerRepository;
+	private RookyRepository	rookyRepository;
 
 
 	@Override
-	public Hacker convert(final String text) {
+	public Rooky convert(final String text) {
 
-		final Hacker result;
+		final Rooky result;
 		final int id;
 
 		try {
@@ -30,7 +30,7 @@ public class StringToHackerConverter implements Converter<String, Hacker> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.hackerRepository.findOne(id);
+				result = this.rookyRepository.findOne(id);
 			}
 
 		} catch (final Throwable oops) {
