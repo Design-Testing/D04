@@ -11,15 +11,17 @@ import org.springframework.validation.BindingResult;
 import security.UserAccount;
 import security.UserAccountRepository;
 import services.AdministratorService;
+import services.AuditorService;
 import services.CompanyService;
-import services.HackerService;
 import services.UserAccountService;
 import domain.Actor;
 import domain.Administrator;
+import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
 import domain.Rooky;
 import forms.ActorForm;
+import forms.AuditorForm;
 import forms.CompanyForm;
 
 @Service
@@ -40,6 +42,9 @@ public class RegisterService {
 
 	@Autowired
 	private CompanyService			companyService;
+
+	@Autowired
+	private AuditorService			auditorService;
 
 
 	public Administrator saveAdmin(final Administrator admin, final BindingResult binding) {
@@ -187,6 +192,66 @@ public class RegisterService {
 		result.setUserAccountpassword(company.getUserAccount().getPassword());
 		result.setUserAccountuser(company.getUserAccount().getUsername());
 		result.setVersion(company.getVersion());
+
+		return result;
+	}
+
+	public AuditorForm inyect(final Auditor auditor) {
+		final AuditorForm result = new AuditorForm();
+
+		final CreditCard c = auditor.getCreditCard();
+
+		result.setAddress(auditor.getAddress());
+		result.setEmail(auditor.getEmail());
+		result.setId(auditor.getId());
+		result.setName(auditor.getName());
+		result.setPhone(auditor.getPhone());
+		result.setPhoto(auditor.getPhoto());
+		result.setSurname(auditor.getSurname());
+		result.setVat(auditor.getVat());
+		result.setVersion(auditor.getVersion());
+
+		// CreditCard
+		result.setHolderName(c.getHolderName());
+		result.setExpirationMonth(c.getExpirationMonth());
+		result.setExpirationYear(c.getExpirationYear());
+		result.setMake(c.getMake());
+		result.setNumber(c.getNumber());
+		result.setCvv(c.getCvv());
+
+		result.setUserAccountpassword(auditor.getUserAccount().getPassword());
+		result.setUserAccountuser(auditor.getUserAccount().getUsername());
+		result.setVersion(auditor.getVersion());
+
+		return result;
+	}
+
+	public Auditor saveAuditor(final Auditor auditor, final BindingResult binding) {
+		Auditor result;
+		final UserAccount ua = auditor.getUserAccount();
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final String hash = encoder.encodePassword(ua.getPassword(), null);
+		if (auditor.getId() == 0) {
+			Assert.isTrue(this.userAccountRepository.findByUsername(ua.getUsername()) == null, "The username is register");
+			ua.setPassword(hash);
+			auditor.setUserAccount(ua);
+			result = this.auditorService.save(auditor);
+			UserAccount uaSaved = result.getUserAccount();
+			uaSaved.setAuthorities(ua.getAuthorities());
+			uaSaved.setUsername(ua.getUsername());
+			uaSaved.setPassword(ua.getPassword());
+			uaSaved = this.userAccountService.save(uaSaved);
+			result.setUserAccount(uaSaved);
+		} else {
+			final Auditor old = this.auditorService.findOne(auditor.getId());
+
+			ua.setPassword(hash);
+			if (!old.getUserAccount().getUsername().equals(ua.getUsername()))
+				Assert.isTrue(this.userAccountRepository.findByUsername(ua.getUsername()) == null, "The username is register");
+
+			result = this.auditorService.save(auditor);
+
+		}
 
 		return result;
 	}

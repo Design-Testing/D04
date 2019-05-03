@@ -51,10 +51,10 @@ public class AuditorController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView res;
-		final Collection<Auditor> companies = this.auditorService.findAll();
+		final Collection<Auditor> auditors = this.auditorService.findAll();
 
 		res = new ModelAndView("auditor/list");
-		res.addObject("companies", companies);
+		res.addObject("auditors", auditors);
 
 		return res;
 	}
