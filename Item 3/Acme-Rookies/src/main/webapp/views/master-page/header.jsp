@@ -103,13 +103,11 @@
 			<li><a class="fNiv"><spring:message	code="master.page.audits" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="application/hacker/listPending.do"><spring:message code="master.page.application.listPending" /></a></li>
-					<li><a href="application/hacker/listSubmitted.do"><spring:message code="master.page.application.listSubmitted" /></a></li>
-					<li><a href="application/hacker/listAccepted.do"><spring:message code="master.page.application.listAccepted" /></a></li>
-					<li><a href="application/hacker/listRejected.do"><spring:message code="master.page.application.listRejected" /></a></li>
+					<li><a href="audit/auditor/listDraft.do"><spring:message code="master.page.audit.listDraft" /></a></li>
+					<li><a href="audit/auditor/listFinal.do"><spring:message code="master.page.audit.listFinal" /></a></li>
 				</ul>
 			</li>
-			<li><a href="position/hacker/list.do"><spring:message code="master.page.position.list" /></a></li>
+			<li><a href="audit/auditor/listFreePositions.do"><spring:message code="master.page.audit.free.positions" /></a></li>
 			
 		</security:authorize>
 		
@@ -147,6 +145,10 @@
 						<security:authorize access="hasRole('HACKER')">
 							<li><a href="hacker/edit.do"><spring:message code="master.page.hacker.edit" /></a></li>
 							<li><a href="hacker/display.do"><spring:message code="master.page.hacker.display" /></a></li>
+						</security:authorize>
+						<security:authorize access="hasRole('AUDITOR')">
+							<li><a href="auditor/edit.do"><spring:message code="master.page.auditor.edit" /></a></li>
+							<li><a href="auditor/display.do"><spring:message code="master.page.auditor.display" /></a></li>
 						</security:authorize>
 					<li><a href="folder/list.do"><spring:message code="master.page.folder.list" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>

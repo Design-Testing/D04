@@ -79,6 +79,8 @@ public class AuditService {
 			audit.setPosition(position);
 
 		} else {
+			final Collection<Position> freePositions = this.positionService.findFreePositionsByAuditor(principal.getId());
+			Assert.isTrue(freePositions.contains(position), "already audited this position");
 			audit.setIsDraft(true);
 			audit.setAuditor(principal);
 			audit.setPosition(position);

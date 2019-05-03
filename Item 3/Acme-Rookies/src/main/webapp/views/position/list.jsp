@@ -91,6 +91,12 @@
 	</display:column>
 	
 	</security:authorize>
+	
+	<display:column>
+	
+		<acme:button url="audit/auditor/listAll.do?positionId=${row.id}" name="display" code="audit.display"/>
+	
+	</display:column>
 
 	
 </display:table>
