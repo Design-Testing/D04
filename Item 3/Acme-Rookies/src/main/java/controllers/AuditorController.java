@@ -8,6 +8,7 @@ import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import services.AuditorService;
 import services.ConfigurationParametersService;
@@ -69,10 +71,20 @@ public class AuditorController extends AbstractController {
 		return result;
 	}
 
-	// DISPLAY -----------------------------------------------------------
+	// DISPLAY desde admin -----------------------------------------------------------
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int auditorId) {
+
+		final UserAccount logged = LoginService.getPrincipal();
+
+		final Authority authAuditor = new Authority();
+		authAuditor.setAuthority(Authority.AUDITOR);
+		if (logged.getAuthorities().contains(authAuditor)) {
+			final Auditor auditor = this.auditorService.findByPrincipal();
+			Assert.isTrue(auditor.getId() == auditorId, "yo can not see another auditor data");
+		}
+
 		final ModelAndView result;
 		final Auditor auditor = this.auditorService.findOne(auditorId);
 		if (auditor != null) {
@@ -85,8 +97,11 @@ public class AuditorController extends AbstractController {
 		return result;
 
 	}
+
+	// DISPLAY desde el mismo auditor
 	@RequestMapping(value = "/display2", method = RequestMethod.GET)
 	public ModelAndView display2() {
+
 		final ModelAndView result;
 		final Auditor auditor = this.auditorService.findByPrincipal();
 		if (auditor != null) {
@@ -104,6 +119,7 @@ public class AuditorController extends AbstractController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {
+
 		ModelAndView result;
 
 		final Auditor auditor = this.auditorService.findByPrincipal();

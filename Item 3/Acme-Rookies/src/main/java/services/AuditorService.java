@@ -41,6 +41,13 @@ public class AuditorService {
 
 
 	public Auditor create() {
+
+		final UserAccount logged = LoginService.getPrincipal();
+
+		final Authority authAdmin = new Authority();
+		authAdmin.setAuthority(Authority.ADMIN);
+		Assert.isTrue(logged.getAuthorities().contains(authAdmin), "to create a auditor you must be a admin");
+
 		final Auditor auditor = new Auditor();
 		this.actorService.setAuthorityUserAccount(Authority.AUDITOR, auditor);
 
@@ -57,11 +64,17 @@ public class AuditorService {
 	public Auditor save(final Auditor auditor) {
 		Assert.notNull(auditor);
 		Auditor result;
+		final UserAccount logged = LoginService.getPrincipal();
+
+		final Authority authAdmin = new Authority();
+		authAdmin.setAuthority(Authority.ADMIN);
 
 		if (auditor.getId() == 0) {
 			this.actorService.setAuthorityUserAccount(Authority.AUDITOR, auditor);
 			result = this.auditorRepository.save(auditor);
 			//			this.folderService.setFoldersByDefault(result);
+
+			Assert.isTrue(logged.getAuthorities().contains(authAdmin), "to create a auditor you must be a admin");
 
 		} else {
 			this.actorService.checkForSpamWords(auditor);
@@ -71,11 +84,9 @@ public class AuditorService {
 		}
 		return result;
 	}
-
 	// TODO: delete all information but name including folders and their messages (but no as senders!!)
 	public void delete(final Auditor auditor) {
 		Assert.notNull(auditor);
-		Assert.isTrue(this.findByPrincipal().equals(auditor));
 		Assert.isTrue(auditor.getId() != 0);
 		final Actor principal = this.actorService.findByPrincipal();
 		Assert.isTrue(principal.getId() == auditor.getId(), "You only can edit your info");

@@ -19,14 +19,13 @@ import security.LoginService;
 import security.UserAccount;
 import services.CompanyService;
 import services.CurriculaService;
-import services.HackerService;
 import domain.Company;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Rooky;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rooky;
 
 @Controller
 @RequestMapping("/curricula")
@@ -41,34 +40,6 @@ public class CurriculaController extends AbstractController {
 	@Autowired
 	private CompanyService		companyService;
 
-
-	/*
-	 * @RequestMapping(value = "/list", method = RequestMethod.GET)
-	 * public ModelAndView list() {
-	 * final ModelAndView res;
-	 * final Hacker hacker = this.hackerService.findByPrincipal();
-	 * final Curricula curricula = this.curriculaService.findCurriculaByHacker(hacker.getId());
-	 * if (!(curricula == null)) {
-	 * final PersonalData personalData = curricula.getPersonalRecord();
-	 * final Collection<EducationData> educationDatas = curricula.getEducations();
-	 * final Collection<PositionData> positionDatas = curricula.getPositions();
-	 * final Collection<MiscellaneousData> miscellaneousRecords = curricula.getMiscellaneous();
-	 * 
-	 * res = new ModelAndView("curricula/display");
-	 * res.addObject("curricula", curricula);
-	 * res.addObject("buttons", true);
-	 * res.addObject("personalData", personalData);
-	 * res.addObject("positionDatas", positionDatas);
-	 * res.addObject("educationDatas", educationDatas);
-	 * res.addObject("miscellaneousRecords", miscellaneousRecords);
-	 * } else {
-	 * res = new ModelAndView("curricula/create");
-	 * res.addObject("curricula", curricula);
-	 * }
-	 * 
-	 * return res;
-	 * }
-	 */
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int curriculaId) {

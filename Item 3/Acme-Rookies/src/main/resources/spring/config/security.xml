@@ -77,6 +77,14 @@
 		<security:intercept-url pattern="/company/display2.do" access="hasRole('COMPANY')" />
 		<security:intercept-url pattern="/company/deletePersonalData.do" access="hasRole('COMPANY')" />
 		
+		<!-- AUDITOR -->
+		<security:intercept-url pattern="/auditor/list.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/auditor/display.do" access="hasAnyRole('ADMIN', 'AUDITOR')" />
+		<security:intercept-url pattern="/auditor/create.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/auditor/edit.do" access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/auditor/display2.do" access="hasAnyRole('ADMIN', 'AUDITOR')" />
+		<security:intercept-url pattern="/auditor/deletePersonalData.do" access="hasRole('AUDITOR')" />
+		
 		<!-- HACKER -->
 		<security:intercept-url pattern="/hacker/create.do" access="permitAll" />
 		<security:intercept-url pattern="/hacker/edit.do" access="permitAll" />
