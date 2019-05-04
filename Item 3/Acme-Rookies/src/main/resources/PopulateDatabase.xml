@@ -937,7 +937,7 @@
 		<property name="address" value="Reina Mercedes" />
 		<property name="vat" value="0.21" />
 		<property name="creditCard" ref="creditCard12" />
-		<property name="userAccount" ref="userAccountAdmin1" />
+		<property name="userAccount" ref="userAccountAuditor1" />
 	</bean>
 
 	<bean id="auditor2" class="domain.Auditor">
@@ -954,7 +954,7 @@
 		<property name="address" value="Reina Mercedes" />
 		<property name="vat" value="0.21" />
 		<property name="creditCard" ref="creditCard13" />
-		<property name="userAccount" ref="userAccountAdmin2" />
+		<property name="userAccount" ref="userAccountAuditor2" />
 	</bean>
 	
 

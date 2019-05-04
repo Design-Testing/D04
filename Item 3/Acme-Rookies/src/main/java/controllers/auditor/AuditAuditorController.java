@@ -1,5 +1,5 @@
 
-package auditor;
+package controllers.auditor;
 
 import java.util.Collection;
 
@@ -202,7 +202,7 @@ public class AuditAuditorController extends AbstractController {
 		final Collection<Position> positions;
 		final Auditor logged = this.auditorService.findByPrincipal();
 		positions = this.positionService.findFreePositionsByAuditor(logged.getId());
-
+		System.out.println(logged.getUserAccount().getAuthorities());
 		result = new ModelAndView("audit/listPositions");
 		result.addObject("positions", positions);
 

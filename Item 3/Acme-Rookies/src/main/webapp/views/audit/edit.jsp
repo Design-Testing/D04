@@ -18,6 +18,13 @@
 		<form:label path="text">
 			<spring:message code="audit.text" />
 		</form:label>
+		<form:textarea path="text" />
+		<form:errors path="score" cssClass="audit.text" />
+		<br>
+		<br>
+		<form:label path="score">
+			<spring:message code="audit.score" />
+		</form:label>
 		<form:textarea path="score" />
 		<form:errors path="score" cssClass="audit.score" />
 	</div>
