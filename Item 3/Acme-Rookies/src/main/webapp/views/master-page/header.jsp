@@ -14,7 +14,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="${bannerURL}" alt="Acme Hacker Rank Co., Inc." /></a>
+	<a href="#"><img src="${bannerURL}" alt="Acme Rooky Rank Co., Inc." /></a>
 </div>
 
 <div>
@@ -34,7 +34,7 @@
 				</ul>
 			</li>
 			
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="dashboard/administrator/statistics.do"><spring:message	code="master.page.dashboard" /></a></li>
@@ -59,7 +59,7 @@
 				</ul>
 			</li>
 			
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.public.list" /></a></li>
 			
@@ -75,22 +75,22 @@
 		</security:authorize>
 		
 		<!-- ========================================================================================================= -->
-		<!-- ========================================  HACKER  ================================================ -->
+		<!-- ========================================  ROOKY  ================================================ -->
 		<!-- ========================================================================================================= -->
 		
-		<security:authorize access="hasRole('HACKER')">
+		<security:authorize access="hasRole('ROOKY')">
 			<li><a class="fNiv"><spring:message	code="master.page.applications" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="application/hacker/listPending.do"><spring:message code="master.page.application.listPending" /></a></li>
-					<li><a href="application/hacker/listSubmitted.do"><spring:message code="master.page.application.listSubmitted" /></a></li>
-					<li><a href="application/hacker/listAccepted.do"><spring:message code="master.page.application.listAccepted" /></a></li>
-					<li><a href="application/hacker/listRejected.do"><spring:message code="master.page.application.listRejected" /></a></li>
+					<li><a href="application/rooky/listPending.do"><spring:message code="master.page.application.listPending" /></a></li>
+					<li><a href="application/rooky/listSubmitted.do"><spring:message code="master.page.application.listSubmitted" /></a></li>
+					<li><a href="application/rooky/listAccepted.do"><spring:message code="master.page.application.listAccepted" /></a></li>
+					<li><a href="application/rooky/listRejected.do"><spring:message code="master.page.application.listRejected" /></a></li>
 				</ul>
 			</li>
-			<li><a href="finder/hacker/edit.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/rooky/edit.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
-			<li><a href="position/hacker/list.do"><spring:message code="master.page.position.list" /></a></li>
+			<li><a href="position/rooky/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="curricula/displayAll.do"><spring:message code="master.page.curricula" /></a></li>
 			
 		</security:authorize>
@@ -119,10 +119,10 @@
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a class="fNiv" href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
-			<li><a class="fNiv" href="hacker/create.do"><spring:message code="master.page.hacker.register" /></a></li>
+			<li><a class="fNiv" href="rooky/create.do"><spring:message code="master.page.rooky.register" /></a></li>
 			
 		</security:authorize>
 		
@@ -142,9 +142,9 @@
 							<li><a href="administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 							<li><a href="administrator/display.do"><spring:message code="master.page.administrator.display" /></a></li>
 						</security:authorize>
-						<security:authorize access="hasRole('HACKER')">
-							<li><a href="hacker/edit.do"><spring:message code="master.page.hacker.edit" /></a></li>
-							<li><a href="hacker/display.do"><spring:message code="master.page.hacker.display" /></a></li>
+						<security:authorize access="hasRole('ROOKY')">
+							<li><a href="rooky/edit.do"><spring:message code="master.page.rooky.edit" /></a></li>
+							<li><a href="rooky/display.do"><spring:message code="master.page.rooky.display" /></a></li>
 						</security:authorize>
 						<security:authorize access="hasRole('AUDITOR')">
 							<li><a href="auditor/edit.do"><spring:message code="master.page.auditor.edit" /></a></li>
