@@ -1086,12 +1086,12 @@
 		======= Configuration Parameters ========= =================================================================== -->
 
 	<bean id="configurationParameters" class="domain.ConfigurationParameters">
-		<property name="sysName" value="Acme Rooky" />
-		<property name="banner" value="https://i.imgur.com/7b8lu4b.png" />
+		<property name="sysName" value="Acme Rookies" />
+		<property name="banner" value="https://i.ibb.co/HpCD1x8/logo1.png" />
 		<property name="welcomeMessageEn"
-			value="Welcome to Acme Rooky! We're IT Rooky's favourite job marketplace!" />
+			value="Welcome to Acme Rookies! We're IT Rookies' favourite job marketplace!" />
 		<property name="welcomeMessageEsp"
-			value="¡Bienvenidos a Acme Rooky! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+			value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="countryPhoneCode" value="+34" />
 		<property name="spamWords">
 			<list>
