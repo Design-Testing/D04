@@ -22,7 +22,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.CreditCard;
 import domain.Provider;
-import forms.ProviderForm;
+import forms.ActorForm;
 
 @Service
 @Transactional
@@ -134,27 +134,27 @@ public class ProviderService {
 		this.providerRepository.flush();
 	}
 
-	public Provider reconstruct(final ProviderForm providerForm, final BindingResult binding) {
+	public Provider reconstruct(final ActorForm actorForm, final BindingResult binding) {
 		Provider provider;
 		final CreditCard c = new CreditCard();
-		c.setHolderName(providerForm.getHolderName());
-		final String cardNumber = providerForm.getNumber().replace(" ", "");
+		c.setHolderName(actorForm.getHolderName());
+		final String cardNumber = actorForm.getNumber().replace(" ", "");
 		c.setNumber(cardNumber);
-		c.setMake(providerForm.getMake());
-		c.setExpirationMonth(providerForm.getExpirationMonth());
-		c.setExpirationYear(providerForm.getExpirationYear());
-		c.setCvv(providerForm.getCvv());
+		c.setMake(actorForm.getMake());
+		c.setExpirationMonth(actorForm.getExpirationMonth());
+		c.setExpirationYear(actorForm.getExpirationYear());
+		c.setCvv(actorForm.getCvv());
 
-		if (providerForm.getId() == 0) {
+		if (actorForm.getId() == 0) {
 			provider = this.create();
-			provider.setName(providerForm.getName());
-			provider.setSurname(providerForm.getSurname());
-			provider.setPhoto(providerForm.getPhoto());
-			provider.setPhone(providerForm.getPhone());
-			provider.setEmail(providerForm.getEmail());
-			provider.setAddress(providerForm.getAddress());
-			provider.setVat(providerForm.getVat());
-			provider.setVersion(providerForm.getVersion());
+			provider.setName(actorForm.getName());
+			provider.setSurname(actorForm.getSurname());
+			provider.setPhoto(actorForm.getPhoto());
+			provider.setPhone(actorForm.getPhone());
+			provider.setEmail(actorForm.getEmail());
+			provider.setAddress(actorForm.getAddress());
+			provider.setVat(actorForm.getVat());
+			provider.setVersion(actorForm.getVersion());
 			//			provider.setScore(0.0);
 			//			provider.setSpammer(false);
 			final UserAccount account = this.userAccountService.create();
@@ -163,22 +163,22 @@ public class ProviderService {
 			auth.setAuthority(Authority.PROVIDER);
 			authorities.add(auth);
 			account.setAuthorities(authorities);
-			account.setUsername(providerForm.getUserAccountuser());
-			account.setPassword(providerForm.getUserAccountpassword());
+			account.setUsername(actorForm.getUserAccountuser());
+			account.setPassword(actorForm.getUserAccountpassword());
 			provider.setUserAccount(account);
 		} else {
-			provider = this.providerRepository.findOne(providerForm.getId());
-			provider.setName(providerForm.getName());
-			provider.setSurname(providerForm.getSurname());
-			provider.setPhoto(providerForm.getPhoto());
-			provider.setPhone(providerForm.getPhone());
-			provider.setEmail(providerForm.getEmail());
-			provider.setAddress(providerForm.getAddress());
-			provider.setVat(providerForm.getVat());
-			provider.setVersion(providerForm.getVersion());
+			provider = this.providerRepository.findOne(actorForm.getId());
+			provider.setName(actorForm.getName());
+			provider.setSurname(actorForm.getSurname());
+			provider.setPhoto(actorForm.getPhoto());
+			provider.setPhone(actorForm.getPhone());
+			provider.setEmail(actorForm.getEmail());
+			provider.setAddress(actorForm.getAddress());
+			provider.setVat(actorForm.getVat());
+			provider.setVersion(actorForm.getVersion());
 			final UserAccount account = this.userAccountService.findOne(provider.getUserAccount().getId());
-			account.setUsername(providerForm.getUserAccountuser());
-			account.setPassword(providerForm.getUserAccountpassword());
+			account.setUsername(actorForm.getUserAccountuser());
+			account.setPassword(actorForm.getUserAccountpassword());
 			provider.setUserAccount(account);
 		}
 
