@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Rooky;
 import domain.PersonalData;
+import domain.Rooky;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -26,7 +26,7 @@ public class PersonalDataServiceTest extends AbstractTest {
 	private PersonalDataService	personalDataService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookyService		hackerService;
 
 	@Autowired
 	private CurriculaService	curriculaService;
@@ -36,25 +36,25 @@ public class PersonalDataServiceTest extends AbstractTest {
 	public void driverCreateSave() {
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
-				//			B: Test Positivo: Hacker creaPersonalData
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
+				//			B: Test Positivo: Rooky creaPersonalData
 				//			C: 100% Recorre 68 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
 				"hacker1", "hacker 1 fullname", "statement test", "http://www.github.com/test", "+34 667345123", "http://www.linkedin.com/test", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 				//			B: Test Negativo: no introduce una url como github link
 				//			C: 89,70% Recorre 61 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
 				"hacker1", "hacker 1 fullname", "statement test", "github profile", "+34 667345123", "http://www.linkedin.com/test", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 				//			B: Test Negativo: introduce un numero de telefono incorrecto
 				//			C: 11,76% Recorre 8 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
 				"hacker1", "hacker 1 fullname", "statement test", "http://www.github.com/test", "667345123", "http://www.linkedin.com/test", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 				//			B: Test Negativo: no introduce nombre completo
 				//			C: 98,52% Recorre 67 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
@@ -91,25 +91,25 @@ public class PersonalDataServiceTest extends AbstractTest {
 	public void driverEdit() {
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
-				//			B: Test Positivo: Hacker creaPersonalData
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
+				//			B: Test Positivo: Rooky creaPersonalData
 				//			C: 100% Recorre 68 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
 				"hacker1", "hacker1", "hacker 1 fullname", "statement test", "http://www.github.com/test", "+34 667345123", "http://www.linkedin.com/test", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 				//			B: Test Negativo: no introduce una url como github link
 				//			C: 89,70% Recorre 61 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
 				"hacker1", "hacker1", "hacker 1 fullname", "statement test", "github profile", "+34 667345123", "http://www.linkedin.com/test", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 				//			B: Test Negativo: un hacker intenta editar personal data de otro
 				//			C: 11,76% Recorre 8 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
 				"hacker2", "hacker1", "hacker 1 fullname", "statement test", "http://www.github.com/test", "667345123", "http://www.linkedin.com/test", java.lang.IllegalArgumentException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 				//			B: Test Negativo: no introduce nombre completo
 				//			C: 98,52% Recorre 67 de las 68 lineas posibles
 				//			D: cobertura de datos=4/54
@@ -126,7 +126,7 @@ public class PersonalDataServiceTest extends AbstractTest {
 			this.authenticate(user);
 			final Rooky owner = this.hackerService.findOne(this.getEntityId(userProp));
 			final PersonalData iR;
-			final Curricula curricula = this.curriculaService.findCurriculaByHacker(owner.getId()).iterator().next();
+			final Curricula curricula = this.curriculaService.findCurriculaByRooky(owner.getId()).iterator().next();
 			iR = curricula.getPersonalRecord();
 			iR.setFullName(fullName);
 			iR.setStatement(statement);

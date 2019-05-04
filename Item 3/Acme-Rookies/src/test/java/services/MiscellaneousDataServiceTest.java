@@ -14,9 +14,9 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Rooky;
 import domain.MiscellaneousData;
 import domain.PersonalData;
+import domain.Rooky;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,7 +29,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 	private MiscellaneousDataService	miscellaneousDataService;
 
 	@Autowired
-	private HackerService				hackerService;
+	private RookyService				hackerService;
 
 	@Autowired
 	private CurriculaService			curriculaService;
@@ -45,20 +45,20 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		attachments.add("AttachmentTest2");
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea MiscellaneousData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea MiscellaneousData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "freeText1", attachments, null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Un hacker intenta crear una MiscellaneousData con el texto vacío
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "", attachments, javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker intenta crear MiscellaneousData sin archivos adjuntos
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky intenta crear MiscellaneousData sin archivos adjuntos
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "freeText1", null, org.springframework.dao.DataIntegrityViolationException.class
@@ -104,13 +104,13 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		attachments.add("AttachmentTest2");
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker edita MiscellaneousData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky edita MiscellaneousData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "freeText1", attachments, null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Un hacker intenta editar una MiscellaneousData con el texto vacío
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
@@ -127,7 +127,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		try {
 			this.authenticate(user);
 			final Rooky principal = this.hackerService.findByPrincipal();
-			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(principal.getId());
+			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(principal.getId());
 			final Curricula curricula = curriculas.iterator().next();
 			final MiscellaneousData lR = curricula.getMiscellaneous().iterator().next();
 			lR.setFreeText(freeText);
@@ -149,13 +149,13 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker borra MiscellaneousData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky borra MiscellaneousData 
 				//			C: 100% Recorre 78 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
 				"hacker2", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Company intenta borrar MiscellaneousData 
 				//			C: 10,25% Recorre 8 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
@@ -172,7 +172,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		try {
 			this.authenticate(actor);
 			final Rooky hacker = this.hackerService.findByPrincipal();
-			final MiscellaneousData lRec = this.curriculaService.findCurriculaByHacker(hacker.getId()).iterator().next().getMiscellaneous().iterator().next();
+			final MiscellaneousData lRec = this.curriculaService.findCurriculaByRooky(hacker.getId()).iterator().next().getMiscellaneous().iterator().next();
 			this.miscellaneousDataService.delete(lRec);
 			this.miscellaneousDataService.flush();
 			this.unauthenticate();

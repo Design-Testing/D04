@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Rooky;
 import domain.PersonalData;
+import domain.Rooky;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -25,7 +25,7 @@ public class CurriculaServiceTest extends AbstractTest {
 	private CurriculaService	curriculaService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookyService		hackerService;
 
 	@Autowired
 	private PersonalDataService	personalDataService;
@@ -34,28 +34,28 @@ public class CurriculaServiceTest extends AbstractTest {
 	@Test
 	public void driver() {
 		final Object testingData[][] = {
-			//				A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
-			//				B: Test Positivo: Hacker crea curricula
+			//				A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
+			//				B: Test Positivo: Rooky crea curricula
 			//				C: 100% Recorre 80 de las 80 lineas posibles
 			//				D: cobertura de datos=1/3
 			{
 				"hacker1", false, null
 			}
-			//				A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+			//				A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 			//				B: Test Negativo: una compañía intenta crear una curricula
 			//				C: 10% Recorre 8 de las 80 lineas posibles
 			//				D: cobertura de datos=1/3
 			, {
 				"company1", false, IllegalArgumentException.class
 			},
-			//				A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
-			//				B: Test Positivo: Hacker borra su curricula
+			//				A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
+			//				B: Test Positivo: Rooky borra su curricula
 			//				C: 100% Recorre 64 de las 64 lineas posibles
 			//				D: cobertura de datos=1/3
 			{
 				"hacker2", true, null
 			},
-			//				A: Acme HackerRank Req. 17 -> Hackers can manage their curricula
+			//				A: Acme RookyRank Req. 17 -> Rookys can manage their curricula
 			//				B: Test Negativo: Una comapñía intenta borrar una curricula
 			//				C: 12,5% Recorre 8 de las 64 lineas posibles
 			//				D: cobertura de datos=1/3
@@ -74,7 +74,7 @@ public class CurriculaServiceTest extends AbstractTest {
 			this.authenticate(user);
 			if (delete) {
 				final Rooky hacker = this.hackerService.findByPrincipal();
-				final Curricula curricula = this.curriculaService.findCurriculaByHacker(hacker.getId()).iterator().next();
+				final Curricula curricula = this.curriculaService.findCurriculaByRooky(hacker.getId()).iterator().next();
 				this.curriculaService.delete(curricula);
 			} else {
 				final Curricula curricula = this.curriculaService.create();

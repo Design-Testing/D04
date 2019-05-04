@@ -22,30 +22,30 @@ import domain.Rooky;
 	"classpath:spring/junit.xml"
 })
 @Transactional
-public class HackerServiceTest extends AbstractTest {
+public class RookyServiceTest extends AbstractTest {
 
 	// Services
 	@Autowired
-	private HackerService	hackerService;
+	private RookyService	hackerService;
 
 
-	/* ========================= Test Login Hacker =========================== */
+	/* ========================= Test Login Rooky =========================== */
 	@Test
-	public void driverLoginHacker() {
+	public void driverLoginRooky() {
 
 		final Object testingData[][] = {
 			{
-				//				A: Acme HackerRank Login Use Case
+				//				A: Acme RookyRank Login Use Case
 				//				B: Test Positivo: Un hacker puede loguearse correctamente
 				//				C: % Recorre 22 de la 22 lineas posibles
 				//				D: cobertura de datos = 2/2
 				"hacker1", null
 			}, {
-				//				A: Acme HackerRank Login usuario no registrado
+				//				A: Acme RookyRank Login usuario no registrado
 				//				B: Test Negativo: Un usuario no registrado no puede logearse
 				//				C: % Recorre 8 de la 22 lineas posibles
 				//				D: cobertura de datos = 2/2
-				"HackerNoRegistrado", IllegalArgumentException.class
+				"RookyNoRegistrado", IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -69,27 +69,27 @@ public class HackerServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
-	/* ========================= Test Create and Save Hacker =========================== */
+	/* ========================= Test Create and Save Rooky =========================== */
 
 	@Test
-	public void driverCreateAndSaveHacker() {
+	public void driverCreateAndSaveRooky() {
 		final Collection<String> surnames = new ArrayList<>();
 		surnames.add("Garcia");
 		final Collection<String> surnames2 = new ArrayList<>();
 		surnames2.add("Lanzas");
 		final Object testingData[][] = {
 			{
-				//				A: Acme HackerRank Register to de system as a company
+				//				A: Acme RookyRank Register to de system as a company
 				//				B: Test Positivo: Creación correcta de un hacker
 				//				C: % Recorre 181 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"hacker1", "hacker1", "Hacker1", surnames, "garcia@gmail.es", "+34647307406", null
+				"hacker1", "hacker1", "Rooky1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
-				//				A: Acme HackerRank Register to de system as a company
+				//				A: Acme RookyRank Register to de system as a company
 				//				B: Test Negativo: Creación incorrecta de un hacker con telefono inválido
 				//				C: % Recorre 114 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"hacker2", "hacker2", "Hacker1", surnames2, "lanzas@gmail.com", "mi telefono", null
+				"hacker2", "hacker2", "Rooky1", surnames2, "lanzas@gmail.com", "mi telefono", null
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -123,52 +123,52 @@ public class HackerServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
-	/* ========================= Test Edit Hacker =========================== */
+	/* ========================= Test Edit Rooky =========================== */
 
 	@Test
-	public void driverEditHacker() {
+	public void driverEditRooky() {
 		final Collection<String> surnames = new ArrayList<>();
 		surnames.add("Garcia");
 		final Collection<String> surnames2 = new ArrayList<>();
 
 		final Object testingData[][] = {
 			{
-				// 				A: Acme HackerRank Edit his o her personal data
+				// 				A: Acme RookyRank Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un hacker
 				//				C: % Recorre 181 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Hacker1", surnames, "garcia@gmail.es", "+34647307406", null
+				"hacker1", "hacker1", "Rooky1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
-				// 				A: Acme HackerRank Edit his o her personal data
+				// 				A: Acme RookyRank Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un hacker con phone vacio
 				//				C: % Recorre 181 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Hacker1", surnames, "garcia@gmail.es", "", null
+				"hacker1", "hacker1", "Rooky1", surnames, "garcia@gmail.es", "", null
 			}, {
-				// 				A: Acme HackerRank Edit his o her personal data
+				// 				A: Acme RookyRank Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un hacker con mail inválido
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Hacker1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
+				"hacker1", "hacker1", "Rooky1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
 			}, {
-				// 				A: Acme HackerRank Edit his o her personal data
+				// 				A: Acme RookyRank Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un hacker con name vacio
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"hacker1", "hacker1", "", surnames, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}, {
-				// 				A: Acme HackerRank Edit his o her personal data
+				// 				A: Acme RookyRank Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un hacker con apellidos vacio
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Hacker1", surnames2, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
+				"hacker1", "hacker1", "Rooky1", surnames2, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateEditHacker((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Collection<String>) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Class<?>) testingData[i][6]);
+			this.templateEditRooky((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Collection<String>) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Class<?>) testingData[i][6]);
 	}
 
-	private void templateEditHacker(final String username, final String password, final String name, final Collection<String> surname, final String email, final String phone, final Class<?> expected) {
+	private void templateEditRooky(final String username, final String password, final String name, final Collection<String> surname, final String email, final String phone, final Class<?> expected) {
 		Class<?> caught;
 		Rooky hacker;
 		hacker = this.hackerService.findOne(this.getEntityId(username));
