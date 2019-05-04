@@ -131,29 +131,9 @@
 		</property>
 	</bean>
 	
-		<bean id="userAccountSponsorship1" class="security.UserAccount">
-		<property name="username" value="sponsorship1" />
-		<property name="password" value="a5c67ddcc0df74ff25648afee675f6c0" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="SPONSORSHIP" />
-				</bean>
-			</list>
-		</property>
-	</bean>
+		
 
-	<bean id="userAccountSponsorship2" class="security.UserAccount">
-		<property name="username" value="sponsorship2" />
-		<property name="password" value="67d26c1147dd8203152ea1cb58b92544" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="SPONSORSHIP" />
-				</bean>
-			</list>
-		</property>
-	</bean>
+	
 
 	<!-- ========================= SYSTEM =========================== -->
 	<bean id="userAccountSystem" class="security.UserAccount">
@@ -960,7 +940,7 @@
 		<property name="userAccount" ref="userAccountAdmin1" />
 	</bean>
 
-	<bean id="auditor2" class="domain.Administrator">
+	<bean id="auditor2" class="domain.Auditor">
 		<!-- Actor -->
 		<property name="name" value="Auditor 2" />
 		<property name="surname">
@@ -1782,7 +1762,7 @@
 		<property name="moment" value="2019/03/16 15:20" />
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position1" />
-		<property name="isDraft" ref="true" />
+		<property name="isDraft" value="true" />
 	</bean>
 
 	<bean id="audit2" class="domain.Audit">
@@ -1791,7 +1771,7 @@
 		<property name="moment" value="2019/04/23 16:30" />
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position2" />
-		<property name="isDraft" ref="true" />
+		<property name="isDraft" value="true" />
 	</bean>
 	
 	<!-- =================================================================== 
@@ -1810,7 +1790,7 @@
 			<property name="targetPage" value="http://www.targetPage2.com"/>
 			<property name="creditCard" ref="creditCard11" />
 			<property name="position" ref="position2" />
-			
+			<property name="provider" ref="provider2" />
 		</bean>
 
 </beans>
