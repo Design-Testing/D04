@@ -41,11 +41,11 @@ i¡rbol de navegacion; y todos los elementos integrados tanto en los
 interfaces de pantalla como en el i¡rbol de navegacion (en adelante, 
 Contenidos) y todos aquellos servicios o recursos en linea que en su 
 caso ofrezca a los Usuarios (en adelante, Servicios).</p>
-<p>Acme HackerRank se reserva la 
+<p>Acme Rookies se reserva la 
 facultad de modificar, en cualquier momento, y sin aviso previo, la 
 presentacion y configuracion del Sitio Web y de los Contenidos y 
 Servicios que en iel pudieran estar incorporados. El Usuario reconoce y 
-acepta que en cualquier momento Acme HackerRank
+acepta que en cualquier momento Acme Rookies
  pueda interrumpir, desactivar y/o cancelar cualquiera de estos 
 elementos que se integran en el Sitio Web o el acceso a los mismos.
 El acceso al Sitio Web por el Usuario tiene cari¡cter libre y, por 
@@ -58,7 +58,7 @@ podria hacerse mediante la suscripcion o registro previo del Usuario.</p>
 <p>El Usuario</p>
 <p>El acceso, la navegacion y uso del Sitio Web, asi como por los 
 espacios habilitados para interactuar entre los Usuarios, y el Usuario y
- Acme HackerRank, como los comentarios
+ Acme Rookies, como los comentarios
  y/o espacios de blogging, confiere la condicion de Usuario, por lo que 
 se aceptan, desde que se inicia la navegacion por el Sitio Web, todas 
 las Condiciones aqui establecidas, asi como sus ulteriores 
@@ -66,65 +66,65 @@ modificaciones, sin perjuicio de la aplicacion de la correspondiente
 normativa legal de obligado cumplimiento segiºn el caso. Dada la 
 relevancia de lo anterior, se recomienda al Usuario leerlas cada vez que
  visite el Sitio Web.</p>
-<p>El Sitio Web de Acme HackerRank 
+<p>El Sitio Web de Acme Rookies 
 proporciona gran diversidad de informacion, servicios y datos. El 
 Usuario asume su responsabilidad para realizar un uso correcto del Sitio
  Web. Esta responsabilidad se extenderia:</p>
 
-<p>Un uso de la informacion, Contenidos y/o Servicios y datos ofrecidos por Acme HackerRank
+<p>Un uso de la informacion, Contenidos y/o Servicios y datos ofrecidos por Acme Rookies
  sin que sea contrario a lo dispuesto por las presentes Condiciones, la 
 Ley, la moral o el orden piºblico, o que de cualquier otro modo puedan 
 suponer lesion de los derechos de terceros o del mismo funcionamiento 
 del Sitio Web.</p>
 
 
-<p>La veracidad y licitud de las informaciones aportadas por el Usuario en los formularios extendidos por Acme HackerRank
+<p>La veracidad y licitud de las informaciones aportadas por el Usuario en los formularios extendidos por Acme Rookies
  para el acceso a ciertos Contenidos o Servicios ofrecidos por el Sitio 
-Web. En todo caso, el Usuario notificaria de forma inmediata a Acme HackerRank
+Web. En todo caso, el Usuario notificaria de forma inmediata a Acme Rookies
  acerca de cualquier hecho que permita el uso indebido de la informacion
  registrada en dichos formularios, tales como, pero no solo, el robo, 
 extravio, o el acceso no autorizado a identificadores y/o contrasei±as, 
 con el fin de proceder a su inmediata cancelacion.</p>
 
-<p>Acme HackerRank se reserva el 
+<p>Acme Rookies se reserva el 
 derecho de retirar todos aquellos comentarios y aportaciones que 
 vulneren la ley, el respeto a la dignidad de la persona, que sean 
 discriminatorios, xenofobos, racistas, pornogri¡ficos, spamming, que 
 atenten contra la juventud o la infancia, el orden o la seguridad 
 piºblica o que, a su juicio, no resultaran adecuados para su publicacion.
-En cualquier caso, Acme HackerRank 
+En cualquier caso, Acme Rookies 
 no seria responsable de las opiniones vertidas por los Usuarios a travies 
 de comentarios u otras herramientas de blogging o de participacion que 
 pueda haber.</p>
-<p>El mero acceso a este Sitio Web no supone entablar ningiºn tipo de relacion de cari¡cter comercial entre Acme HackerRank y el Usuario.
- Siempre en el respeto de la legislacion vigente, este Sitio Web de Acme HackerRank se dirige a todas las personas, sin importar su edad, que puedan acceder y/o navegar por las pi¡ginas del Sitio Web.
-El Sitio Web esta dirigido principalmente a Usuarios residentes en Espai±a. Acme HackerRank
+<p>El mero acceso a este Sitio Web no supone entablar ningiºn tipo de relacion de cari¡cter comercial entre Acme Rookies y el Usuario.
+ Siempre en el respeto de la legislacion vigente, este Sitio Web de Acme Rookies se dirige a todas las personas, sin importar su edad, que puedan acceder y/o navegar por las pi¡ginas del Sitio Web.
+El Sitio Web esta dirigido principalmente a Usuarios residentes en Espai±a. Acme Rookies
  no asegura que el Sitio Web cumpla con legislaciones de otros paises, 
 ya sea total o parcialmente. Si el Usuario reside o tiene su domiciliado
  en otro lugar y decide acceder y/o navegar en el Sitio Web lo haria bajo
  su propia responsabilidad, deberia asegurarse de que tal acceso y 
 navegacion cumple con la legislacion local que le es aplicable, no 
-asumiendo Acme HackerRank responsabilidad alguna que se pueda derivar de dicho acceso.</p>
+asumiendo Acme Rookies responsabilidad alguna que se pueda derivar de dicho acceso.</p>
 <h3>III. ACCESO Y NAVEGACION EN EL SITIO WEB: EXCLUSION DE GARANTIAS Y RESPONSABILIDAD</h3>
-<p>Acme HackerRank no garantiza la continuidad, disponibilidad y utilidad del Sitio Web, ni de los Contenidos o Servicios. Acme HackerRank
+<p>Acme Rookies no garantiza la continuidad, disponibilidad y utilidad del Sitio Web, ni de los Contenidos o Servicios. Acme Rookies
  haria todo lo posible por el buen funcionamiento del Sitio Web, sin 
 embargo, no se responsabiliza ni garantiza que el acceso a este Sitio 
 Web no vaya a ser ininterrumpido o que estie libre de error.
 Tampoco se responsabiliza o garantiza que el contenido o software al 
 que pueda accederse a travies de este Sitio Web, estie libre de error o 
 cause un dai±o al sistema informi¡tico (software y hardware) del Usuario. 
-En ningiºn caso Acme HackerRank seria 
+En ningiºn caso Acme Rookies seria 
 responsable por las pierdidas, dai±os o perjuicios de cualquier tipo que 
 surjan por el acceso, navegacion y el uso del Sitio Web, incluyiendose, 
 pero no limiti¡ndose, a los ocasionados a los sistemas informi¡ticos o los
  provocados por la introduccion de virus.
-Acme HackerRank tampoco se hace 
+Acme Rookies tampoco se hace 
 responsable de los dai±os que pudiesen ocasionarse a los usuarios por un 
 uso inadecuado de este Sitio Web. En particular, no se hace responsable 
 en modo alguno de las caidas, interrupciones, falta o defecto de las 
 telecomunicaciones que pudieran ocurrir.</p>
 <h3>IV. POLITICA DE PRIVACIDAD Y PROTECCION DE DATOS</h3>
-<p>Acme HackerRank se compromete a adoptar las medidas tiecnicas y organizativas 
+<p>Acme Rookies se compromete a adoptar las medidas tiecnicas y organizativas 
 necesarias, segiºn el nivel de seguridad adecuado al riesgo de los datos 
 recogidos.
 Leyes que incorpora esta politica de privacida
@@ -144,23 +144,23 @@ La Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informacion y 
 
 
 <p>Identidad del responsable del tratamiento de los datos personales
-El responsable del tratamiento de los datos personales recogidos en Acme HackerRank es: ACMEHACKERRANKGRUPO2 S.A., provista de NIF: A-80080000 e inscrita en: REGISTRO MERCANTIL DE SEVILLA con los siguientes datos registrales: Tomo 2, Folio 23, Hoja 213, cuyo representante es: Josie Luis Casado Blanco (en adelante, tambiien Responsable del tratamiento). Sus datos de contacto son los siguientes:
+El responsable del tratamiento de los datos personales recogidos en Acme Rookies es: ACMEHACKERRANKGRUPO2 S.A., provista de NIF: A-80080000 e inscrita en: REGISTRO MERCANTIL DE SEVILLA con los siguientes datos registrales: Tomo 2, Folio 23, Hoja 213, cuyo representante es: Josie Luis Casado Blanco (en adelante, tambiien Responsable del tratamiento). Sus datos de contacto son los siguientes:
 Direccion: Av. Reina Mercedes s/n, 41012 SevillaTeliefono de contacto: 954556817 Fax: JOSCASBLA1@ALUM.US.ESEmail de contacto: joscasbla1@alum.us.es
 Delegado de Proteccion de Datos (DPD
 El Delegado de Proteccion de Datos (DPD, o DPO por sus siglas en 
 inglies) es el encargado de velar por el cumplimiento de la normativa de 
-proteccion de datos a la cual se encuentra sujeta Acme HackerRank.
+proteccion de datos a la cual se encuentra sujeta Acme Rookies.
  El Usuario puede contactar con el DPD designado por el Responsable del 
 tratamiento utilizando los siguientes datos de contacto: albolmtri@alum.us.es.
 Registro de Datos de Cari¡cter Persona
-Los datos personales recabados por Acme HackerRank,
+Los datos personales recabados por Acme Rookies,
  mediante los formularios extendidos en sus pi¡ginas, seri¡n introducidos 
 en un fichero automatizado bajo la responsabilidad del Responsable del 
 tratamiento, y debidamente declarado e inscrito en el Registro General 
 de la Agencia de Proteccion de Datos que se puede consultar en el sitio 
 web de la Agencia Espai±ola de Proteccion de Datos (http://www.agpd.es), 
 con la finalidad de poder facilitar, agilizar y cumplir los compromisos 
-establecidos entre Acme HackerRank y 
+establecidos entre Acme Rookies y 
 el Usuario o el mantenimiento de la relacion que se establezca en los 
 formularios que este rellene, o para atender una solicitud o consulta 
 del mismo.
@@ -188,12 +188,12 @@ tratamiento seria responsable de asegurar que los principios anteriores
 se cumplen.</p>
 
 <p>Categorias de datos personales
-Las categorias de datos que se tratan en Acme HackerRank
+Las categorias de datos que se tratan en Acme Rookies
  son iºnicamente datos identificativos. En ningiºn caso, se tratan 
 categorias especiales de datos personales en el sentido del articulo 9 
 del RGPD.
 Base legal para el tratamiento de los datos personale
-La base legal para el tratamiento de los datos personales es el consentimiento. Acme HackerRank
+La base legal para el tratamiento de los datos personales es el consentimiento. Acme Rookies
  se compromete a recabar el consentimiento expreso y verificable del 
 Usuario para el tratamiento de sus datos personales para uno o varios 
 fines especificos.
@@ -208,14 +208,14 @@ se le informaria en caso de que la cumplimentacion de alguno de ellos sea
  obligatoria debido a que los mismos sean imprescindibles para el 
 correcto desarrollo de la operacion realizada.
 Fines del tratamiento a que se destinan los datos personale
-Los datos personales son recabados y gestionados por Acme HackerRank
+Los datos personales son recabados y gestionados por Acme Rookies
  con la finalidad de poder facilitar, agilizar y cumplir los compromisos
  establecidos entre el Sitio Web y el Usuario o el mantenimiento de la 
 relacion que se establezca en los formularios que este iºltimo rellene o 
 para atender una solicitud o consulta.
 Igualmente, los datos podri¡n ser utilizados con una finalidad 
 comercial de personalizacion, operativa y estadistica, y actividades 
-propias del objeto social de Acme HackerRank,
+propias del objeto social de Acme Rookies,
  asi como para la extraccion, almacenamiento de datos y estudios de 
 marketing para adecuar el Contenido ofertado al Usuario, asi como 
 mejorar la calidad, funcionamiento y navegacion por el Sitio Web.
@@ -239,12 +239,12 @@ categorias de destinatarios de los datos personales.
 Datos personales de menores de eda
 Respetando lo establecido en los articulos 8 del RGPD y 13 del 
 RDLOPD, solo los mayores de 14 ai±os podri¡n otorgar su consentimiento 
-para el tratamiento de sus datos personales de forma licita por Acme HackerRank.
+para el tratamiento de sus datos personales de forma licita por Acme Rookies.
  Si se trata de un menor de 14 ai±os, seria necesario el consentimiento de
  los padres o tutores para el tratamiento, y este solo se consideraria 
 licito en la medida en la que los mismos lo hayan autorizado.
 Secreto y seguridad de los datos personale
-Acme HackerRank se compromete a 
+Acme Rookies se compromete a 
 adoptar las medidas tiecnicas y organizativas necesarias, segiºn el nivel 
 de seguridad adecuado al riesgo de los datos recogidos, de forma que se 
 garantice la seguridad de los datos de cari¡cter personal y se evite la 
@@ -255,7 +255,7 @@ El Sitio Web cuenta con un certificado SSL (Secure Socket Layer), que
  asegura que los datos personales se transmiten de forma segura y 
 confidencial, al ser la transmision de los datos entre el servidor y el 
 Usuario, y en retroalimentacion, totalmente cifrada o encriptada.
-Sin embargo, debido a que Acme HackerRank
+Sin embargo, debido a que Acme Rookies
  no puede garantizar la inexpugabilidad de internet ni la ausencia total
  de hackers u otros que accedan de modo fraudulento a los datos 
 personales, el Responsable del tratamiento se compromete a comunicar al 
@@ -273,12 +273,12 @@ garantizar por medio de una obligacion legal o contractual que dicha
 confidencialidad sea respetada por sus empleados, asociados, y toda 
 persona a la cual le haga accesible la informacion.
 Derechos derivados del tratamiento de los datos personale
-El Usuario tiene sobre Acme HackerRank y podri¡, por tanto, ejercer frente al Responsable del tratamiento los siguientes derechos reconocidos en el RGPD:</p>
+El Usuario tiene sobre Acme Rookies y podri¡, por tanto, ejercer frente al Responsable del tratamiento los siguientes derechos reconocidos en el RGPD:</p>
 
-<p>Derecho de acceso: Es el derecho del Usuario a obtener confirmacion de si Acme HackerRank
+<p>Derecho de acceso: Es el derecho del Usuario a obtener confirmacion de si Acme Rookies
  estia tratando o no sus datos personales y, en caso afirmativo, obtener 
 informacion sobre sus datos concretos de cari¡cter personal y del 
-tratamiento que Acme HackerRank haya 
+tratamiento que Acme Rookies haya 
 realizado o realice, asi como, entre otra, de la informacion disponible 
 sobre el origen de dichos datos y los destinatarios de las 
 comunicaciones realizadas o previstas de los mismos.
@@ -317,7 +317,7 @@ tiecnicamente posible, el Responsable del tratamiento transmitiria
 directamente los datos a ese otro responsable.
 Derecho de oposicion: Es el derecho del Usuario a que no se
  lleve a cabo el tratamiento de sus datos de cari¡cter personal o se cese
- el tratamiento de los mismos por parte de Acme HackerRank.
+ el tratamiento de los mismos por parte de Acme Rookies.
 Derecho a no ser a no ser objeto de una decision basada iºnicamente en el tratamiento automatizado, incluida la elaboracion de perfiles:
  Es el derecho del Usuario a no ser objeto de una decision 
 individualizada basada iºnicamente en el tratamiento automatizado de sus 
@@ -342,7 +342,7 @@ Todo documento que acredite la peticion que formula.</p>
 <p>Esta solicitud y todo otro documento adjunto podria enviarse a la siguiente direccion y/o correo electronico: 
 Direccion postal: Av. Reina Mercedes s/n, 41012 SevillaCorreo electronico: joscasbla1@alum.us.es
 Enlaces a sitios web de tercero
-El Sitio Web puede incluir hipervinculos o enlaces que permiten acceder a pi¡ginas web de terceros distintos de Acme HackerRank, y que por tanto no son operados por Acme HackerRank.
+El Sitio Web puede incluir hipervinculos o enlaces que permiten acceder a pi¡ginas web de terceros distintos de Acme Rookies, y que por tanto no son operados por Acme Rookies.
  Los titulares de dichos sitios web dispondri¡n de sus propias politicas 
 de proteccion de datos, siendo ellos mismos, en cada caso, responsables 
 de sus propios ficheros y de sus propias pri¡cticas de privacidad.
@@ -363,7 +363,7 @@ sus datos personales para que el Responsable del tratamiento pueda
 proceder al mismo en la forma, durante los plazos y para las finalidades
  indicadas. El uso del Sitio Web implicaria la aceptacion de la Politica 
 de Privacidad del mismo.
-Acme HackerRank se reserva el 
+Acme Rookies se reserva el 
 derecho a modificar su Politica de Privacidad, de acuerdo a su propio 
 criterio, o motivado por un cambio legislativo, jurisprudencial o 
 doctrinal de la Agencia Espai±ola de Proteccion de Datos. Los cambios o 
@@ -400,7 +400,7 @@ Este consentimiento seria comunicado, en base a una eleccion autientica,
 ofrecido mediante una decision afirmativa y positiva, antes del 
 tratamiento inicial, removible y documentado.</p>
 Cookies propia
-<p>Son aquellas cookies que son enviadas al ordenador o dispositivo del Usuario y gestionadas exclusivamente por Acme HackerRank
+<p>Son aquellas cookies que son enviadas al ordenador o dispositivo del Usuario y gestionadas exclusivamente por Acme Rookies
  para el mejor funcionamiento del Sitio Web. La informacion que se 
 recaba se emplea para mejorar la calidad del Sitio Web y su Contenido y 
 su experiencia como Usuario. Estas cookies permiten reconocer al Usuario
@@ -426,7 +426,7 @@ actualice, por ello es recomendable que el Usuario revise esta politica
 cada vez que acceda al Sitio Web con el objetivo de estar adecuadamente 
 informado sobre como y para quie usamos las cookies.</p>
 <h3>VI. POLITICA DE ENLACES</h3>
-<p>Se informa que el Sitio Web de Acme HackerRank
+<p>Se informa que el Sitio Web de Acme Rookies
  pone o puede poner a disposicion de los Usuarios medios de enlace 
 (como, entre otros, links, banners, botones), directorios y motores de 
 biºsqueda que permiten a los Usuarios acceder a sitios web pertenecientes
@@ -436,30 +436,30 @@ biºsqueda que permiten a los Usuarios acceder a sitios web pertenecientes
  acceso a la informacion disponible en Internet, sin que pueda 
 considerarse una sugerencia, recomendacion o invitacion para la visita 
 de los mismos.</p>
-<p> Acme HackerRank no ofrece ni comercializa por si ni por medio de terceros los productos y/o servicios disponibles en dichos sitios enlazados.
+<p> Acme Rookies no ofrece ni comercializa por si ni por medio de terceros los productos y/o servicios disponibles en dichos sitios enlazados.
 Asimismo, tampoco garantizaria la disponibilidad tiecnica, exactitud, 
 veracidad, validez o legalidad de sitios ajenos a su propiedad a los que
  se pueda acceder por medio de los enlaces.</p>
-<p>Acme HackerRank en ningun caso 
+<p>Acme Rookies en ningun caso 
 revisaria o controlaria el contenido de otros sitios web, asi como tampoco
  aprueba, examina ni hace propios los productos y servicios, contenidos,
  archivos y cualquier otro material existente en los referidos sitios 
 enlazados.</p>
-<p>Acme HackerRank no asume ninguna 
+<p>Acme Rookies no asume ninguna 
 responsabilidad por los dai±os y perjuicios que pudieran producirse por 
 el acceso, uso, calidad o licitud de los contenidos, comunicaciones, 
-opiniones, productos y servicios de los sitios web no gestionados por Acme HackerRank y que sean enlazados en este Sitio Web.
-El Usuario o tercero que realice un hipervinculo desde una pi¡gina web de otro, distinto, sitio web al Sitio Web de Acme HackerRank deberia saber que:
+opiniones, productos y servicios de los sitios web no gestionados por Acme Rookies y que sean enlazados en este Sitio Web.
+El Usuario o tercero que realice un hipervinculo desde una pi¡gina web de otro, distinto, sitio web al Sitio Web de Acme Rookies deberia saber que:
 No se permite la reproduccion total o parcialmente de ninguno de 
-los Contenidos y/o Servicios del Sitio Web sin autorizacion expresa de Acme HackerRank.
-No se permite tampoco ninguna manifestacion falsa, inexacta o incorrecta sobre el Sitio Web de Acme HackerRank, ni sobre los Contenidos y/o Servicios del mismo.
+los Contenidos y/o Servicios del Sitio Web sin autorizacion expresa de Acme Rookies.
+No se permite tampoco ninguna manifestacion falsa, inexacta o incorrecta sobre el Sitio Web de Acme Rookies, ni sobre los Contenidos y/o Servicios del mismo.
 A excepcion del hipervinculo, el sitio web en el que se establezca 
 dicho hiperenlace no contendria ningiºn elemento, de este Sitio Web, 
 protegido como propiedad intelectual por el ordenamiento juridico 
-espanol, salvo autorizacion expresa de Acme HackerRank.
-El establecimiento del hipervinculo no implicaria la existencia de relaciones entre Acme HackerRank y el titular del sitio web desde el cual se realice, ni el conocimiento y aceptacion de Acme HackerRank de los contenidos, servicios y/o actividades ofrecidos en dicho sitio web, y viceversa.</p>
+espanol, salvo autorizacion expresa de Acme Rookies.
+El establecimiento del hipervinculo no implicaria la existencia de relaciones entre Acme Rookies y el titular del sitio web desde el cual se realice, ni el conocimiento y aceptacion de Acme Rookies de los contenidos, servicios y/o actividades ofrecidos en dicho sitio web, y viceversa.</p>
 <h3>VII. PROPIEDAD INTELECTUAL E INDUSTRIAL</h3>
-<p>Acme HackerRank
+<p>Acme Rookies
  por si o como parte cesionaria, es titular de todos los derechos de 
 propiedad intelectual e industrial del Sitio Web, asi como de los 
 elementos contenidos en el mismo (a titulo enunciativo y no exhaustivo, 
@@ -475,19 +475,19 @@ Todos los derechos reservados. En virtud de lo dispuesto en la Ley de
 la distribucion y la comunicacion piºblica, incluida su modalidad de 
 puesta a disposicion, de la totalidad o parte de los contenidos de esta 
 pi¡gina web, con fines comerciales, en cualquier soporte y por cualquier 
-medio tiecnico, sin la autorizacion de Acme HackerRank.</p>
+medio tiecnico, sin la autorizacion de Acme Rookies.</p>
 <p>
 En caso de que el Usuario o tercero considere que cualquiera de los 
 Contenidos del Sitio Web suponga una violacion de los derechos de 
 proteccion de la propiedad intelectual, deberia comunicarlo 
-inmediatamente a Acme HackerRank a travies de los datos de contacto del apartado de INFORMACION GENERAL de este Aviso Legal y Condiciones Generales de Uso.</p>
+inmediatamente a Acme Rookies a travies de los datos de contacto del apartado de INFORMACION GENERAL de este Aviso Legal y Condiciones Generales de Uso.</p>
 <h3>VIII. ACCIONES LEGALES, LEGISLACION APLICABLE Y JURISDICCION</h3>
 <p>
-Acme HackerRank
+Acme Rookies
  se reserva la facultad de presentar las acciones civiles o penales que 
 considere necesarias por la utilizacion indebida del Sitio Web y 
 Contenidos, o por el incumplimiento de las presentes Condiciones.
-La relacion entre el Usuario y Acme HackerRank
+La relacion entre el Usuario y Acme Rookies
  se regiria por la normativa vigente y de aplicacion en el territorio 
 espai±ol. De surgir cualquier controversia en relacion a la 
 interpretacion y/o a la aplicacion de estas Condiciones las partes 
