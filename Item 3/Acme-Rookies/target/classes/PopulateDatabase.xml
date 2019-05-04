@@ -1797,13 +1797,17 @@
 		<bean id="sponsorship1" class="domain.Sponsorship">
 			<property name="banner" value="https://i.imgur.com/7b8lu4b.png"/>
 			<property name="targetPage" value="http://www.targetPage1.com"/>
-			<property name="creditCard" ref="creditCard10"></property>
+			<property name="creditCard" ref="creditCard10" />
+			<property name="provider" ref="provider1" />
+			<property name="position" ref="position1" />
 		</bean>
 		
 		<bean id="sponsorship2" class="domain.Sponsorship">
 			<property name="banner" value="https://i.imgur.com/7b8lu4b.png"/>
 			<property name="targetPage" value="http://www.targetPage2.com"/>
-			<property name="creditCard" ref="creditCard11"></property>
+			<property name="creditCard" ref="creditCard11" />
+			<property name="position" ref="position2" />
+			
 		</bean>
 
 </beans>
