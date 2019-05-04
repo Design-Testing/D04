@@ -126,7 +126,7 @@ public class RookyController extends AbstractController {
 			result.addObject("actorForm", actorForm);
 		} else
 			try {
-				final UserAccount ua = this.userAccountService.reconstruct(actorForm, Authority.HACKER);
+				final UserAccount ua = this.userAccountService.reconstruct(actorForm, Authority.ROOKY);
 				rooky = this.rookyService.reconstruct(actorForm, binding);
 				rooky.setUserAccount(ua);
 				this.registerService.saveRooky(rooky, binding);

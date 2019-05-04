@@ -127,7 +127,7 @@ public class AuditorService {
 
 		final Auditor auditor = this.findByUserId(user.getId());
 		Assert.notNull(auditor);
-		final boolean bool = this.actorService.checkAuthority(auditor, Authority.HACKER);
+		final boolean bool = this.actorService.checkAuthority(auditor, Authority.AUDITOR);
 		Assert.isTrue(bool);
 
 		return auditor;
@@ -169,7 +169,7 @@ public class AuditorService {
 			final UserAccount account = this.userAccountService.create();
 			final Collection<Authority> authorities = new ArrayList<>();
 			final Authority auth = new Authority();
-			auth.setAuthority(Authority.HACKER);
+			auth.setAuthority(Authority.AUDITOR);
 			authorities.add(auth);
 			account.setAuthorities(authorities);
 			account.setUsername(actorForm.getUserAccountuser());

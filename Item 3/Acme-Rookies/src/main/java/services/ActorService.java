@@ -256,9 +256,8 @@ public class ActorService {
 	}
 
 	public double computeScore(final Actor a) {
-		final boolean isHacker = this.checkAuthority(a, Authority.HACKER);
 		final boolean isCompany = this.checkAuthority(a, Authority.COMPANY);
-		Assert.isTrue(isHacker || isCompany);
+		Assert.isTrue(isCompany);
 
 		Assert.notNull(a);
 		int p = 0;

@@ -130,7 +130,7 @@ public class EducationDataController {
 			final UserAccount logged = LoginService.getPrincipal();
 
 			final Authority authRooky = new Authority();
-			authRooky.setAuthority(Authority.HACKER);
+			authRooky.setAuthority(Authority.ROOKY);
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
 			if (logged.getAuthorities().contains(authRooky)) {

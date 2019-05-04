@@ -945,7 +945,7 @@
 		<property name="name" value="Auditor1" />
 		<property name="surname">
 			<list>
-				<value>Admin</value>
+				<value>Auditor 1</value>
 			</list>
 		</property>
 		<property name="photo" value="http://tinyurl.com/picture.png" />
@@ -953,16 +953,16 @@
 		<property name="phone" value="+34647607406" />
 		<property name="address" value="Reina Mercedes" />
 		<property name="vat" value="0.21" />
-		<property name="creditCard" ref="creditCard2" />
+		<property name="creditCard" ref="creditCard12" />
 		<property name="userAccount" ref="userAccountAdmin1" />
 	</bean>
 
-	<bean id="administrator2" class="domain.Administrator">
+	<bean id="auditor2" class="domain.Administrator">
 		<!-- Actor -->
-		<property name="name" value="Admin2" />
+		<property name="name" value="Auditor 2" />
 		<property name="surname">
 			<list>
-				<value>Gonzalez</value>
+				<value>Auditor 2</value>
 			</list>
 		</property>
 		<property name="photo" value="http://tinyurl.com/picture.png" />
@@ -970,7 +970,7 @@
 		<property name="phone" value="+34647307406" />
 		<property name="address" value="Reina Mercedes" />
 		<property name="vat" value="0.21" />
-		<property name="creditCard" ref="creditCard3" />
+		<property name="creditCard" ref="creditCard13" />
 		<property name="userAccount" ref="userAccountAdmin2" />
 	</bean>
 	

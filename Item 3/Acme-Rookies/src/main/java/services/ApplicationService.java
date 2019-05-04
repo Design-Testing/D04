@@ -76,7 +76,7 @@ public class ApplicationService {
 	public Collection<Application> findAll() {
 		Collection<Application> res = new ArrayList<>();
 		final Actor principal = this.actorService.findByPrincipal();
-		final Boolean isRooky = this.actorService.checkAuthority(principal, Authority.HACKER);
+		final Boolean isRooky = this.actorService.checkAuthority(principal, Authority.ROOKY);
 		final Boolean isCompany = this.actorService.checkAuthority(principal, Authority.COMPANY);
 
 		if (isRooky)
@@ -100,7 +100,7 @@ public class ApplicationService {
 		Assert.isTrue(positionId != 0);
 		final Actor principal = this.actorService.findByPrincipal();
 		final Application result;
-		final Boolean isRooky = this.actorService.checkAuthority(principal, Authority.HACKER);
+		final Boolean isRooky = this.actorService.checkAuthority(principal, Authority.ROOKY);
 
 		if (isRooky) {
 			if (application.getId() != 0) {
@@ -154,7 +154,7 @@ public class ApplicationService {
 
 	public Application apply(final int positionId, final int curriculaId) {
 		Assert.isTrue(positionId != 0);
-		Assert.isTrue(this.actorService.checkAuthority(this.actorService.findByPrincipal(), Authority.HACKER));
+		Assert.isTrue(this.actorService.checkAuthority(this.actorService.findByPrincipal(), Authority.ROOKY));
 		final Application application = this.create(positionId);
 		Assert.notNull(application);
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
