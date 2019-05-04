@@ -28,7 +28,7 @@ public class Application extends DomainEntity {
 	private String		link;
 
 	private Position	position;
-	private Rooky		hacker;
+	private Rooky		rooky;
 	private Problem		problem;
 	private Curricula	curricula;
 
@@ -95,12 +95,12 @@ public class Application extends DomainEntity {
 
 	@Valid
 	@ManyToOne(optional = false)
-	public Rooky getHacker() {
-		return this.hacker;
+	public Rooky getRooky() {
+		return this.rooky;
 	}
 
-	public void setHacker(final Rooky hacker) {
-		this.hacker = hacker;
+	public void setRooky(final Rooky rooky) {
+		this.rooky = rooky;
 	}
 
 	@Valid

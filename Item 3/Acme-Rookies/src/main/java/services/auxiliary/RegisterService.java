@@ -13,12 +13,15 @@ import security.UserAccountRepository;
 import services.AdministratorService;
 import services.AuditorService;
 import services.CompanyService;
+import services.ProviderService;
+import services.RookyService;
 import services.UserAccountService;
 import domain.Actor;
 import domain.Administrator;
 import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
+import domain.Provider;
 import domain.Rooky;
 import forms.ActorForm;
 import forms.AuditorForm;
@@ -38,13 +41,16 @@ public class RegisterService {
 	private UserAccountRepository	userAccountRepository;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookyService			rookyService;
 
 	@Autowired
 	private CompanyService			companyService;
 
 	@Autowired
 	private AuditorService			auditorService;
+
+	@Autowired
+	private ProviderService			providerService;
 
 
 	public Administrator saveAdmin(final Administrator admin, final BindingResult binding) {
@@ -77,16 +83,16 @@ public class RegisterService {
 		return result;
 	}
 
-	public Rooky saveHacker(final Rooky hacker, final BindingResult binding) {
-		Rooky result;
-		final UserAccount ua = hacker.getUserAccount();
+	public Provider saveProvider(final Provider provider, final BindingResult binding) {
+		Provider result;
+		final UserAccount ua = provider.getUserAccount();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String hash = encoder.encodePassword(ua.getPassword(), null);
-		if (hacker.getId() == 0) {
+		if (provider.getId() == 0) {
 			Assert.isTrue(this.userAccountRepository.findByUsername(ua.getUsername()) == null, "The username is register");
 			ua.setPassword(hash);
-			hacker.setUserAccount(ua);
-			result = this.hackerService.save(hacker);
+			provider.setUserAccount(ua);
+			result = this.providerService.save(provider);
 			UserAccount uaSaved = result.getUserAccount();
 			uaSaved.setAuthorities(ua.getAuthorities());
 			uaSaved.setUsername(ua.getUsername());
@@ -94,13 +100,43 @@ public class RegisterService {
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
 		} else {
-			final Rooky old = this.hackerService.findOne(hacker.getId());
+			final Provider old = this.providerService.findOne(provider.getId());
 
 			ua.setPassword(hash);
 			if (!old.getUserAccount().getUsername().equals(ua.getUsername()))
 				Assert.isTrue(this.userAccountRepository.findByUsername(ua.getUsername()) == null, "The username is register");
 
-			result = this.hackerService.save(hacker);
+			result = this.providerService.save(provider);
+
+		}
+
+		return result;
+	}
+
+	public Rooky saveRooky(final Rooky rooky, final BindingResult binding) {
+		Rooky result;
+		final UserAccount ua = rooky.getUserAccount();
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final String hash = encoder.encodePassword(ua.getPassword(), null);
+		if (rooky.getId() == 0) {
+			Assert.isTrue(this.userAccountRepository.findByUsername(ua.getUsername()) == null, "The username is register");
+			ua.setPassword(hash);
+			rooky.setUserAccount(ua);
+			result = this.rookyService.save(rooky);
+			UserAccount uaSaved = result.getUserAccount();
+			uaSaved.setAuthorities(ua.getAuthorities());
+			uaSaved.setUsername(ua.getUsername());
+			uaSaved.setPassword(ua.getPassword());
+			uaSaved = this.userAccountService.save(uaSaved);
+			result.setUserAccount(uaSaved);
+		} else {
+			final Rooky old = this.rookyService.findOne(rooky.getId());
+
+			ua.setPassword(hash);
+			if (!old.getUserAccount().getUsername().equals(ua.getUsername()))
+				Assert.isTrue(this.userAccountRepository.findByUsername(ua.getUsername()) == null, "The username is register");
+
+			result = this.rookyService.save(rooky);
 
 		}
 

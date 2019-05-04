@@ -15,9 +15,9 @@ import services.CompanyService;
 import services.ConfigurationParametersService;
 import services.CurriculaService;
 import services.FinderService;
-import services.HackerService;
 import services.MessageService;
 import services.PositionService;
+import services.RookyService;
 import controllers.AbstractController;
 
 @Controller
@@ -31,7 +31,7 @@ public class DashboardAdministratorController extends AbstractController {
 	private MessageService					messageService;
 
 	@Autowired
-	private HackerService					hackerService;
+	private RookyService					rookyService;
 
 	@Autowired
 	private CompanyService					companyService;
@@ -62,7 +62,7 @@ public class DashboardAdministratorController extends AbstractController {
 		result.addObject("ratioFinders", ratioFinders);
 
 		// Curriculum
-		final Double[] curriculaStatistics = this.curriculaService.getStatisticsOfCurriculaPerHacker();
+		final Double[] curriculaStatistics = this.curriculaService.getStatisticsOfCurriculaPerRooky();
 		result.addObject("averageCurricula", curriculaStatistics[0]);
 		result.addObject("minCurricula", curriculaStatistics[1]);
 		result.addObject("maxCurricula", curriculaStatistics[2]);
@@ -79,14 +79,14 @@ public class DashboardAdministratorController extends AbstractController {
 		result.addObject("best", this.positionService.getBestPosition()[0]);
 		result.addObject("worst", this.positionService.getWorstPosition()[0]);
 
-		// Applications per hacker
-		final Double[] applicationsPerHacker = this.hackerService.getStatisticsOfApplicationsPerHacker();
-		result.addObject("averageHacker", applicationsPerHacker[0]);
-		result.addObject("minHacker", applicationsPerHacker[1]);
-		result.addObject("maxHacker", applicationsPerHacker[2]);
-		result.addObject("desviationHacker", applicationsPerHacker[3]);
-		result.addObject("hackerMoreApplications", this.hackerService.getHackersMoreApplications().toArray()[0]);
-		result.addObject("hackersMoreApplications", this.hackerService.getHackersMoreApplications());
+		// Applications per rooky
+		final Double[] applicationsPerRooky = this.rookyService.getStatisticsOfApplicationsPerRooky();
+		result.addObject("averageRooky", applicationsPerRooky[0]);
+		result.addObject("minRooky", applicationsPerRooky[1]);
+		result.addObject("maxRooky", applicationsPerRooky[2]);
+		result.addObject("desviationRooky", applicationsPerRooky[3]);
+		result.addObject("rookyMoreApplications", this.rookyService.getRookysMoreApplications().toArray()[0]);
+		result.addObject("rookysMoreApplications", this.rookyService.getRookysMoreApplications());
 
 		return result;
 

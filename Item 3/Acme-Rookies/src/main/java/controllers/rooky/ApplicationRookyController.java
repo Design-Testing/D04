@@ -1,5 +1,5 @@
 
-package controllers.hacker;
+package controllers.rooky;
 
 import java.util.Collection;
 
@@ -18,24 +18,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ApplicationService;
 import services.CurriculaService;
-import services.HackerService;
 import services.PositionService;
+import services.RookyService;
 import controllers.AbstractController;
 import domain.Application;
 import domain.Curricula;
-import domain.Rooky;
 import domain.Position;
+import domain.Rooky;
 import forms.ApplicationForm;
 
 @Controller
-@RequestMapping("/application/hacker")
-public class ApplicationHackerController extends AbstractController {
+@RequestMapping("/application/rooky")
+public class ApplicationRookyController extends AbstractController {
 
 	@Autowired
 	private ApplicationService	applicationService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookyService		rookyService;
 
 	@Autowired
 	private PositionService		positionService;
@@ -50,15 +50,15 @@ public class ApplicationHackerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int positionId) {
 		ModelAndView result = new ModelAndView();
-		final Rooky hacker = this.hackerService.findByPrincipal();
+		final Rooky rooky = this.rookyService.findByPrincipal();
 
 		try {
 
-			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(hacker.getId());
+			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(rooky.getId());
 
 			result = new ModelAndView("position/apply");
 			result.addObject("curriculas", curriculas);
-			result.addObject("hacker", hacker);
+			result.addObject("rooky", rooky);
 			result.addObject("positionId", positionId);
 
 		} catch (final Throwable oops) {
@@ -72,7 +72,7 @@ public class ApplicationHackerController extends AbstractController {
 	@RequestMapping(value = "/apply", method = RequestMethod.GET)
 	public ModelAndView apply(@RequestParam final int positionId, @RequestParam final int curriculaId) {
 		ModelAndView result = new ModelAndView();
-		final Rooky hacker = this.hackerService.findByPrincipal();
+		final Rooky rooky = this.rookyService.findByPrincipal();
 		final Position position = this.positionService.findOne(positionId);
 
 		try {
@@ -83,7 +83,7 @@ public class ApplicationHackerController extends AbstractController {
 			result = this.listPending();
 
 			result.addObject("application", application);
-			result.addObject("hacker", hacker);
+			result.addObject("rooky", rooky);
 			result.addObject("position", position);
 
 		} catch (final Throwable oops) {
@@ -99,16 +99,16 @@ public class ApplicationHackerController extends AbstractController {
 	public ModelAndView display(@RequestParam final int applicationId) {
 		final ModelAndView result;
 		final Application application;
-		final Rooky hacker;
+		final Rooky rooky;
 
 		application = this.applicationService.findOne(applicationId);
-		hacker = this.hackerService.findByPrincipal();
+		rooky = this.rookyService.findByPrincipal();
 
-		if (application != null && application.getHacker().equals(hacker)) {
+		if (application != null && application.getRooky().equals(rooky)) {
 			result = new ModelAndView("application/display");
-			result.addObject("hacker", hacker);
+			result.addObject("rooky", rooky);
 			result.addObject("application", application);
-			result.addObject("rol", "hacker");
+			result.addObject("rol", "rooky");
 		} else
 			result = new ModelAndView("redirect:/misc/403.jsp");
 
@@ -122,21 +122,21 @@ public class ApplicationHackerController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Application> applications;
 
-		applications = this.applicationService.findAllPendingByHacker();
+		applications = this.applicationService.findAllPendingByRooky();
 
 		String listApplications;
 		String rol;
 
 		listApplications = "listPending";
-		rol = "hacker";
+		rol = "rooky";
 
 		result = new ModelAndView("application/list");
 		result.addObject("applications", applications);
 
 		result.addObject("lang", this.lang);
-		result.addObject("requetURI", "application/hacker/listPending.do");
+		result.addObject("requetURI", "application/rooky/listPending.do");
 		result.addObject("listApplications", listApplications);
-		result.addObject("principalID", this.hackerService.findByPrincipal().getId());
+		result.addObject("principalID", this.rookyService.findByPrincipal().getId());
 		result.addObject("rol", rol);
 
 		return result;
@@ -149,21 +149,21 @@ public class ApplicationHackerController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Application> applications;
 
-		applications = this.applicationService.findAllSubmittedByHacker();
+		applications = this.applicationService.findAllSubmittedByRooky();
 
 		String listApplications;
 		String rol;
 
 		listApplications = "listSubmitted";
-		rol = "hacker";
+		rol = "rooky";
 
 		result = new ModelAndView("application/list");
 		result.addObject("applications", applications);
 
 		result.addObject("lang", this.lang);
-		result.addObject("requetURI", "application/hacker/listSubmitted.do");
+		result.addObject("requetURI", "application/rooky/listSubmitted.do");
 		result.addObject("listApplications", listApplications);
-		result.addObject("principalID", this.hackerService.findByPrincipal().getId());
+		result.addObject("principalID", this.rookyService.findByPrincipal().getId());
 		result.addObject("rol", rol);
 
 		return result;
@@ -176,21 +176,21 @@ public class ApplicationHackerController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Application> applications;
 
-		applications = this.applicationService.findAllRejectedByHacker();
+		applications = this.applicationService.findAllRejectedByRooky();
 
 		String listApplications;
 		String rol;
 
 		listApplications = "listRejected";
-		rol = "hacker";
+		rol = "rooky";
 
 		result = new ModelAndView("application/list");
 		result.addObject("applications", applications);
 
 		result.addObject("lang", this.lang);
-		result.addObject("requetURI", "application/hacker/listRejected.do");
+		result.addObject("requetURI", "application/rooky/listRejected.do");
 		result.addObject("listApplications", listApplications);
-		result.addObject("principalID", this.hackerService.findByPrincipal().getId());
+		result.addObject("principalID", this.rookyService.findByPrincipal().getId());
 		result.addObject("rol", rol);
 
 		return result;
@@ -203,21 +203,21 @@ public class ApplicationHackerController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Application> applications;
 
-		applications = this.applicationService.findAllAcceptedByHacker();
+		applications = this.applicationService.findAllAcceptedByRooky();
 
 		String listApplications;
 		String rol;
 
 		listApplications = "listAccepted";
-		rol = "hacker";
+		rol = "rooky";
 
 		result = new ModelAndView("application/list");
 		result.addObject("applications", applications);
 
 		result.addObject("lang", this.lang);
-		result.addObject("requetURI", "application/hacker/listAccepted.do");
+		result.addObject("requetURI", "application/rooky/listAccepted.do");
 		result.addObject("listApplications", listApplications);
-		result.addObject("principalID", this.hackerService.findByPrincipal().getId());
+		result.addObject("principalID", this.rookyService.findByPrincipal().getId());
 		result.addObject("rol", rol);
 
 		return result;
@@ -232,9 +232,9 @@ public class ApplicationHackerController extends AbstractController {
 
 		application = this.applicationService.findOne(applicationId);
 
-		final Rooky hacker = this.hackerService.findByPrincipal();
+		final Rooky rooky = this.rookyService.findByPrincipal();
 
-		if ((application.getStatus().equals("PENDING") && application.getHacker() == hacker) && application.getExplanation() == null && application.getLink() == null)
+		if ((application.getStatus().equals("PENDING") && application.getRooky() == rooky) && application.getExplanation() == null && application.getLink() == null)
 			result = this.createEditModelAndView(application);
 		else
 			result = new ModelAndView("redirect:misc/403");

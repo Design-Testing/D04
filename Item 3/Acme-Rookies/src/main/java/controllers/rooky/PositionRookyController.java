@@ -1,5 +1,5 @@
 
-package controllers.hacker;
+package controllers.rooky;
 
 import java.util.Collection;
 
@@ -15,8 +15,8 @@ import controllers.AbstractController;
 import domain.Position;
 
 @Controller
-@RequestMapping("/position/hacker")
-public class PositionHackerController extends AbstractController {
+@RequestMapping("/position/rooky")
+public class PositionRookyController extends AbstractController {
 
 	@Autowired
 	private PositionService	positionService;
@@ -37,9 +37,9 @@ public class PositionHackerController extends AbstractController {
 		result.addObject("positions", positions);
 		result.addObject("listPositions", "list");
 		result.addObject("lang", this.lang);
-		result.addObject("rol", "hacker");
+		result.addObject("rol", "rooky");
 		result.addObject("requetURI", "position/list.do");
-		result.addObject("hackerPositions", this.positionService.findAppliedByHacker());
+		result.addObject("rookyPositions", this.positionService.findAppliedByRooky());
 		return result;
 	}
 }

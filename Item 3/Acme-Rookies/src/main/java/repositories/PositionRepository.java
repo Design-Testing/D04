@@ -46,8 +46,8 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select distinct p from Position p join p.skills s join p.technologies tec join p.company cn where ((p.mode='FINAL') OR (p.mode='CANCELLED')) AND (?1='' OR p.description LIKE CONCAT('%',?1,'%') OR p.title LIKE CONCAT('%',?1,'%') OR p.ticker LIKE CONCAT('%',?1,'%') OR s LIKE CONCAT('%',?1,'%') OR tec LIKE CONCAT('%',?1,'%') OR cn.commercialName LIKE CONCAT('%',?1,'%'))")
 	Collection<Position> findByKeyword(String keyword);
 
-	@Query("select distinct p from Application ap join ap.position p join ap.hacker h where h.id=?1")
-	Collection<Position> findAppliedByHacker(int id);
+	@Query("select distinct p from Application ap join ap.position p join ap.rooky h where h.id=?1")
+	Collection<Position> findAppliedByRooky(int id);
 
 	@Query("select p from Audit a join a.position p")
 	Collection<Position> findAuditedPositionsByAuditor(int auditorId);

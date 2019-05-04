@@ -19,6 +19,7 @@ import security.LoginService;
 import security.UserAccount;
 import services.CompanyService;
 import services.CurriculaService;
+import services.RookyService;
 import domain.Company;
 import domain.Curricula;
 import domain.EducationData;
@@ -35,7 +36,7 @@ public class CurriculaController extends AbstractController {
 	private CurriculaService	curriculaService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookyService		rookyService;
 
 	@Autowired
 	private CompanyService		companyService;
@@ -63,18 +64,18 @@ public class CurriculaController extends AbstractController {
 
 			final UserAccount logged = LoginService.getPrincipal();
 
-			final Authority authHacker = new Authority();
-			authHacker.setAuthority(Authority.HACKER);
+			final Authority authRooky = new Authority();
+			authRooky.setAuthority(Authority.HACKER);
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
-			if (logged.getAuthorities().contains(authHacker)) {
-				final Rooky hacker = this.hackerService.findByPrincipal();
-				if (curricula.getHacker() != null) {
-					Assert.isTrue(curricula.getHacker().equals(hacker));
+			if (logged.getAuthorities().contains(authRooky)) {
+				final Rooky rooky = this.rookyService.findByPrincipal();
+				if (curricula.getRooky() != null) {
+					Assert.isTrue(curricula.getRooky().equals(rooky));
 					res.addObject("buttons", true);
-				} else if (curricula.getHacker() == null) {
+				} else if (curricula.getRooky() == null) {
 					res.addObject("buttons", true);
-					Assert.isTrue(this.hackerService.findHackerByCopyCurricula(curricula.getId()).equals(hacker));
+					Assert.isTrue(this.rookyService.findRookyByCopyCurricula(curricula.getId()).equals(rooky));
 				}
 			} else if (logged.getAuthorities().contains(authCompany)) {
 				res.addObject("buttons", false);
@@ -92,8 +93,8 @@ public class CurriculaController extends AbstractController {
 	@RequestMapping(value = "/displayAll", method = RequestMethod.GET)
 	public ModelAndView displayAll() {
 		final ModelAndView res;
-		final Rooky hacker = this.hackerService.findByPrincipal();
-		final Collection<Curricula> curricula = this.curriculaService.findCurriculaByHacker(hacker.getId());
+		final Rooky rooky = this.rookyService.findByPrincipal();
+		final Collection<Curricula> curricula = this.curriculaService.findCurriculaByRooky(rooky.getId());
 		if (!(curricula == null)) {
 
 			res = new ModelAndView("curricula/displayAll");
@@ -109,17 +110,17 @@ public class CurriculaController extends AbstractController {
 
 	/*
 	 * @RequestMapping(value = "/listForAnonymous", method = RequestMethod.GET)
-	 * public ModelAndView listForAnonymous(@RequestParam final int hackerId) {
+	 * public ModelAndView listForAnonymous(@RequestParam final int rookyId) {
 	 * final ModelAndView res;
-	 * final Hacker hacker = this.hackerService.findOne(hackerId);
-	 * final Collection<Curricula> curricula = this.curriculaService.findCurriculaByHacker(hackerId);
+	 * final Rooky rooky = this.rookyService.findOne(rookyId);
+	 * final Collection<Curricula> curricula = this.curriculaService.findCurriculaByRooky(rookyId);
 	 * final PersonalData personalData = curricula.getPersonalRecord();
 	 * final Collection<EducationData> educationDatas = curricula.getEducations();
 	 * final Collection<PositionData> positionDatas = curricula.getPositions();
 	 * final Collection<MiscellaneousData> miscellaneousRecords = curricula.getMiscellaneous();
 	 * 
 	 * res = new ModelAndView("curricula/display");
-	 * res.addObject("hacker", hacker);
+	 * res.addObject("rooky", rooky);
 	 * res.addObject("buttons", false);
 	 * res.addObject("curricula", curricula);
 	 * res.addObject("personalData", personalData);
@@ -150,8 +151,8 @@ public class CurriculaController extends AbstractController {
 		else
 			try {
 				if (curricula.getVersion() == 0)
-					//final Hacker hacker = this.hackerService.findByPrincipal();
-					//hacker.setCurricula(curricula);
+					//final Rooky rooky = this.rookyService.findByPrincipal();
+					//rooky.setCurricula(curricula);
 					this.curriculaService.save(curricula);
 				result = this.displayAll();
 			} catch (final Throwable oops) {
@@ -164,11 +165,11 @@ public class CurriculaController extends AbstractController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam final int curriculaId) {
 		ModelAndView result;
-		final Rooky hacker = this.hackerService.findByPrincipal();
+		final Rooky rooky = this.rookyService.findByPrincipal();
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		this.curriculaService.delete(curricula);
 		result = new ModelAndView("curricula/displayAll");
-		final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(hacker.getId());
+		final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(rooky.getId());
 		result.addObject("curricula", curriculas);
 		return result;
 	}

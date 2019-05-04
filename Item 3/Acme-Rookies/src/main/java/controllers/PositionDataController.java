@@ -17,12 +17,12 @@ import security.LoginService;
 import security.UserAccount;
 import services.CompanyService;
 import services.CurriculaService;
-import services.HackerService;
 import services.PositionDataService;
+import services.RookyService;
 import domain.Company;
 import domain.Curricula;
-import domain.Rooky;
 import domain.PositionData;
+import domain.Rooky;
 
 @Controller
 @RequestMapping("/positionData")
@@ -32,7 +32,7 @@ public class PositionDataController {
 	private PositionDataService	positionDataService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookyService		rookyService;
 
 	@Autowired
 	private CurriculaService	curriculaService;
@@ -61,10 +61,10 @@ public class PositionDataController {
 		ModelAndView result;
 		try {
 			final PositionData positionData;
-			final Rooky hacker = this.hackerService.findByPrincipal();
+			final Rooky rooky = this.rookyService.findByPrincipal();
 			positionData = this.positionDataService.findOne(positionDataId);
 
-			Assert.isTrue(this.hackerService.hasPositionData(hacker.getId(), positionDataId), "This personal data is not of your property");
+			Assert.isTrue(this.rookyService.hasPositionData(rooky.getId(), positionDataId), "This personal data is not of your property");
 
 			result = new ModelAndView("positionData/edit");
 			result.addObject("positionData", positionData);
@@ -139,16 +139,16 @@ public class PositionDataController {
 
 			final UserAccount logged = LoginService.getPrincipal();
 
-			final Authority authHacker = new Authority();
-			authHacker.setAuthority(Authority.HACKER);
+			final Authority authRooky = new Authority();
+			authRooky.setAuthority(Authority.HACKER);
 			final Authority authCompany = new Authority();
 			authCompany.setAuthority(Authority.COMPANY);
-			if (logged.getAuthorities().contains(authHacker)) {
-				final Rooky hacker = this.hackerService.findByPrincipal();
-				if (curricula.getHacker() != null)
-					Assert.isTrue(curricula.getHacker().equals(hacker));
-				else if (curricula.getHacker() == null)
-					Assert.isTrue(this.hackerService.findHackerByCopyCurricula(curricula.getId()).equals(hacker));
+			if (logged.getAuthorities().contains(authRooky)) {
+				final Rooky rooky = this.rookyService.findByPrincipal();
+				if (curricula.getRooky() != null)
+					Assert.isTrue(curricula.getRooky().equals(rooky));
+				else if (curricula.getRooky() == null)
+					Assert.isTrue(this.rookyService.findRookyByCopyCurricula(curricula.getId()).equals(rooky));
 			} else if (logged.getAuthorities().contains(authCompany)) {
 				final Company company = this.companyService.findByPrincipal();
 				Assert.isTrue(this.curriculaService.findCurriculasByCompany(company.getId()).contains(curricula));
