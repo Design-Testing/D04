@@ -145,7 +145,7 @@ public class ProviderService {
 			provider.setAddress(providerForm.getAddress());
 			provider.setVat(providerForm.getVat());
 			provider.setVersion(providerForm.getVersion());
-			provider.setMake(providerForm.getMake());
+			provider.setMake(providerForm.getProviderMake());
 			//			provider.setScore(0.0);
 			//			provider.setSpammer(false);
 			final UserAccount account = this.userAccountService.create();
@@ -159,7 +159,7 @@ public class ProviderService {
 			provider.setUserAccount(account);
 		} else {
 			provider = this.providerRepository.findOne(providerForm.getId());
-			provider.setMake(providerForm.getMake());
+			provider.setMake(providerForm.getProviderMake());
 			provider.setName(providerForm.getName());
 			provider.setSurname(providerForm.getSurname());
 			provider.setPhoto(providerForm.getPhoto());

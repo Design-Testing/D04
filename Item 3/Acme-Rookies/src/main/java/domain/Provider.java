@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -21,6 +22,7 @@ public class Provider extends Actor {
 
 
 	@NotBlank
+	@SafeHtml
 	public String getMake() {
 		return this.make;
 	}

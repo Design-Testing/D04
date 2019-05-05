@@ -247,7 +247,7 @@ public class RegisterService {
 		result.setSurname(provider.getSurname());
 		result.setVat(provider.getVat());
 		result.setVersion(provider.getVersion());
-		result.setMake(provider.getMake());
+		result.setProviderMake(provider.getMake());
 		// CreditCard
 		result.setHolderName(c.getHolderName());
 		result.setExpirationMonth(c.getExpirationMonth());
