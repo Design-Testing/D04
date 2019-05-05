@@ -191,4 +191,11 @@ public class ProviderService {
 		return provider;
 	}
 
+	final Provider findByItem(final int itemId) {
+		final Provider result;
+		result = this.providerRepository.findByItem(itemId);
+		Assert.notNull(result, "findByItem returns null");
+		return result;
+	}
+
 }

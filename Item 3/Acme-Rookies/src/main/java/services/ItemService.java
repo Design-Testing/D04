@@ -25,9 +25,12 @@ public class ItemService {
 	private ProviderService	providerService;
 
 
-	public Item create(final int itemId) {
+	public Item create() {
 		final Item item = new Item();
-
+		final Collection<String> links = new ArrayList<String>();
+		item.setLinks(links);
+		final Provider logged = this.providerService.findByPrincipal();
+		item.setProvider(logged);
 		return item;
 	}
 
@@ -57,9 +60,12 @@ public class ItemService {
 		result = this.itemRepository.save(item);
 		return result;
 	}
+
 	public void delete(final Item item) {
 		Assert.notNull(item);
 		Assert.isTrue(item.getId() != 0);
+		final Provider principal = this.providerService.findByPrincipal();
+		Assert.isTrue(principal.equals(item.getProvider()), "No puede borrar un item que no le pertenece.");
 		Assert.isTrue(this.itemRepository.exists(item.getId()));
 		this.itemRepository.delete(item);
 	}
@@ -70,9 +76,9 @@ public class ItemService {
 		this.itemRepository.flush();
 	}
 
-	public Collection<Item> findAllByProvider() {
+	public Collection<Item> findAllByProvider(final int providerId) {
 		Collection<Item> res;
-		res = this.itemRepository.findAllByProvider(this.providerService.findByPrincipal().getUserAccount().getId());
+		res = this.itemRepository.findAllByProvider(providerId);
 		return res;
 	}
 

@@ -11,4 +11,7 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 	@Query("select h from Provider h where h.userAccount.id=?1")
 	Provider findByUserId(Integer providerId);
 
+	@Query("select i.provider from Item i where i.id=?1")
+	Provider findByItem(int itemId);
+
 }
