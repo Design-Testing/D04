@@ -39,6 +39,7 @@
 
 	<jstl:if test="${not empty errors}">
 		<div class="errorDiv">
+			<p id="mensajeError"><spring:message code="provider.error.message"/></p>
 			<ul>
 				<jstl:forEach items="${errors}" var="error">
 					<jstl:if test="${error.field eq 'termsAndCondicions'}">
@@ -71,7 +72,7 @@
 	
 	<acme:textbox code="provider.edit.address" path="address" />
 	<acme:numberbox code="provider.edit.vat" path="vat" min="0" max="1"/>
-	<acme:textbox code="provider.edit.commercialName" path="commercialName" />
+	<acme:textbox code="provider.edit.make" path="providerMake" />
 	
 	<h3><spring:message code="provider.edit.creditCard"/></h3>
 	<acme:textbox code="provider.edit.holder" path="holderName" />

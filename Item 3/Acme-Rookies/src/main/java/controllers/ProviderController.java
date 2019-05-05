@@ -135,7 +135,9 @@ public class ProviderController extends AbstractController {
 				result.addObject("alert", "provider.edit.correct");
 				result.addObject("providerForm", providerForm);
 			} catch (final ValidationException oops) {
-				result = this.createEditModelAndView(providerForm);
+				result.addObject("errors", binding.getAllErrors());
+				providerForm.setTermsAndCondicions(false);
+				result.addObject("providerForm", providerForm);
 			} catch (final Throwable e) {
 				if (e.getMessage().contains("username is register"))
 					result.addObject("alert", "provider.edit.usernameIsUsed");

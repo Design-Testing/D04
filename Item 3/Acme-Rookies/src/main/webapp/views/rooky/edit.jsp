@@ -44,6 +44,7 @@
 
 <jstl:if test="${not empty errors}">
 	<div class="errorDiv">
+		<p id="mensajeError"><spring:message code="error.message.error.div"/></p>
 		<ul>
 			<jstl:forEach items="${errors}" var="error">
 				<jstl:if test="${error.field eq 'termsAndCondicions'}">
