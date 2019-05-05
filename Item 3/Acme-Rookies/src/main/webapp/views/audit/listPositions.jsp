@@ -34,7 +34,7 @@
 	
 	<display:column>
 	
-		<acme:button url="position/display.do?positionId=${row.id}" name="display" code="position.display"/>
+		<acme:button url="audit/auditor/create.do?positionId=${row.id}" name="display" code="position.audit"/>
 	
 	</display:column>
 	

@@ -124,9 +124,9 @@ public class AuditorService {
 	public Auditor findByPrincipal() {
 		final UserAccount user = LoginService.getPrincipal();
 		Assert.notNull(user);
-
+		System.out.println(user.getId());
 		final Auditor auditor = this.findByUserId(user.getId());
-		Assert.notNull(auditor);
+		Assert.notNull(auditor, "auditor find by principal returns null");
 		final boolean bool = this.actorService.checkAuthority(auditor, Authority.AUDITOR);
 		Assert.isTrue(bool);
 

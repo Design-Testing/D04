@@ -1,25 +1,30 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
+import cz.jirutka.validator.collection.constraints.EachURL;
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class Item extends DomainEntity {
 
-	private String		name;
-	private String		description;
-	private String		link;
-	private String		photo;
+	private String				name;
+	private String				description;
+	private Collection<String>	links;
+	private String				photo;
 
 	//Relaciones
-	private Provider	provider;
+	private Provider			provider;
 
 
 	@NotBlank
@@ -40,13 +45,14 @@ public class Item extends DomainEntity {
 		this.description = description;
 	}
 
-	@URL
-	public String getLink() {
-		return this.link;
+	@ElementCollection
+	@EachURL
+	public Collection<String> getLinks() {
+		return this.links;
 	}
 
-	public void setLink(final String link) {
-		this.link = link;
+	public void setLinks(final Collection<String> links) {
+		this.links = links;
 	}
 
 	@URL

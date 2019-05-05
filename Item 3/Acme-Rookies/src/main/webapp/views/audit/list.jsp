@@ -29,19 +29,23 @@
 		
 	<display:column property="text" titleKey="audit.text" />
 	
-	<display:column property="problem.score" titleKey="audit.score" />
+	<display:column property="score" titleKey="audit.score" />
 	
 	
 	<security:authorize access="hasRole('AUDITOR')">
 	
 		<jstl:if test="${row.isDraft eq true}">
 				<display:column>
-					<acme:button url="audit/auditor/edit.do?auditId=${row.id}"
-						name="submit" code="audit.submit" />
+					<acme:button url="audit/auditor/edit.do?auditId=${row.id}&positionId=${row.position.id}"
+						name="submit" code="audit.edit" />
 				</display:column>
 				<display:column>
 					<acme:button url="audit/auditor/delete.do?auditId=${row.id}"
-						name="submit" code="audit.submit" />
+						name="submit" code="audit.delete" />
+				</display:column>
+				<display:column>
+					<acme:button url="audit/auditor/toFinal.do?auditId=${row.id}"
+						name="submit" code="audit.final" />
 				</display:column>
 		</jstl:if>
 	

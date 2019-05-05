@@ -49,6 +49,9 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select distinct p from Application ap join ap.position p join ap.rooky h where h.id=?1")
 	Collection<Position> findAppliedByRooky(int id);
 
-	@Query("select p from Audit a join a.position p")
+	@Query("select distinct p from Audit a join a.position p where a.auditor.id=?1 and p.mode='FINAL'")
 	Collection<Position> findAuditedPositionsByAuditor(int auditorId);
+
+	@Query("select p from Position p where p.mode='FINAL'")
+	Collection<Position> findAllFinal();
 }

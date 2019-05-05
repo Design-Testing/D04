@@ -937,7 +937,7 @@
 		<property name="address" value="Reina Mercedes" />
 		<property name="vat" value="0.21" />
 		<property name="creditCard" ref="creditCard12" />
-		<property name="userAccount" ref="userAccountAdmin1" />
+		<property name="userAccount" ref="userAccountAuditor1" />
 	</bean>
 
 	<bean id="auditor2" class="domain.Auditor">
@@ -954,7 +954,7 @@
 		<property name="address" value="Reina Mercedes" />
 		<property name="vat" value="0.21" />
 		<property name="creditCard" ref="creditCard13" />
-		<property name="userAccount" ref="userAccountAdmin2" />
+		<property name="userAccount" ref="userAccountAuditor2" />
 	</bean>
 	
 
@@ -1728,28 +1728,48 @@
 	<bean id="item1" class="domain.Item">
 		<property name="name" value="Item 1" />
 		<property name="description" value="Description Item 1" />
-		<property name="link" value="http://www.linkItem1.com" />
+		<property name="links" >
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider1" />
 	</bean>
 
 	<bean id="item2" class="domain.Item">
 		<property name="name" value="Item 2" />
 		<property name="description" value="Description Item 2" />
-		<property name="link" value="http://www.linkItem2.com" />
+		<property name="links" >
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider1" />
 	</bean>
 
 	<bean id="item3" class="domain.Item">
 		<property name="name" value="Item 3" />
 		<property name="description" value="Description Item 3" />
-		<property name="link" value="http://www.linkItem3.com" />
+		<property name="links" >
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider2" />
 	</bean>
 
 	<bean id="item4" class="domain.Item">
 		<property name="name" value="Item 4" />
 		<property name="description" value="Description Item 4" />
-		<property name="link" value="http://www.linkItem4.com" />
+		<property name="links" >
+			<list>
+				<value>http://link1.com</value>
+				<value>http://link2.com</value>
+			</list>
+		</property>
 		<property name="provider" ref="provider2" />
 	</bean>
 

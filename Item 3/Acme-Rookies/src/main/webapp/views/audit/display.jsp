@@ -51,7 +51,29 @@
 <br><br>
 
 
+<security:authorize access="hasRole('AUDITOR')">
+	<jstl:if test="${audit.isDraft eq true }">
+            <jstl:set var="toListDraft" value="1"/>
+	</jstl:if>	
+	<jstl:if test="${audit.isDraft eq false }">
+            <jstl:set var="toListFinal" value="1"/>
+	</jstl:if>
+</security:authorize>
 
-
+	
+<jstl:choose>
+	<jstl:when test="${toListDraft eq 1}">
+		<acme:button url="audit/auditor/listDraft.do" name="back"
+		code="audit.back" />
+	</jstl:when>
+	<jstl:when test="${toListFinal eq 1}">
+		<acme:button url="audit/auditor/listFinal.do" name="back"
+		code="audit.back" />
+	</jstl:when>
+	<jstl:otherwise>
+		<acme:button url="position/list.do" name="back" 
+		code="audit.back"/>
+	</jstl:otherwise>
+</jstl:choose>
 
 

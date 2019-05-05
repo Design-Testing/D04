@@ -10,13 +10,24 @@
 
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="audit/auditor/edit.do" modelAttribute="auditForm" method="POST">
+
+
+<form:form action="audit/auditor/edit.do?positionId=${positionId }" modelAttribute="auditForm" method="POST">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	
+
 
 	<div>
 		<form:label path="text">
 			<spring:message code="audit.text" />
+		</form:label>
+		<form:textarea path="text" />
+		<form:errors path="score" cssClass="audit.text" />
+		<br>
+		<br>
+		<form:label path="score">
+			<spring:message code="audit.score" />
 		</form:label>
 		<form:textarea path="score" />
 		<form:errors path="score" cssClass="audit.score" />
@@ -25,7 +36,22 @@
 
 	<input type="submit" name="save"
 		value="<spring:message code="audit.submit" />" />
-
-	<acme:button url="audit/auditr/listFreePositions.do" name="back"
+		
+	<br>
+	<br>
+	
+	<jstl:if test="${auditForm.id eq 0 }">
+            <jstl:set var="toPositionsList" value="1"/>
+	</jstl:if>	
+	
+	<jstl:choose>
+	<jstl:when test="${toPositionsList eq 1}">
+		<acme:button url="audit/auditor/listFreePositions.do" name="back"
 		code="audit.back.free.positions" />
+	</jstl:when>
+	<jstl:otherwise>
+		<acme:button url="audit/auditor/listDraft.do" name="back" code="audit.back.draft.audits"/>
+	</jstl:otherwise>
+</jstl:choose>
+	
 </form:form>

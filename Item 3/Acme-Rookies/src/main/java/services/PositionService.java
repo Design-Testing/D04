@@ -292,8 +292,11 @@ public class PositionService {
 
 	public Collection<Position> findFreePositionsByAuditor(final int auditorId) {
 		final Collection<Position> audited = this.positionRepository.findAuditedPositionsByAuditor(auditorId);
-		final Collection<Position> res = this.positionRepository.findAll();
+		System.out.println(audited);
+		final Collection<Position> res = this.positionRepository.findAllFinal();
+		System.out.println(res);
 		res.removeAll(audited);
+		System.out.println(res);
 		Assert.notNull(res);
 		return res;
 	}

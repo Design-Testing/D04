@@ -40,6 +40,7 @@ public class AuditService {
 		final Audit audit = new Audit();
 		final Auditor auditor = this.auditorService.findByPrincipal();
 		final Position position = this.positionService.findOne(positionId);
+		Assert.isTrue(position.getMode().equals("FINAL"), "the position is not final");
 
 		audit.setIsDraft(true);
 		final Date moment = new Date(System.currentTimeMillis() - 1);
@@ -71,6 +72,7 @@ public class AuditService {
 		final Position position = this.positionService.findOne(positionId);
 		final Date submitMoment = new Date(System.currentTimeMillis() - 1);
 		audit.setMoment(submitMoment);
+		Assert.isTrue(position.getMode().equals("FINAL"), "the position is not final");
 
 		if (audit.getId() != 0) {
 			Assert.isTrue(audit.getAuditor().getId() == principal.getId(), "No puede actualizar una solicitud que no le pertenece.");
@@ -151,10 +153,15 @@ public class AuditService {
 		this.auditRepository.deleteInBatch(audits);
 	}
 
-	public Audit reconstruct(final AuditForm auditForm, final BindingResult binding) {
+	public Audit reconstruct(final AuditForm auditForm, final BindingResult binding, final int positionId) {
 		Audit result;
-		Assert.isTrue(auditForm.getId() != 0);
-		result = this.findOne(auditForm.getId());
+		System.out.println("ey");
+		System.out.println("AQUIIIII" + auditForm.getId());
+		if (auditForm.getId() == 0)
+			result = this.create(positionId);
+		else
+			result = this.findOne(auditForm.getId());
+		System.out.println("oy");
 
 		result.setId(auditForm.getId());
 		result.setVersion(auditForm.getVersion());
@@ -166,6 +173,17 @@ public class AuditService {
 			throw new ValidationException();
 
 		return result;
+	}
+
+	public AuditForm inyect(final Audit audit) {
+		final AuditForm pruned = new AuditForm();
+
+		pruned.setId(audit.getId());
+		pruned.setVersion(audit.getVersion());
+		pruned.setScore(audit.getScore());
+		pruned.setText(audit.getText());
+
+		return pruned;
 	}
 
 	public void flush() {

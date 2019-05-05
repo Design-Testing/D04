@@ -32,7 +32,7 @@
 	<display:column>
                 <input type="button" name="apply"
                     value="<spring:message code="curricula.apply" />"
-                    onclick="relativeRedir('application/hacker/apply.do?positionId=${positionId}&curriculaId=${row.id}')" />
+                    onclick="relativeRedir('application/rooky/apply.do?positionId=${positionId}&curriculaId=${row.id}')" />
 	</display:column>
 
 	
