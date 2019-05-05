@@ -11,7 +11,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <h2>
-	<spring:message code="hacker.edit.msg" />
+	<spring:message code="rooky.edit.msg" />
 </h2>
 
 <script>
@@ -48,7 +48,7 @@
 		<ul>
 			<jstl:forEach items="${errors}" var="error">
 				<jstl:if test="${error.field eq 'termsAndCondicions'}">
-					<li><spring:message code="hacker.edit.${error.field}" /> - <jstl:out
+					<li><spring:message code="rooky.edit.${error.field}" /> - <jstl:out
 							value="${error.defaultMessage}" /></li>
 				</jstl:if>
 			</jstl:forEach>
@@ -58,52 +58,52 @@
 <br>
 
 
-<form:form modelAttribute="actorForm" action="hacker/edit.do"
+<form:form modelAttribute="rookyForm" action="rooky/edit.do"
 	method="POST">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<acme:textbox code="hacker.edit.userAccountuser" path="userAccountuser" />
-	<acme:password code="hacker.edit.userAccountpassword"
+	<acme:textbox code="rooky.edit.userAccountuser" path="userAccountuser" />
+	<acme:password code="rooky.edit.userAccountpassword"
 		path="userAccountpassword" />
 
-	<acme:textbox code="hacker.edit.name" path="name" />
-	<acme:textarea code="hacker.edit.surname" path="surname" />
-	<acme:textbox code="hacker.edit.photo" path="photo" />
-	<acme:textbox code="hacker.edit.email" path="email"
+	<acme:textbox code="rooky.edit.name" path="name" />
+	<acme:textarea code="rooky.edit.surname" path="surname" />
+	<acme:textbox code="rooky.edit.photo" path="photo" />
+	<acme:textbox code="rooky.edit.email" path="email"
 		placeholder="id@domain / alias id@domain / id@ / alias id@" size="45" />
 	<div>
 		<form:label path="phone">
-			<spring:message code="hacker.edit.phone" />
+			<spring:message code="rooky.edit.phone" />
 		</form:label>
 		<form:input path="phone" onblur="phoneFun()" />
 		<form:errors path="phone" cssClass="error" />
 	</div>
 
-	<acme:textbox code="hacker.edit.address" path="address" />
-	<acme:numberbox code="hacker.edit.vat" path="vat" min="0" max="1" />
+	<acme:textbox code="rooky.edit.address" path="address" />
+	<acme:numberbox code="rooky.edit.vat" path="vat" min="0" max="1" />
 
 
 	<!-- CREDIT CARD -->
 	<h3>
-		<spring:message code="hacker.creditCard" />
+		<spring:message code="rooky.creditCard" />
 	</h3>
 
-	<acme:textbox code="hacker.creditCard.holderName" path="holderName" />
+	<acme:textbox code="rooky.creditCard.holderName" path="holderName" />
 
 	<form:label path="make">
-		<spring:message code="hacker.creditCard.brandName" />
+		<spring:message code="rooky.creditCard.brandName" />
 	</form:label>
 	<form:select path="make">
 		<form:options items="${cardmakes}" />
 	</form:select>
 	<form:errors path="make" cssClass="error" />
 
-	<acme:textbox code="hacker.creditCard.number" path="number" />
-	<acme:textbox code="hacker.creditCard.expirationMonth"
+	<acme:textbox code="rooky.creditCard.number" path="number" />
+	<acme:textbox code="rooky.creditCard.expirationMonth"
 		path="expirationMonth" placeholder="09" />
-	<acme:textbox code="hacker.creditCard.expirationYear"
+	<acme:textbox code="rooky.creditCard.expirationYear"
 		path="expirationYear" placeholder="21" />
-	<acme:numberbox code="hacker.creditCard.cvv" path="cvv" min="100"
+	<acme:numberbox code="rooky.creditCard.cvv" path="cvv" min="100"
 		max="999" />
 	<br />
 
@@ -120,5 +120,5 @@
 	</jstl:choose>
 	<br />
 
-	<acme:submit code="hacker.edit.submit" name="save" />
+	<acme:submit code="rooky.edit.submit" name="save" />
 </form:form>

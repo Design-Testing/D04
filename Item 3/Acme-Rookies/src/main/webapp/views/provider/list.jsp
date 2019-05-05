@@ -11,7 +11,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<display:table name="companies" id="row"
+<display:table name="providers" id="row"
 	requestURI="provider/list.do" pagesize="5"
 	class="displaytag">
 

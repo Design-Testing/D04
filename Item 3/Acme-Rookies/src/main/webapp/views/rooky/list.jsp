@@ -11,8 +11,8 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<display:table name="hackers" id="row"
-	requestURI="hacker/list.do" pagesize="5"
+<display:table name="rookies" id="row"
+	requestURI="rooky/list.do" pagesize="5"
 	class="displaytag">
 
 
@@ -22,8 +22,8 @@
 
 	
 	<display:column>
-		<a href="hacker/displayTabla.do?hackerId=${row.id}"> <spring:message
-				code="hacker.display" />
+		<a href="rooky/displayTabla.do?rookyId=${row.id}"> <spring:message
+				code="rooky.display" />
 		</a>
 	</display:column>
 

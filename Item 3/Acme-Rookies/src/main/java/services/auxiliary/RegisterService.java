@@ -27,6 +27,7 @@ import forms.ActorForm;
 import forms.AuditorForm;
 import forms.CompanyForm;
 import forms.ProviderForm;
+import forms.RookyForm;
 
 @Service
 @Transactional
@@ -188,6 +189,36 @@ public class RegisterService {
 		result.setSurname(actor.getSurname());
 		result.setVat(actor.getVat());
 		result.setVersion(actor.getVersion());
+		// CreditCard
+		result.setHolderName(c.getHolderName());
+		result.setExpirationMonth(c.getExpirationMonth());
+		result.setExpirationYear(c.getExpirationYear());
+		result.setMake(c.getMake());
+		result.setNumber(c.getNumber());
+		result.setCvv(c.getCvv());
+
+		result.setUserAccountpassword(actor.getUserAccount().getPassword());
+		result.setUserAccountuser(actor.getUserAccount().getUsername());
+		result.setVersion(actor.getVersion());
+
+		return result;
+	}
+
+	public RookyForm inyect(final Rooky actor) {
+		final RookyForm result = new RookyForm();
+
+		final CreditCard c = actor.getCreditCard();
+
+		result.setAddress(actor.getAddress());
+		result.setEmail(actor.getEmail());
+		result.setId(actor.getId());
+		result.setName(actor.getName());
+		result.setPhone(actor.getPhone());
+		result.setPhoto(actor.getPhoto());
+		result.setSurname(actor.getSurname());
+		result.setVat(actor.getVat());
+		result.setVersion(actor.getVersion());
+		result.setFinder(actor.getFinder());
 		// CreditCard
 		result.setHolderName(c.getHolderName());
 		result.setExpirationMonth(c.getExpirationMonth());
