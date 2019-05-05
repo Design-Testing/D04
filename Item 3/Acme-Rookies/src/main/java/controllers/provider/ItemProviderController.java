@@ -130,7 +130,7 @@ public class ItemProviderController extends AbstractController {
 			try {
 				this.itemService.save(item);
 
-				result = new ModelAndView("item/list");
+				result = this.list();
 
 			} catch (final Throwable e) {
 				result = new ModelAndView("redirect:misc/403");
@@ -153,6 +153,25 @@ public class ItemProviderController extends AbstractController {
 			result.addObject("item", item);
 		} else
 			result = new ModelAndView("redirect:/misc/403.jsp");
+
+		return result;
+	}
+
+	// =================DELETE=================
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam final int itemId) {
+		ModelAndView result;
+
+		try {
+			final Item item = this.itemService.findOne(itemId);
+			this.itemService.delete(item);
+
+			result = this.list();
+
+		} catch (final Throwable e) {
+			result = new ModelAndView("redirect:misc/403");
+		}
 
 		return result;
 	}

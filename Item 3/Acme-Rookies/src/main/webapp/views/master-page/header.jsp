@@ -111,6 +111,16 @@
 			
 		</security:authorize>
 		
+		
+		<!-- ========================================================================================================= -->
+		<!-- ========================================  PROVIDER  ================================================ -->
+		<!-- ========================================================================================================= -->
+		
+		<security:authorize access="hasRole('PROVIDER')">
+			<li><a href="item/provider/list.do"><spring:message code="master.page.my.items" /></a></li>
+			
+		</security:authorize>
+		
 		<!-- ========================================================================================================= -->
 		<!-- ========================================  ANONYMOUS  ================================================ -->
 		<!-- ========================================================================================================= -->
@@ -121,6 +131,7 @@
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
+			<li><a href="item/provider/list.do"><spring:message code="master.page.item.list" /></a></li>
 			<li><a class="fNiv" href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
 			<li><a class="fNiv" href="rooky/create.do"><spring:message code="master.page.rooky.register" /></a></li>
 			
