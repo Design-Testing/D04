@@ -93,6 +93,9 @@
 	<security:authorize access="hasRole('HACKER')">
 		<jstl:set var="hk" value="1"/>
 	</security:authorize>
+	<security:authorize access="hasRole('AUDITOR')">
+		<jstl:set var="aud" value="1"/>
+	</security:authorize>
         
 </display:table>
 <br><br>
@@ -102,6 +105,9 @@
 	</jstl:when>
 	<jstl:when test="${hk eq 1}">
 		<acme:button url="position/hacker/list.do" name="back" code="position.back"/>
+	</jstl:when>
+	<jstl:when test="${aud eq 1}">
+		<acme:button url="audit/auditor/listFreePositions.do" name="back" code="position.back"/>
 	</jstl:when>
 	<jstl:otherwise>
 		<acme:button url="position/list.do" name="back" code="position.back"/>
