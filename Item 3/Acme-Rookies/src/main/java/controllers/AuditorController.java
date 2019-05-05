@@ -144,7 +144,7 @@ public class AuditorController extends AbstractController {
 			result.addObject("auditorForm", auditorForm);
 		} else
 			try {
-				final UserAccount ua = this.userAccountService.reconstruct(auditorForm, Authority.COMPANY);
+				final UserAccount ua = this.userAccountService.reconstruct(auditorForm, Authority.AUDITOR);
 				auditor = this.auditorService.reconstruct(auditorForm, binding);
 				auditor.setUserAccount(ua);
 				this.registerService.saveAuditor(auditor, binding);

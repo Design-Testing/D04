@@ -48,8 +48,10 @@ public class AuditAuditorController extends AbstractController {
 		final Auditor auditor = this.auditorService.findByPrincipal();
 
 		try {
+			final AuditForm auditForm = new AuditForm();
 
 			result = new ModelAndView("audit/edit"); //TODO lo lleva a la vista de edición para crear el audit
+			result.addObject("auditForm", auditForm);
 			result.addObject("auditor", auditor);
 			result.addObject("positionId", positionId);
 
@@ -63,7 +65,7 @@ public class AuditAuditorController extends AbstractController {
 
 	//cuando haces click en editar en el listado audits en modo draft
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int auditId) {
+	public ModelAndView edit(@RequestParam final int auditId, @RequestParam final int positionId) {
 		ModelAndView result;
 		Audit audit;
 
@@ -72,6 +74,7 @@ public class AuditAuditorController extends AbstractController {
 		if (audit != null) {
 			result = this.createEditModelAndView(audit);
 			result.addObject("audit", audit);
+			result.addObject("positionId", positionId);
 		} else
 			result = new ModelAndView("redirect:/misc/403.jsp");
 
@@ -87,10 +90,13 @@ public class AuditAuditorController extends AbstractController {
 		if (binding.hasErrors()) {
 			result = new ModelAndView("audit/edit");
 			result.addObject("auditForm", auditForm);
+			result.addObject("positionId", positionId);
 			result.addObject("errors", binding.getAllErrors());
 		} else
 			try {
-				final Audit audit = this.auditService.reconstruct(auditForm, binding);
+				System.out.println("aaa");
+				final Audit audit = this.auditService.reconstruct(auditForm, binding, positionId);
+				System.out.println(audit);
 				this.auditService.save(audit, positionId);
 				result = this.listDraft();
 			} catch (final ValidationException oops) {
@@ -103,7 +109,6 @@ public class AuditAuditorController extends AbstractController {
 
 		return result;
 	}
-
 	//este método es al hacer click en pasar a modo final
 	@RequestMapping(value = "/toFinal", method = RequestMethod.GET)
 	public ModelAndView toFinal(@RequestParam final int auditId) {
@@ -260,22 +265,11 @@ public class AuditAuditorController extends AbstractController {
 		final ModelAndView result;
 
 		result = new ModelAndView("audit/edit");
-		result.addObject("auditForm", this.constructPruned(audit)); // this.constructPruned(parade));
+		result.addObject("auditForm", this.auditService.inyect(audit)); // this.constructPruned(parade));
 
 		result.addObject("message", messageCode);
 
 		return result;
-	}
-
-	public AuditForm constructPruned(final Audit audit) {
-		final AuditForm pruned = new AuditForm();
-
-		pruned.setId(audit.getId());
-		pruned.setVersion(audit.getVersion());
-		pruned.setScore(audit.getScore());
-		pruned.setText(audit.getText());
-
-		return pruned;
 	}
 
 }

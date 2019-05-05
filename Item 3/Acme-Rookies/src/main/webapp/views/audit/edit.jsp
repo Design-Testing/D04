@@ -10,9 +10,13 @@
 
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="audit/auditor/edit.do" modelAttribute="auditForm" method="POST">
+
+
+<form:form action="audit/auditor/edit.do?positionId=${positionId }" modelAttribute="auditForm" method="POST">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	
+
 
 	<div>
 		<form:label path="text">
@@ -32,6 +36,8 @@
 
 	<input type="submit" name="save"
 		value="<spring:message code="audit.submit" />" />
+		
+		
 
 	<acme:button url="audit/auditr/listFreePositions.do" name="back"
 		code="audit.back.free.positions" />

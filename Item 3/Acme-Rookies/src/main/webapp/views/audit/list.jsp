@@ -36,7 +36,7 @@
 	
 		<jstl:if test="${row.isDraft eq true}">
 				<display:column>
-					<acme:button url="audit/auditor/edit.do?auditId=${row.id}"
+					<acme:button url="audit/auditor/edit.do?auditId=${row.id}&positionId=${row.position.id}"
 						name="submit" code="audit.edit" />
 				</display:column>
 				<display:column>
