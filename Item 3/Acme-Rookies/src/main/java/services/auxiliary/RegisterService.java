@@ -26,6 +26,7 @@ import domain.Rooky;
 import forms.ActorForm;
 import forms.AuditorForm;
 import forms.CompanyForm;
+import forms.ProviderForm;
 
 @Service
 @Transactional
@@ -228,6 +229,36 @@ public class RegisterService {
 		result.setUserAccountpassword(company.getUserAccount().getPassword());
 		result.setUserAccountuser(company.getUserAccount().getUsername());
 		result.setVersion(company.getVersion());
+
+		return result;
+	}
+
+	public ProviderForm inyect(final Provider provider) {
+		final ProviderForm result = new ProviderForm();
+
+		final CreditCard c = provider.getCreditCard();
+
+		result.setAddress(provider.getAddress());
+		result.setEmail(provider.getEmail());
+		result.setId(provider.getId());
+		result.setName(provider.getName());
+		result.setPhone(provider.getPhone());
+		result.setPhoto(provider.getPhoto());
+		result.setSurname(provider.getSurname());
+		result.setVat(provider.getVat());
+		result.setVersion(provider.getVersion());
+		result.setMake(provider.getMake());
+		// CreditCard
+		result.setHolderName(c.getHolderName());
+		result.setExpirationMonth(c.getExpirationMonth());
+		result.setExpirationYear(c.getExpirationYear());
+		result.setMake(c.getMake());
+		result.setNumber(c.getNumber());
+		result.setCvv(c.getCvv());
+
+		result.setUserAccountpassword(provider.getUserAccount().getPassword());
+		result.setUserAccountuser(provider.getUserAccount().getUsername());
+		result.setVersion(provider.getVersion());
 
 		return result;
 	}

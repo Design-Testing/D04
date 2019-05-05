@@ -28,19 +28,16 @@ import forms.CompanyForm;
 public class CompanyService {
 
 	@Autowired
-	private CompanyRepository		companyRepository;
+	private CompanyRepository	companyRepository;
 
 	@Autowired
-	private AdministratorService	administratorService;
+	private ActorService		actorService;
 
 	@Autowired
-	private ActorService			actorService;
+	private UserAccountService	userAccountService;
 
 	@Autowired
-	private UserAccountService		userAccountService;
-
-	@Autowired
-	private Validator				validator;
+	private Validator			validator;
 
 
 	//METODOS CRUD
