@@ -24,7 +24,7 @@ import domain.CreditCard;
 import domain.Curricula;
 import domain.Finder;
 import domain.Rooky;
-import forms.RookyForm;
+import forms.ActorForm;
 
 @Service
 @Transactional
@@ -167,27 +167,27 @@ public class RookyService {
 		this.rookyRepository.flush();
 	}
 
-	public Rooky reconstruct(final RookyForm rookyForm, final BindingResult binding) {
+	public Rooky reconstruct(final ActorForm actorForm, final BindingResult binding) {
 		Rooky rooky;
 		final CreditCard c = new CreditCard();
-		c.setHolderName(rookyForm.getHolderName());
-		final String cardNumber = rookyForm.getNumber().replace(" ", "");
+		c.setHolderName(actorForm.getHolderName());
+		final String cardNumber = actorForm.getNumber().replace(" ", "");
 		c.setNumber(cardNumber);
-		c.setMake(rookyForm.getMake());
-		c.setExpirationMonth(rookyForm.getExpirationMonth());
-		c.setExpirationYear(rookyForm.getExpirationYear());
-		c.setCvv(rookyForm.getCvv());
+		c.setMake(actorForm.getMake());
+		c.setExpirationMonth(actorForm.getExpirationMonth());
+		c.setExpirationYear(actorForm.getExpirationYear());
+		c.setCvv(actorForm.getCvv());
 
-		if (rookyForm.getId() == 0) {
+		if (actorForm.getId() == 0) {
 			rooky = this.create();
-			rooky.setName(rookyForm.getName());
-			rooky.setSurname(rookyForm.getSurname());
-			rooky.setPhoto(rookyForm.getPhoto());
-			rooky.setPhone(rookyForm.getPhone());
-			rooky.setEmail(rookyForm.getEmail());
-			rooky.setAddress(rookyForm.getAddress());
-			rooky.setVat(rookyForm.getVat());
-			rooky.setVersion(rookyForm.getVersion());
+			rooky.setName(actorForm.getName());
+			rooky.setSurname(actorForm.getSurname());
+			rooky.setPhoto(actorForm.getPhoto());
+			rooky.setPhone(actorForm.getPhone());
+			rooky.setEmail(actorForm.getEmail());
+			rooky.setAddress(actorForm.getAddress());
+			rooky.setVat(actorForm.getVat());
+			rooky.setVersion(actorForm.getVersion());
 			rooky.setFinder(this.finderService.create());
 			//			rooky.setScore(0.0);
 			//			rooky.setSpammer(false);
@@ -197,23 +197,23 @@ public class RookyService {
 			auth.setAuthority(Authority.ROOKY);
 			authorities.add(auth);
 			account.setAuthorities(authorities);
-			account.setUsername(rookyForm.getUserAccountuser());
-			account.setPassword(rookyForm.getUserAccountpassword());
+			account.setUsername(actorForm.getUserAccountuser());
+			account.setPassword(actorForm.getUserAccountpassword());
 			rooky.setUserAccount(account);
 		} else {
-			rooky = this.rookyRepository.findOne(rookyForm.getId());
-			rooky.setName(rookyForm.getName());
-			rooky.setSurname(rookyForm.getSurname());
-			rooky.setPhoto(rookyForm.getPhoto());
-			rooky.setPhone(rookyForm.getPhone());
-			rooky.setEmail(rookyForm.getEmail());
-			rooky.setAddress(rookyForm.getAddress());
-			rooky.setVat(rookyForm.getVat());
-			rooky.setVersion(rookyForm.getVersion());
-			rooky.setFinder(rookyForm.getFinder());
+			rooky = this.rookyRepository.findOne(actorForm.getId());
+			rooky.setName(actorForm.getName());
+			rooky.setSurname(actorForm.getSurname());
+			rooky.setPhoto(actorForm.getPhoto());
+			rooky.setPhone(actorForm.getPhone());
+			rooky.setEmail(actorForm.getEmail());
+			rooky.setAddress(actorForm.getAddress());
+			rooky.setVat(actorForm.getVat());
+			rooky.setVersion(actorForm.getVersion());
+			rooky.setFinder(this.finderService.findRookyFinder());
 			final UserAccount account = this.userAccountService.findOne(rooky.getUserAccount().getId());
-			account.setUsername(rookyForm.getUserAccountuser());
-			account.setPassword(rookyForm.getUserAccountpassword());
+			account.setUsername(actorForm.getUserAccountuser());
+			account.setPassword(actorForm.getUserAccountpassword());
 			rooky.setUserAccount(account);
 		}
 

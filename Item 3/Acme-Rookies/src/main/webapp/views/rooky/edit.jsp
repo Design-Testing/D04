@@ -58,7 +58,7 @@
 <br>
 
 
-<form:form modelAttribute="rookyForm" action="rooky/edit.do"
+<form:form modelAttribute="actorForm" action="rooky/edit.do"
 	method="POST">
 	<form:hidden path="id" />
 	<form:hidden path="version" />

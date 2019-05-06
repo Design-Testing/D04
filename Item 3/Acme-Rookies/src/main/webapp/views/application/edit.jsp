@@ -10,7 +10,7 @@
 
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="application/hacker/edit.do" modelAttribute="applicationForm" method="POST">
+<form:form action="application/rooky/edit.do" modelAttribute="applicationForm" method="POST">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 
@@ -33,6 +33,6 @@
 	<input type="submit" name="save"
 		value="<spring:message code="application.submit" />" />
 
-	<acme:button url="application/hacker/listPending.do" name="back"
+	<acme:button url="application/rooky/listPending.do" name="back"
 		code="application.back" />
 </form:form>

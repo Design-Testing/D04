@@ -21,7 +21,7 @@
 
 <acme:display code="application.position" value="${application.position.title}"/>
 
-<acme:display code="application.hacker" value="${application.hacker.name}"/>
+<acme:display code="application.rooky" value="${application.rooky.name}"/>
 
 <acme:display code="application.problem" value="${application.problem.title}"/>
 

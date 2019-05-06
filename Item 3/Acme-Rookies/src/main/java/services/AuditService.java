@@ -134,6 +134,18 @@ public class AuditService {
 		return res;
 	}
 
+	public Collection<Audit> findAllByCompany(final int companyId) {
+		Assert.isTrue(companyId != 0);
+		final Collection<Audit> res = this.auditRepository.findAllByCompany(companyId);
+		Assert.notNull(res);
+		return res;
+	}
+
+	public Integer countAllByCompany(final int companyId) {
+		Assert.isTrue(companyId != 0);
+		return this.auditRepository.countAllByCompany(companyId);
+	}
+
 	public Audit toFinalMode(final int auditId) {
 		final Audit audit = this.findOne(auditId);
 		final Auditor principal = this.auditorService.findByPrincipal();
