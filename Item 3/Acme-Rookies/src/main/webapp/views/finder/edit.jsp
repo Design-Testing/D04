@@ -1,12 +1,3 @@
-<%--
- * action-2.jsp
- *
- * Copyright (C) 2019 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -18,7 +9,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<form:form action="finder/hacker/edit.do" modelAttribute="finder" method="POST">
+<form:form action="finder/rooky/edit.do" modelAttribute="finder" method="POST">
 
     
     <form:hidden path="id"/>
@@ -47,7 +38,7 @@
 	<br>
 	
 	
-<display:table name="${finder.positions}" id="row" requestURI="/finder/hacker/edit.do" pagesize="15" class="displaytag">
+<display:table name="${finder.positions}" id="row" requestURI="/finder/rooky/edit.do" pagesize="15" class="displaytag">
 	<display:column property="title" titleKey="position.title" />
 	
 	<display:column property="ticker" titleKey="position.ticker" />

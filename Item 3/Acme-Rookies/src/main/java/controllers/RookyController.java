@@ -28,7 +28,7 @@ import services.RookyService;
 import services.UserAccountService;
 import services.auxiliary.RegisterService;
 import domain.Rooky;
-import forms.RookyForm;
+import forms.ActorForm;
 
 @Controller
 @RequestMapping("/rooky")
@@ -58,7 +58,7 @@ public class RookyController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result = new ModelAndView();
-		final RookyForm rooky = new RookyForm();
+		final ActorForm rooky = new ActorForm();
 		result = this.createEditModelAndView(rooky);
 		return result;
 	}
@@ -104,9 +104,9 @@ public class RookyController extends AbstractController {
 		ModelAndView result;
 		result = new ModelAndView("rooky/edit");
 		final Rooky rooky = this.rookyService.findByPrincipal();
-		final RookyForm actor = this.registerService.inyect(rooky);
+		final ActorForm actor = this.registerService.inyect(rooky);
 		actor.setTermsAndCondicions(true);
-		result.addObject("rookyForm", actor);
+		result.addObject("actorForm", actor);
 		result.addObject("cardmakes", this.configurationParametersService.find().getCreditCardMake());
 		result.addObject("countryPhoneCode", this.configurationParametersService.find().getCountryPhoneCode());
 		return result;
@@ -115,32 +115,32 @@ public class RookyController extends AbstractController {
 	// SAVE -----------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final RookyForm rookyForm, final BindingResult binding) {
+	public ModelAndView save(@Valid final ActorForm actorForm, final BindingResult binding) {
 		ModelAndView result;
 		result = new ModelAndView("rooky/edit");
 		Rooky rooky;
 		if (binding.hasErrors()) {
 			result.addObject("errors", binding.getAllErrors());
-			rookyForm.setTermsAndCondicions(false);
-			result.addObject("rookyForm", rookyForm);
+			actorForm.setTermsAndCondicions(false);
+			result.addObject("actorForm", actorForm);
 		} else
 			try {
-				final UserAccount ua = this.userAccountService.reconstruct(rookyForm, Authority.ROOKY);
-				rooky = this.rookyService.reconstruct(rookyForm, binding);
+				final UserAccount ua = this.userAccountService.reconstruct(actorForm, Authority.ROOKY);
+				rooky = this.rookyService.reconstruct(actorForm, binding);
 				rooky.setUserAccount(ua);
 				this.registerService.saveRooky(rooky, binding);
 				result.addObject("alert", "rooky.edit.correct");
-				result.addObject("rookyForm", rookyForm);
+				result.addObject("actorForm", actorForm);
 			} catch (final ValidationException oops) {
 				result.addObject("errors", binding.getAllErrors());
-				rookyForm.setTermsAndCondicions(false);
-				result.addObject("rookyForm", rookyForm);
+				actorForm.setTermsAndCondicions(false);
+				result.addObject("actorForm", actorForm);
 			} catch (final Throwable e) {
 				if (e.getMessage().contains("username is register"))
 					result.addObject("alert", "rooky.edit.usernameIsUsed");
 				result.addObject("errors", binding.getAllErrors());
-				rookyForm.setTermsAndCondicions(false);
-				result.addObject("rookyForm", rookyForm);
+				actorForm.setTermsAndCondicions(false);
+				result.addObject("actorForm", actorForm);
 			}
 		result.addObject("cardmakes", this.configurationParametersService.find().getCreditCardMake());
 		result.addObject("countryPhoneCode", this.configurationParametersService.find().getCountryPhoneCode());
@@ -157,19 +157,19 @@ public class RookyController extends AbstractController {
 	}
 	// ANCILLARY METHODS  ---------------------------------------------------------------		
 
-	protected ModelAndView createEditModelAndView(final RookyForm rookyForm) {
+	protected ModelAndView createEditModelAndView(final ActorForm actorForm) {
 		ModelAndView result;
 
-		result = this.createEditModelAndView(rookyForm, null);
+		result = this.createEditModelAndView(actorForm, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final RookyForm rookyForm, final String messageCode) {
+	protected ModelAndView createEditModelAndView(final ActorForm actorForm, final String messageCode) {
 		final ModelAndView result;
 
 		result = new ModelAndView("rooky/edit");
-		result.addObject("rookyForm", rookyForm);
+		result.addObject("actorForm", actorForm);
 		result.addObject("cardmakes", this.configurationParametersService.find().getCreditCardMake());
 		result.addObject("countryPhoneCode", this.configurationParametersService.find().getCountryPhoneCode());
 		result.addObject("message", messageCode);

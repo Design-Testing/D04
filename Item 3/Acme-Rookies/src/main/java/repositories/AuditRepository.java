@@ -30,4 +30,10 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 	@Query("select count(a) from Audit a join a.position p where p.company.id=?1")
 	Integer countAllByCompany(int companyId);
 
+	/** The average, minimum, maximum and standard deviation of the audit score of the positions stored in the system */
+	@Query("select avg(1.0+ (select au.score from Audit au where au.position.id=pos.id) -1.0), min(1.0+ (select au.score from Audit au where au.position.id=pos.id) -1.0), max(1.0+ (select au.score from Audit au where au.position.id=pos.id) -1.0), stddev(1.0+ (select au.score from Audit au where au.position.id=pos.id) -1.0) from Position pos")
+	Double[] getStatisticsOfAAuditScoreOfPositions();
+
+	@Query("select avg(1.0+ (select au.score from Audit au where au.position.company.id=c.id) -1.0), min(1.0+ (select au.score from Audit au where au.position.company.id=c.id) -1.0), max(1.0+ (select au.score from Audit au where au.position.company.id=c.id) -1.0), stddev(1.0+ (select au.score from Audit au where au.position.company.id=c.id) -1.0) from Company c")
+	Double[] getStatisticsOfAAuditScoreOfCompanies();
 }

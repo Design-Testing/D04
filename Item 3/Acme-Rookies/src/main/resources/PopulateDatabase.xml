@@ -1798,6 +1798,42 @@
 		<property name="isDraft" value="true" />
 	</bean>
 	
+	<bean id="audit3" class="domain.Audit">
+		<property name="text" value="Text audit 3" />
+		<property name="score" value="7" />
+		<property name="moment" value="2019/03/16 15:20" />
+		<property name="auditor" ref="auditor1" />
+		<property name="position" ref="position1" />
+		<property name="isDraft" value="true" />
+	</bean>
+
+	<bean id="audit4" class="domain.Audit">
+		<property name="text" value="Text audit 4" />
+		<property name="score" value="3" />
+		<property name="moment" value="2019/04/23 16:30" />
+		<property name="auditor" ref="auditor1" />
+		<property name="position" ref="position4" />
+		<property name="isDraft" value="true" />
+	</bean>
+	
+	<bean id="audit5" class="domain.Audit">
+		<property name="text" value="Text audit 5" />
+		<property name="score" value="4" />
+		<property name="moment" value="2019/03/16 15:20" />
+		<property name="auditor" ref="auditor2" />
+		<property name="position" ref="position5" />
+		<property name="isDraft" value="true" />
+	</bean>
+
+	<bean id="audit6" class="domain.Audit">
+		<property name="text" value="Text audit 6" />
+		<property name="score" value="8" />
+		<property name="moment" value="2019/04/23 16:30" />
+		<property name="auditor" ref="auditor2" />
+		<property name="position" ref="position6" />
+		<property name="isDraft" value="true" />
+	</bean>
+	
 	<!-- =================================================================== 
 		======= SPONSORSHIP ========= =================================================================== -->
 		
