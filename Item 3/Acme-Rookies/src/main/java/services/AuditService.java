@@ -155,13 +155,10 @@ public class AuditService {
 
 	public Audit reconstruct(final AuditForm auditForm, final BindingResult binding, final int positionId) {
 		Audit result;
-		System.out.println("ey");
-		System.out.println("AQUIIIII" + auditForm.getId());
 		if (auditForm.getId() == 0)
 			result = this.create(positionId);
 		else
 			result = this.findOne(auditForm.getId());
-		System.out.println("oy");
 
 		result.setId(auditForm.getId());
 		result.setVersion(auditForm.getVersion());

@@ -64,6 +64,22 @@ public class ItemProviderController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public ModelAndView listAll() {
+		ModelAndView result;
+		Collection<Item> items;
+
+		result = new ModelAndView("item/list");
+
+		items = this.itemService.findAll();
+
+		result.addObject("items", items);
+		result.addObject("lang", this.lang);
+		result.addObject("requestURI", "/item/provider/listAll.do");
+		return result;
+
+	}
+
 	@RequestMapping(value = "/listByProvider", method = RequestMethod.GET)
 	public ModelAndView listByProvider(@RequestParam final int providerId) {
 		ModelAndView result;
@@ -114,7 +130,6 @@ public class ItemProviderController extends AbstractController {
 			if (ss.contains(item)) {
 				result = new ModelAndView("item/edit");
 				final ItemForm itemForm = this.itemService.inyect(item);
-				System.out.println("XXXXXXXXXXX" + item.getProvider());
 				result.addObject("itemForm", itemForm);
 				result.addObject("item", item);
 			} else
@@ -133,17 +148,13 @@ public class ItemProviderController extends AbstractController {
 			result.addObject("itemForm", itemForm);
 		} else
 			try {
-				System.out.println("CCCCCCCCCC" + itemForm.getId());
-				final Item itemm = this.itemService.findOne(itemForm.getId());
-				System.out.println("LLLLLLLLLL" + itemm);
-				System.out.println("LLLLLLLLLLWWWW" + itemm.getProvider());
 				final Item item = this.itemService.reconstruct(itemForm, bindingResult);
-				System.out.println("hello" + item.getProvider());
 				this.itemService.save(item);
 				result = this.list();
 			} catch (final Throwable oops) {
 				result = new ModelAndView("administrator/error");
-				result.addObject("trace", oops.getMessage());
+				//result.addObject("trace", oops.getMessage());
+				System.out.println(oops.getMessage());
 			}
 		return result;
 	}

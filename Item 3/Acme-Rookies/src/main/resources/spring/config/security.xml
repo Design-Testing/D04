@@ -133,7 +133,8 @@
 		
 		<!-- ITEM -->
 
-		<security:intercept-url pattern="/item/provider/list.do" access="permitAll" />
+		<security:intercept-url pattern="/item/provider/list.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/listAll.do" access="permitAll" />
 		<security:intercept-url pattern="/item/provider/listByProvider.do" access="permitAll" />
 		<security:intercept-url pattern="/item/provider/create.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/provider/edit.do" access="hasRole('PROVIDER')" />

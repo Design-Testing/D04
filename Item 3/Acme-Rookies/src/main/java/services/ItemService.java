@@ -59,11 +59,12 @@ public class ItemService {
 		Assert.notNull(item);
 		final Provider principal = this.providerService.findByPrincipal();
 		final Item result;
-		//System.out.println("QQQQQQQQQQ+" + this.providerService.findByItem(item.getId()));
+
 		if (item.getId() != 0)
-			Assert.isTrue(principal.getId() == this.providerService.findByItem(item.getId()).getId(), "No puede actualizar un item que no le pertenece.");
+			Assert.isTrue(principal.equals(item.getProvider()), "No puede actualizar un item que no le pertenece.");
 		else
 			item.setProvider(principal);
+
 		result = this.itemRepository.save(item);
 		return result;
 	}
@@ -96,9 +97,6 @@ public class ItemService {
 		else
 			result = this.findOne(itemForm.getId());
 
-		System.out.println("CCCCCCCCCC2" + itemForm.getId());
-		System.out.println("LLLLLLLLLL2" + result);
-		System.out.println("LLLLLLLLLLWWWW2" + result.getProvider());
 		result.setId(itemForm.getId());
 		result.setVersion(itemForm.getVersion());
 		result.setName(itemForm.getName());

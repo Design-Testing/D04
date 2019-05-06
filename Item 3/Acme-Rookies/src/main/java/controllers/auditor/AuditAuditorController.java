@@ -205,7 +205,7 @@ public class AuditAuditorController extends AbstractController {
 		final Collection<Position> positions;
 		final Auditor logged = this.auditorService.findByPrincipal();
 		positions = this.positionService.findFreePositionsByAuditor(logged.getId());
-		System.out.println(logged.getUserAccount().getAuthorities());
+
 		result = new ModelAndView("audit/listPositions");
 		result.addObject("positions", positions);
 
@@ -215,16 +215,6 @@ public class AuditAuditorController extends AbstractController {
 
 		return result;
 	}
-
-	/*
-	 * public Collection<Position> findFreePositionsByAuditor(final int auditorId) {
-	 * final Collection<Position> audited = this.positionRepository.findAuditedPositionsByAuditor(auditorId);
-	 * final Collection<Position> res = this.positionRepository.findAll();
-	 * res.removeAll(audited);
-	 * Assert.notNull(res);
-	 * return res;
-	 * }
-	 */
 
 	//cuando haces click en borrar en el listado audits en modo draft
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
