@@ -1728,6 +1728,7 @@
 	<bean id="item1" class="domain.Item">
 		<property name="name" value="Item 1" />
 		<property name="description" value="Description Item 1" />
+		<property name="photo" value="http://photoItem1.com" />
 		<property name="links" >
 			<list>
 				<value>http://link1.com</value>
@@ -1740,6 +1741,7 @@
 	<bean id="item2" class="domain.Item">
 		<property name="name" value="Item 2" />
 		<property name="description" value="Description Item 2" />
+		<property name="photo" value="http://photoItem2.com" />
 		<property name="links" >
 			<list>
 				<value>http://link1.com</value>
@@ -1752,6 +1754,7 @@
 	<bean id="item3" class="domain.Item">
 		<property name="name" value="Item 3" />
 		<property name="description" value="Description Item 3" />
+		<property name="photo" value="http://photoItem3.com" />
 		<property name="links" >
 			<list>
 				<value>http://link1.com</value>
@@ -1764,6 +1767,7 @@
 	<bean id="item4" class="domain.Item">
 		<property name="name" value="Item 4" />
 		<property name="description" value="Description Item 4" />
+		<property name="photo" value="http://photoItem4.com" />
 		<property name="links" >
 			<list>
 				<value>http://link1.com</value>

@@ -10,7 +10,7 @@ import domain.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
-	@Query("select i from Item i where i.provider.userAccount.id=?1")
-	Collection<Item> findAllByProvider(Integer providerUAId);
+	@Query("select i from Item i where i.provider.id=?1")
+	Collection<Item> findAllByProvider(Integer providerId);
 
 }
