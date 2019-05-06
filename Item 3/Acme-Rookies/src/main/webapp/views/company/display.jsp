@@ -20,7 +20,7 @@
 
 <acme:display code="company.name" value="${company.name}"/>
 <spring:message code="company.photo"/>:<br>
-<img src="${company.photo}" alt="<spring:message code="hacker.alt.image"/>" width="20%" height="20%"/>
+<img src="${company.photo}" alt="<spring:message code="company.alt.image"/>" width="20%" height="20%"/>
 <br>
 <jstl:if test="${not empty company.surname}">
 <jstl:forEach items="${company.surname}" var="df">

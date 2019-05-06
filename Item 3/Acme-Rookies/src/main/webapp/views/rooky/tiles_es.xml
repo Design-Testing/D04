@@ -16,19 +16,19 @@
       
 <tiles-definitions>
 	
-	<definition name="hacker/edit" extends="master.page">	
-		<put-attribute name="title" value="Hacker: Editar" />
-		<put-attribute name="body" value="/views/hacker/edit.jsp" />
+	<definition name="rooky/edit" extends="master.page">	
+		<put-attribute name="title" value="Novato: Editar" />
+		<put-attribute name="body" value="/views/rooky/edit.jsp" />
 	</definition>
 	
-	<definition name="hacker/display" extends="master.page">	
-		<put-attribute name="title" value="Hacker Mostrar" />
-		<put-attribute name="body" value="/views/hacker/display.jsp" />
+	<definition name="rooky/display" extends="master.page">	
+		<put-attribute name="title" value="Novato: Mostrar" />
+		<put-attribute name="body" value="/views/rooky/display.jsp" />
 	</definition>
 	
-	<definition name="hacker/list" extends="master.page">	
-		<put-attribute name="title" value="Hacker: Listar" />
-		<put-attribute name="body" value="/views/hacker/list.jsp" />
+	<definition name="rooky/list" extends="master.page">	
+		<put-attribute name="title" value="Novato: Listar" />
+		<put-attribute name="body" value="/views/rooky/list.jsp" />
 	</definition>
 	
 </tiles-definitions>

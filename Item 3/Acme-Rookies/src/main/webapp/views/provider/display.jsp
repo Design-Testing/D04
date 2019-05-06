@@ -10,7 +10,7 @@
 
 <acme:display code="provider.name" value="${provider.name}"/>
 <spring:message code="provider.photo"/>:<br>
-<img src="${provider.photo}" alt="<spring:message code="hacker.alt.image"/>" width="20%" height="20%"/>
+<img src="${provider.photo}" alt="<spring:message code="provider.alt.image"/>" width="20%" height="20%"/>
 <br>
 <jstl:if test="${not empty provider.surname}">
 <jstl:forEach items="${provider.surname}" var="df">
@@ -24,15 +24,6 @@
 <acme:display code="provider.vat" value="${provider.vat}"/>
 
 <br>
-<security:authorize access="hasRole('HACKER')">
-	<jstl:set var="hk" value="1"/>
-</security:authorize>
-<jstl:choose>
-	<jstl:when test="${hk eq 1}">
-		<acme:button url="position/hacker/list.do" name="back" code="back"/>
-	</jstl:when>
-	<jstl:otherwise>
-		<acme:button url="position/list.do" name="listPositions" code="back"/>
-	</jstl:otherwise>
-</jstl:choose>
+<acme:button url="provider/list.do" name="listProviders" code="listProviders"/>
+
 <input type="button" name="providerList" value="<spring:message code="providerList" /> ${provider.make}" onclick="javascript: relativeRedir('position/providerList.do?providerId=${provider.id}');" />

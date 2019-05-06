@@ -128,7 +128,7 @@ public class ProviderController extends AbstractController {
 			result.addObject("providerForm", providerForm);
 		} else
 			try {
-				final UserAccount ua = this.userAccountService.reconstruct(providerForm, Authority.COMPANY);
+				final UserAccount ua = this.userAccountService.reconstruct(providerForm, Authority.PROVIDER);
 				provider = this.providerService.reconstruct(providerForm, binding);
 				provider.setUserAccount(ua);
 				this.registerService.saveProvider(provider, binding);

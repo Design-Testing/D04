@@ -135,7 +135,9 @@ public class CompanyController extends AbstractController {
 				result.addObject("alert", "company.edit.correct");
 				result.addObject("companyForm", companyForm);
 			} catch (final ValidationException oops) {
-				result = this.createEditModelAndView(companyForm);
+				result.addObject("errors", binding.getAllErrors());
+				companyForm.setTermsAndCondicions(false);
+				result.addObject("companyForm", companyForm);
 			} catch (final Throwable e) {
 				if (e.getMessage().contains("username is register"))
 					result.addObject("alert", "company.edit.usernameIsUsed");
