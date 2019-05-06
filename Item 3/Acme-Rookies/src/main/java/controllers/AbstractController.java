@@ -47,4 +47,10 @@ public class AbstractController {
 		return result;
 	}
 
+	@ModelAttribute(value = "sysName")
+	public String getSysName() {
+		final String result = this.configurationParametersService.findSysName();
+		return result;
+	}
+
 }

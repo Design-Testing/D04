@@ -9,12 +9,12 @@
  --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="${bannerURL}" alt="Acme Rooky Rank Co., Inc." /></a>
+	<a href="#"><img src="${bannerURL}" alt="<jstl:out value="${sysName}"/> Co., Inc." /></a>
 </div>
 
 <div>
@@ -31,6 +31,7 @@
 					<li class="arrow"></li>
 					<li><a href="configurationParameters/administrator/edit.do"><spring:message code="master.page.configurationParameters.edit" /></a></li>
 					<li><a href="dashboard/administrator/dataBreach.do"><spring:message	code="master.page.administrator.data.breach" /></a></li>
+					<li><a href="configurationParameters/administrator/rebrand.do"><spring:message code="master.page.configurationParameters.rebrand" /></a></li>
 				</ul>
 			</li>
 			

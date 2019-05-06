@@ -28,4 +28,7 @@ public interface ConfigurationParametersRepository extends JpaRepository<Configu
 	@Query("select c.banner from ConfigurationParameters c")
 	String findBanner();
 
+	@Query("select c.sysName from ConfigurationParameters c")
+	String findSysName();
+
 }

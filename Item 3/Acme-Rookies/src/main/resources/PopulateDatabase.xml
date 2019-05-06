@@ -1140,6 +1140,7 @@
 		</property>
 		<property name="maxFinderResults" value="10" />
 		<property name="finderTime" value="1" />
+		<property name="rebranding" value="false" />
 		<property name="creditCardMake">
 			<list>
 				<value>VISA</value>

@@ -11,4 +11,9 @@
 		<put-attribute name="body" value="/views/configurationParameters/edit.jsp" />
 	</definition>
 	
+	<definition name="configurationParameters/rebranding" extends="master.page">	
+		<put-attribute name="title" value="Editar la marca del sistema" />
+		<put-attribute name="body" value="/views/configurationParameters/rebranding.jsp" />
+	</definition>
+	
 </tiles-definitions>

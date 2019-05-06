@@ -30,6 +30,7 @@ public class ConfigurationParameters extends DomainEntity {
 	private Collection<String>	spamWords;
 	private int					maxFinderResults;
 	private int					finderTime;
+	private boolean				rebranding;
 
 	private Collection<String>	creditCardMake;
 
@@ -141,6 +142,14 @@ public class ConfigurationParameters extends DomainEntity {
 
 	public void setCreditCardMake(final Collection<String> creditCardMake) {
 		this.creditCardMake = creditCardMake;
+	}
+
+	public boolean isRebranding() {
+		return this.rebranding;
+	}
+
+	public void setRebranding(final boolean rebranding) {
+		this.rebranding = rebranding;
 	}
 
 }
