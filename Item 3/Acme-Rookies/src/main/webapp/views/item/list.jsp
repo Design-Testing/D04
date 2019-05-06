@@ -39,6 +39,12 @@
 			<acme:button url="item/provider/display.do?itemId=${row.id}" name="display" code="item.display"/>
 	</display:column>
 	
+	<jstl:if test="${buttons eq false }">
+		<display:column>
+			<acme:button url="provider/display.do?providerId=${row.provider.id}" name="display" code="item.display.provider"/>
+		</display:column>
+	</jstl:if>
+	
 </display:table>
 
 

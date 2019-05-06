@@ -24,6 +24,10 @@
 	<display:column>
 	<acme:button url="provider/display.do?providerId=${row.id}" name="display" code="provider.display"/>
 	</display:column>
+	
+	<display:column>
+	<acme:button url="item/provider/listByProvider.do?providerId=${row.id}" name="display" code="provider.display.items"/>
+	</display:column>
 
 
 </display:table>

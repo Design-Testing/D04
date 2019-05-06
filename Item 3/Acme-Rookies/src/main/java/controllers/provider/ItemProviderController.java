@@ -74,6 +74,7 @@ public class ItemProviderController extends AbstractController {
 		items = this.itemService.findAll();
 
 		result.addObject("items", items);
+		result.addObject("buttons", false);
 		result.addObject("lang", this.lang);
 		result.addObject("requestURI", "/item/provider/listAll.do");
 		return result;
