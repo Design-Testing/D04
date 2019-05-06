@@ -17,6 +17,11 @@
 <acme:display code="item.links" value="${item.links}" />
 <acme:display code="item.photo" value="${item.photo}" />
 
+<jstl:if test="${not empty item.photo}">
+<spring:message code="item.photo"/>:<br>
+<img src="${item.photo}" alt="<spring:message code="item.alt.image"/> ${item.photo}" width="20%" height="20%"/>
+<br><br></jstl:if>
+
 <br>
 
 <input type="button" class="btn btn-danger" name="back"

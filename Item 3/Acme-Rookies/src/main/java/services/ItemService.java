@@ -5,14 +5,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ItemRepository;
 import domain.Item;
 import domain.Provider;
+import forms.ItemForm;
 
 @Service
 @Transactional
@@ -23,6 +27,9 @@ public class ItemService {
 
 	@Autowired
 	private ProviderService	providerService;
+
+	@Autowired
+	private Validator		validator;
 
 
 	public Item create() {
@@ -52,9 +59,9 @@ public class ItemService {
 		Assert.notNull(item);
 		final Provider principal = this.providerService.findByPrincipal();
 		final Item result;
-
+		//System.out.println("QQQQQQQQQQ+" + this.providerService.findByItem(item.getId()));
 		if (item.getId() != 0)
-			Assert.isTrue(principal.equals(item.getProvider()), "No puede actualizar un item que no le pertenece.");
+			Assert.isTrue(principal.getId() == this.providerService.findByItem(item.getId()).getId(), "No puede actualizar un item que no le pertenece.");
 		else
 			item.setProvider(principal);
 		result = this.itemRepository.save(item);
@@ -80,6 +87,43 @@ public class ItemService {
 		Collection<Item> res;
 		res = this.itemRepository.findAllByProvider(providerId);
 		return res;
+	}
+
+	public Item reconstruct(final ItemForm itemForm, final BindingResult binding) {
+		Item result;
+		if (itemForm.getId() == 0)
+			result = this.create();
+		else
+			result = this.findOne(itemForm.getId());
+
+		System.out.println("CCCCCCCCCC2" + itemForm.getId());
+		System.out.println("LLLLLLLLLL2" + result);
+		System.out.println("LLLLLLLLLLWWWW2" + result.getProvider());
+		result.setId(itemForm.getId());
+		result.setVersion(itemForm.getVersion());
+		result.setName(itemForm.getName());
+		result.setDescription(itemForm.getDescription());
+		result.setPhoto(itemForm.getPhoto());
+		result.setLinks(itemForm.getLinks());
+
+		this.validator.validate(result, binding);
+		if (binding.hasErrors())
+			throw new ValidationException();
+
+		return result;
+	}
+
+	public ItemForm inyect(final Item item) {
+		final ItemForm pruned = new ItemForm();
+
+		pruned.setId(item.getId());
+		pruned.setVersion(item.getVersion());
+		pruned.setName(item.getName());
+		pruned.setDescription(item.getDescription());
+		pruned.setPhoto(item.getPhoto());
+		pruned.setLinks(item.getLinks());
+
+		return pruned;
 	}
 
 }

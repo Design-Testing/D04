@@ -8,11 +8,11 @@
 
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="item/provider/edit.do" modelAttribute="item" method="POST">
+<form:form action="item/provider/edit.do" modelAttribute="itemForm" method="POST">
 
 	<form:hidden path="id"/>
     <form:hidden path="version"/>
-    
+
 
     <acme:textbox path="name" code="item.name"/>
     <acme:textbox path="description" code="item.description"/>

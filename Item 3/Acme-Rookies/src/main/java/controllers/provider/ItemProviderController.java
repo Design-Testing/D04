@@ -22,6 +22,7 @@ import services.ProviderService;
 import controllers.AbstractController;
 import domain.Item;
 import domain.Provider;
+import forms.ItemForm;
 
 @Controller
 @RequestMapping("/item/provider")
@@ -88,11 +89,12 @@ public class ItemProviderController extends AbstractController {
 
 		item = this.itemService.create();
 		result = new ModelAndView("item/edit");
+		final ItemForm itemForm = this.itemService.inyect(item);
+		result.addObject("itemForm", itemForm);
 		result.addObject("item", item);
 
 		return result;
 	}
-
 	// =================EDIT=================
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -111,6 +113,9 @@ public class ItemProviderController extends AbstractController {
 			final Collection<Item> ss = this.itemService.findAllByProvider(provider.getId());
 			if (ss.contains(item)) {
 				result = new ModelAndView("item/edit");
+				final ItemForm itemForm = this.itemService.inyect(item);
+				System.out.println("XXXXXXXXXXX" + item.getProvider());
+				result.addObject("itemForm", itemForm);
 				result.addObject("item", item);
 			} else
 				result = new ModelAndView("redirect:/misc/403.jsp");
@@ -120,22 +125,26 @@ public class ItemProviderController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Item item, final BindingResult bindingResult) {
+	public ModelAndView save(@Valid final ItemForm itemForm, final BindingResult bindingResult) {
 
 		ModelAndView result;
 		if (bindingResult.hasErrors()) {
 			result = new ModelAndView("item/edit");
-			result.addObject("item", item);
+			result.addObject("itemForm", itemForm);
 		} else
 			try {
+				System.out.println("CCCCCCCCCC" + itemForm.getId());
+				final Item itemm = this.itemService.findOne(itemForm.getId());
+				System.out.println("LLLLLLLLLL" + itemm);
+				System.out.println("LLLLLLLLLLWWWW" + itemm.getProvider());
+				final Item item = this.itemService.reconstruct(itemForm, bindingResult);
+				System.out.println("hello" + item.getProvider());
 				this.itemService.save(item);
-
 				result = this.list();
-
-			} catch (final Throwable e) {
-				result = new ModelAndView("redirect:misc/403");
+			} catch (final Throwable oops) {
+				result = new ModelAndView("administrator/error");
+				result.addObject("trace", oops.getMessage());
 			}
-
 		return result;
 	}
 
