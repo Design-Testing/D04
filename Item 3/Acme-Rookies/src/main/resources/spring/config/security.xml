@@ -131,6 +131,15 @@
 		<security:intercept-url pattern="/message/broadcast.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/message/saveBroadcast.do" access="hasRole('ADMIN')" />
 		
+		<!-- ITEM -->
+
+		<security:intercept-url pattern="/item/provider/list.do" access="permitAll" />
+		<security:intercept-url pattern="/item/provider/listByProvider.do" access="permitAll" />
+		<security:intercept-url pattern="/item/provider/create.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/edit.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/provider/display.do" access="permitAll" />
+		
 		<!-- FOLDER -->
 		<security:intercept-url pattern="/folder/list.do" access="hasAnyRole('ADMIN', 'ROOKY', 'COMPANY', 'SUPER')" />
 		<security:intercept-url pattern="/folder/listFolder.do" access="hasAnyRole('ADMIN', 'ROOKY', 'COMPANY', 'SUPER')" /> 

@@ -94,9 +94,7 @@ public class AuditAuditorController extends AbstractController {
 			result.addObject("errors", binding.getAllErrors());
 		} else
 			try {
-				System.out.println("aaa");
 				final Audit audit = this.auditService.reconstruct(auditForm, binding, positionId);
-				System.out.println(audit);
 				this.auditService.save(audit, positionId);
 				result = this.listDraft();
 			} catch (final ValidationException oops) {

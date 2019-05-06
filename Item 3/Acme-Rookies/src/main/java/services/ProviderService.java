@@ -187,6 +187,14 @@ public class ProviderService {
 		final Collection<Provider> providers = this.providerRepository.findAll();
 		Assert.notNull(providers);
 		return providers;
+	
+	}
+	
+	final Provider findByItem(final int itemId) {
+		final Provider result;
+		result = this.providerRepository.findByItem(itemId);
+		Assert.notNull(result, "findByItem returns null");
+		return result;
 	}
 
 }
