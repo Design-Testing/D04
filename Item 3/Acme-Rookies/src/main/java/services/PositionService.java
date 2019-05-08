@@ -300,4 +300,16 @@ public class PositionService {
 		Assert.notNull(res);
 		return res;
 	}
+
+	public Double[] getStatisticsOfAuditScoreOfPositions() {
+		return this.positionRepository.getStatisticsOfAuditScoreOfPositions();
+	}
+
+	public Double[] getStatisticsOfAuditScoreOfPosition(final int positionId) {
+		return this.positionRepository.getStatisticsOfAuditScoreOfPosition(positionId);
+	}
+
+	public Double getAvgSalaryOfPositionsHighestAvgAuditScore() {
+		return this.positionRepository.getAvgSalaryOfPositionsHighestAvgAuditScore();
+	}
 }

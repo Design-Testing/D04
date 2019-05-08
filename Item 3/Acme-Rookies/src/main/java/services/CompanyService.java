@@ -194,6 +194,20 @@ public class CompanyService {
 		return res;
 	}
 
+	public Double[] getStatisticsOfScoreOfCompanies() {
+		return this.companyRepository.getStatisticsOfScoreOfCompanies();
+	}
+
+	public Double[] getStatisticsOfAuditScoreOfCompany(final int companyId) {
+		return this.companyRepository.getStatisticsOfAuditScoreOfCompany(companyId);
+	}
+
+	public Collection<Company> getCompaniesHighestAuditScore() {
+		final Collection<Company> res = this.companyRepository.getCompaniesHighestAuditScore();
+		Assert.notNull(res);
+		return res;
+	}
+
 	/**
 	 * The average, minimum, maximum and standard deviation of the number of positions per company
 	 * 

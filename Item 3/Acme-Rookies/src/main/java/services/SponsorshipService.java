@@ -62,6 +62,14 @@ public class SponsorshipService {
 		this.sponsorshipRepository.delete(sponsorship);
 	}
 
+	public Double[] getStatisticsOfSponsorshipPerProvider() {
+		return this.sponsorshipRepository.getStatisticsOfSponsorshipPerProvider();
+	}
+
+	public Double[] getStatisticsOfSponsorshipPerPosition() {
+		return this.sponsorshipRepository.getStatisticsOfSponsorshipPerPosition();
+	}
+
 	public void flush() {
 		this.sponsorshipRepository.flush();
 	}

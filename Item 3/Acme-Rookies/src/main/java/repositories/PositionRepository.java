@@ -54,4 +54,18 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 
 	@Query("select p from Position p where p.mode='FINAL'")
 	Collection<Position> findAllFinal();
+
+	/* ==========Acme Rookies========== */
+
+	/** The average, minimum, maximum and standard deviation of the audit score of the positions stored in the system */
+	@Query("select avg(au.score), min(au.score), max(au.score), stddev(au.score) from Audit au where au.isDraft=false")
+	Double[] getStatisticsOfAuditScoreOfPositions();
+
+	@Query("select avg(1.0+(select au.score from Audit au where au.position.id=?1 AND au.auditor.id=aut.id)-1.0), min(1.0+(select au.score from Audit au where au.position.id=?1 AND au.auditor.id=aut.id)-1.0), max(1.0+(select au.score from Audit au where au.position.id=?1 AND au.auditor.id=aut.id)-1.0), stddev(1.0+(select au.score from Audit au where au.position.id=?1 AND au.auditor.id=aut.id)-1.0) from Auditor aut")
+	Double[] getStatisticsOfAuditScoreOfPosition(int positionId);
+
+	/** The average salary offered by the positions that have the highest average audit score */
+	@Query("select avg(p.salary) from Audit au join au.position p where (au.isDraft=false) AND au.score=(select avg(au.score) from Audit au where au.isDraft=false)")
+	Double getAvgSalaryOfPositionsHighestAvgAuditScore();
+
 }

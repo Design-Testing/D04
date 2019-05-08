@@ -2,6 +2,7 @@
 package controllers.administrator;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AdministratorService;
 import services.CompanyService;
 import services.ConfigurationParametersService;
 import services.CurriculaService;
 import services.FinderService;
 import services.MessageService;
 import services.PositionService;
+import services.ProviderService;
 import services.RookyService;
+import services.SponsorshipService;
 import controllers.AbstractController;
+import domain.Company;
+import domain.Provider;
 
 @Controller
 @RequestMapping(value = "/dashboard/administrator")
@@ -44,6 +50,15 @@ public class DashboardAdministratorController extends AbstractController {
 
 	@Autowired
 	private ConfigurationParametersService	configurationParametersService;
+
+	@Autowired
+	private SponsorshipService				sponsorshipService;
+
+	@Autowired
+	private ProviderService					providerService;
+
+	@Autowired
+	private AdministratorService			administratorService;
 
 
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
@@ -88,10 +103,41 @@ public class DashboardAdministratorController extends AbstractController {
 		result.addObject("rookyMoreApplications", this.rookyService.getRookysMoreApplications().toArray()[0]);
 		result.addObject("rookysMoreApplications", this.rookyService.getRookysMoreApplications());
 
+		// Position audit score
+		final Double[] positionScore = this.positionService.getStatisticsOfAuditScoreOfPositions();
+		result.addObject("averagePositionScore", positionScore[0]);
+		result.addObject("minPositionScore", positionScore[1]);
+		result.addObject("maxPositionScore", positionScore[2]);
+		result.addObject("desviationPositionScore", positionScore[3]);
+		final Double avgSalary = this.positionService.getAvgSalaryOfPositionsHighestAvgAuditScore();
+		result.addObject("avgSalary", avgSalary);
+
+		// Company score
+		final Double[] companyScore = this.companyService.getStatisticsOfPositionsPerCompany();
+		result.addObject("averageCompanyScore", companyScore[0]);
+		result.addObject("minCompanyScore", companyScore[1]);
+		result.addObject("maxCompanyScore", companyScore[2]);
+		result.addObject("desviationCompanyScore", companyScore[3]);
+		final Collection<Company> companiesHighestScore = this.companyService.getCompaniesHighestAuditScore();
+		result.addObject("companiesHighestScore", companiesHighestScore);
+
+		// Sponsorship
+		final Double[] sponsorshipPerPosition = this.sponsorshipService.getStatisticsOfSponsorshipPerPosition();
+		result.addObject("averageSponsorshipPerPosition", sponsorshipPerPosition[0]);
+		result.addObject("minSponsorshipPerPosition", sponsorshipPerPosition[1]);
+		result.addObject("maxSponsorshipPerPosition", sponsorshipPerPosition[2]);
+		result.addObject("desviationSponsorshipPerPosition", sponsorshipPerPosition[3]);
+		final Double[] sponsorshipPerProvider = this.sponsorshipService.getStatisticsOfSponsorshipPerProvider();
+		result.addObject("averageSponsorshipPerProvider", sponsorshipPerProvider[0]);
+		result.addObject("minSponsorshipPerProvider", sponsorshipPerProvider[1]);
+		result.addObject("maxSponsorshipPerProvider", sponsorshipPerProvider[2]);
+		result.addObject("desviationSponsorshipPerProvider", sponsorshipPerProvider[3]);
+		final Collection<Provider> providersTenPercent = this.providerService.findTenPerCentMoreAppsThanAverage();
+		result.addObject("providersTenPercent", providersTenPercent);
+
 		return result;
 
 	}
-
 	@RequestMapping(value = "/dataBreach", method = RequestMethod.GET)
 	public ModelAndView launchDeactivate() {
 		ModelAndView result;
