@@ -93,6 +93,31 @@
 	</jstl:if>
 
 	<table>
+		<spring:message code="dashboard.position.score" />
+		<tr>
+			<td><spring:message code="average.position.score" /></td>
+			<td>${averagePositionScore}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="min.position.score" /></td>
+			<td>${minPositionScore}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="max.position.score" /></td>
+			<td>${maxPositionScore}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="desviation.position.score" /></td>
+			<td>${desviationPositionScore}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="avg.salary.position.score" /></td>
+			<td>${avgSalary}</td>
+		</tr>
+	</table>
+	
+
+	<table>
 		<spring:message code="dashboard.applications.rooky" />
 		<tr>
 			<td><spring:message code="average.applications.rooky" /></td>
@@ -194,6 +219,44 @@
 		</tr>
 	</table>
 	
+		<table>
+		<spring:message code="dashboard.sponsorship.provider" />
+		<tr>
+			<td><spring:message code="average.sponsorship.provider" /></td>
+			<td>${averageCurricula}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="min.sponsorship.provider" /></td>
+			<td>${minCurricula}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="max.sponsorship.provider" /></td>
+			<td>${maxCurricula}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="desviation.sponsorship.provider" /></td>
+			<td>${desviationCurricula}</td>
+		</tr>
+	</table>
 	
-
+			<table>
+		<spring:message code="dashboard.sponsorship.position" />
+		<tr>
+			<td><spring:message code="average.sponsorship.position" /></td>
+			<td>${averageCurricula}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="min.sponsorship.position" /></td>
+			<td>${minCurricula}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="max.sponsorship.position" /></td>
+			<td>${maxCurricula}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="desviation.sponsorship.position" /></td>
+			<td>${desviationCurricula}</td>
+		</tr>
+	</table>
+	
 </security:authorize>
