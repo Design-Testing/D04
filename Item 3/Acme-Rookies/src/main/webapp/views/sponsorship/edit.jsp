@@ -12,13 +12,13 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <form:form action="sponsorship/provider/edit.do"
-	modelAttribute="sponsorship">
+	modelAttribute="sponsorshipForm">
 
 <jstl:choose>
-	<jstl:when test="${sponsorship.id != 0}">
+	<jstl:when test="${sponsorshipForm.id != 0}">
 		<form:hidden path="id" />
 		<form:hidden path="version" />
-		<form:hidden path="position" value="${sponsorship.position.id}" />
+		<form:hidden path="position" value="${sponsorshipForm.position.id}" />
 	</jstl:when>
 	<jstl:otherwise>
 		<form:hidden path="position" value="${position.id}" />
@@ -46,8 +46,8 @@
 	<br/>
 </form:form>
 
-	<jstl:if test="${sponsorship.id != 0}">
-		<acme:button url="sponsorship/provider/delete.do?sponsorshipId=${sponsorship.id}" name="deactivate" code="sponsorship.deactivate"/>
+	<jstl:if test="${sponsorshipForm.id != 0}">
+		<acme:button url="sponsorship/provider/delete.do?sponsorshipId=${sponsorshipForm.id}" name="deactivate" code="sponsorship.deactivate"/>
 	</jstl:if>
 	
 	<input type="button" name="cancel"

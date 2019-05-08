@@ -108,10 +108,7 @@ public class SponsorshipProviderController extends AbstractController {
 		} catch (final ValidationException oops) {
 			result = this.createEditModelAndView(sponsorshipForm);
 		} catch (final Throwable oops) {
-			String errorMessage = "sponsorship.commit.error";
-			if (oops.getMessage().contains("message.error"))
-				errorMessage = oops.getMessage();
-			result = this.createEditModelAndView(sponsorshipForm, errorMessage);
+			result = this.createEditModelAndView(sponsorshipForm, "sponsorship.commit.error");
 		}
 		return result;
 	}
@@ -169,11 +166,11 @@ public class SponsorshipProviderController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final SponsorshipForm sponsorship, final String messageCode) {
+	protected ModelAndView createEditModelAndView(final SponsorshipForm sponsorshipForm, final String messageCode) {
 		final ModelAndView result;
 		final Collection<Position> positions = this.positionService.positionsAvailableProvider();
 		result = new ModelAndView("sponsorship/edit");
-		result.addObject("sponsorship", sponsorship);
+		result.addObject("sponsorshipForm", sponsorshipForm);
 		result.addObject("positions", positions);
 		result.addObject("message", messageCode);
 		result.addObject("makes", this.configurationParametersService.find().getCreditCardMake());
@@ -195,7 +192,7 @@ public class SponsorshipProviderController extends AbstractController {
 			sponsorshipForm = this.sponsorshipService.inyect(sponsorship);
 		final Collection<Position> positions = this.positionService.positionsAvailableProvider();
 		result = new ModelAndView("sponsorship/edit");
-		result.addObject("sponsorship", sponsorshipForm);
+		result.addObject("sponsorshipForm", sponsorshipForm);
 		result.addObject("positions", positions);
 		result.addObject("makes", this.configurationParametersService.find().getCreditCardMake());
 		result.addObject("message", messageCode);
