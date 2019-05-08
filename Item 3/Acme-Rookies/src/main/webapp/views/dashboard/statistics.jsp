@@ -223,39 +223,59 @@
 		<spring:message code="dashboard.sponsorship.provider" />
 		<tr>
 			<td><spring:message code="average.sponsorship.provider" /></td>
-			<td>${averageCurricula}</td>
+			<td>${averageSponsorshipPerProvider}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="min.sponsorship.provider" /></td>
-			<td>${minCurricula}</td>
+			<td>${minSponsorshipPerProvider}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="max.sponsorship.provider" /></td>
-			<td>${maxCurricula}</td>
+			<td>${maxSponsorshipPerProvider}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="desviation.sponsorship.provider" /></td>
-			<td>${desviationCurricula}</td>
+			<td>${desviationSponsorshipPerProvider}</td>
 		</tr>
+		<jstl:choose>
+			<jstl:when test="${providersTenPercent.size() eq 1}">
+				<tr>
+					<td><spring:message code="provider.ten.percent" /></td>
+					<td>${providersTenPercent}</td>
+				</tr>
+			</jstl:when>
+			<jstl:otherwise>
+				<jstl:forEach items="${providersTenPercent}" var="ptp"
+					varStatus="in">
+					<tr>
+						<td><spring:message code="provider.ten.percent" /> ${in.index + 1}</td>
+						<td>${ptp}</td>
+					</tr>
+				</jstl:forEach>
+			</jstl:otherwise>
+		</jstl:choose>
 	</table>
+	<jstl:if test="${providersTenPercent.size() gt 1}">
+		<p><spring:message code="provider.ten.percent.two" /><p/>
+	</jstl:if>
 	
 			<table>
 		<spring:message code="dashboard.sponsorship.position" />
 		<tr>
 			<td><spring:message code="average.sponsorship.position" /></td>
-			<td>${averageCurricula}</td>
+			<td>${averageSponsorshipPerPosition}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="min.sponsorship.position" /></td>
-			<td>${minCurricula}</td>
+			<td>${minSponsorshipPerPosition}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="max.sponsorship.position" /></td>
-			<td>${maxCurricula}</td>
+			<td>${maxSponsorshipPerPosition}</td>
 		</tr>
 		<tr>
 			<td><spring:message code="desviation.sponsorship.position" /></td>
-			<td>${desviationCurricula}</td>
+			<td>${desviationSponsorshipPerPosition}</td>
 		</tr>
 	</table>
 	
