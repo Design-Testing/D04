@@ -51,45 +51,85 @@
 	<jstl:if test="${companiesMorePositions.size() gt 1}">
 		<p><spring:message code="largest.company.two" /><p/>
 	</jstl:if>
-
+	
 	<table>
-		<spring:message code="dashboard.applications.hacker" />
+		<spring:message code="dashboard.company.score" />
 		<tr>
-			<td><spring:message code="average.applications.hacker" /></td>
-			<td>${averageHacker}</td>
+			<td><spring:message code="average.company.score" /></td>
+			<td>${averageCompanyScore}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="min.applications.hacker" /></td>
-			<td>${minHacker}</td>
+			<td><spring:message code="min.company.score" /></td>
+			<td>${minCompanyScore}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="max.applications.hacker" /></td>
-			<td>${maxHacker}</td>
+			<td><spring:message code="max.company.score" /></td>
+			<td>${maxCompanyScore}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="desviation.applications.hacker" /></td>
-			<td>${desviationHacker}</td>
+			<td><spring:message code="desviation.company.score" /></td>
+			<td>${desviationCompanyScore}</td>
 		</tr>
 		<jstl:choose>
-			<jstl:when test="${hackersMoreApplications.size() eq 1}">
+			<jstl:when test="${companiesHighestScore.size() eq 1}">
 				<tr>
-					<td><spring:message code="largest.hacker" /></td>
-					<td>${hackerMoreApplications}</td>
+					<td><spring:message code="largest.company.score" /></td>
+					<td>${companiesHighestScore}</td>
 				</tr>
 			</jstl:when>
 			<jstl:otherwise>
-				<jstl:forEach items="${hackersMoreApplications}" var="h"
+				<jstl:forEach items="${companiesHighestScore}" var="cscore"
+					varStatus="in">
+					<tr>
+						<td><spring:message code="largest.company.score" /> ${in.index + 1}</td>
+						<td>${cscore}</td>
+					</tr>
+				</jstl:forEach>
+			</jstl:otherwise>
+		</jstl:choose>
+	</table>
+	<jstl:if test="${companiesHighestScore.size() gt 1}">
+		<p><spring:message code="largest.company.score.two" /><p/>
+	</jstl:if>
+
+	<table>
+		<spring:message code="dashboard.applications.rooky" />
+		<tr>
+			<td><spring:message code="average.applications.rooky" /></td>
+			<td>${averageRooky}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="min.applications.rooky" /></td>
+			<td>${minRooky}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="max.applications.rooky" /></td>
+			<td>${maxRooky}</td>
+		</tr>
+		<tr>
+			<td><spring:message code="desviation.applications.rooky" /></td>
+			<td>${desviationRooky}</td>
+		</tr>
+		<jstl:choose>
+			<jstl:when test="${rookysMoreApplications.size() eq 1}">
+				<tr>
+					<td><spring:message code="largest.rooky" /></td>
+					<td>${rookyMoreApplications}</td>
+				</tr>
+			</jstl:when>
+			<jstl:otherwise>
+				<jstl:forEach items="${rookysMoreApplications}" var="h"
 					varStatus="i">
 					<tr>
-						<td><spring:message code="largest.hacker" /> ${i.index + 1}</td>
+						<td><spring:message code="largest.rooky" /> ${i.index + 1}</td>
 						<td>${h}</td>
 					</tr>
 				</jstl:forEach>
 			</jstl:otherwise>
 		</jstl:choose>
 	</table>
-	<jstl:if test="${hackersMoreApplications.size() gt 1}">
-		<p><spring:message code="largest.hacker.two" /><p/>
+	<jstl:if test="${rookysMoreApplications.size() gt 1}">
+		<p><spring:message code="largest.rooky.two" /><p/>
 	</jstl:if>
 	
 	<table>
@@ -153,5 +193,7 @@
 			<td>${ratioFinders}</td>
 		</tr>
 	</table>
+	
+	
 
 </security:authorize>

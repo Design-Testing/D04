@@ -63,6 +63,7 @@ public class DashboardAdministratorController extends AbstractController {
 
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	public ModelAndView statistics() {
+		this.administratorService.findByPrincipal();
 		final ModelAndView result;
 		result = new ModelAndView("dashboard/statistics"); // -> list.jsp
 		result.addObject("requestURI", "dashboard/admnistrator/statistics.do");
