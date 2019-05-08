@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -31,6 +32,8 @@ public class ConfigurationParameters extends DomainEntity {
 	private int					maxFinderResults;
 	private int					finderTime;
 	private boolean				rebranding;
+	private double				flatFare;
+	private double				vat;
 
 	private Collection<String>	creditCardMake;
 
@@ -150,6 +153,25 @@ public class ConfigurationParameters extends DomainEntity {
 
 	public void setRebranding(final boolean rebranding) {
 		this.rebranding = rebranding;
+	}
+
+	@Range(min = 0)
+	public double getFlatFare() {
+		return this.flatFare;
+	}
+
+	public void setFlatFare(final double flatFare) {
+		this.flatFare = flatFare;
+	}
+
+	@Range(min = 0, max = 1)
+	@Digits(integer = 1, fraction = 2)
+	public double getVat() {
+		return this.vat;
+	}
+
+	public void setVat(final double vat) {
+		this.vat = vat;
 	}
 
 }

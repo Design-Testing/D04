@@ -68,4 +68,7 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select avg(p.salary) from Audit au join au.position p where (au.isDraft=false) AND au.score=(select avg(au.score) from Audit au where au.isDraft=false)")
 	Double getAvgSalaryOfPositionsHighestAvgAuditScore();
 
+	@Query("select sp.position from Sponsorship sp where sp.provider.userAccount.id=?1")
+	Collection<Position> findAllParadeByProvider(int providerUAId);
+
 }

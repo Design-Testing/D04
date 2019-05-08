@@ -22,6 +22,7 @@ import domain.Application;
 import domain.Company;
 import domain.Position;
 import domain.Problem;
+import domain.Provider;
 import forms.PositionForm;
 
 @Service
@@ -48,6 +49,9 @@ public class PositionService {
 
 	@Autowired
 	private ConfigurationParametersService	configParamService;
+
+	@Autowired
+	private ProviderService					providerService;
 
 	@Autowired
 	private Validator						validator;
@@ -301,6 +305,11 @@ public class PositionService {
 		return res;
 	}
 
+	public boolean exists(final Integer positionId) {
+		Assert.isTrue(positionId != 0, "position id cannot be zero");
+		return this.positionRepository.exists(positionId);
+	}
+
 	public Double[] getStatisticsOfAuditScoreOfPositions() {
 		return this.positionRepository.getStatisticsOfAuditScoreOfPositions();
 	}
@@ -311,5 +320,22 @@ public class PositionService {
 
 	public Double getAvgSalaryOfPositionsHighestAvgAuditScore() {
 		return this.positionRepository.getAvgSalaryOfPositionsHighestAvgAuditScore();
+	}
+
+	public Collection<Position> positionsAvailableProvider() {
+		Collection<Position> myPositions;
+		Collection<Position> positions;
+		final Provider s = this.providerService.findByPrincipal();
+		positions = this.findAllFinalMode();
+		myPositions = this.findAllPositionByProvider(s);
+		positions.removeAll(myPositions);
+		return positions;
+	}
+
+	public Collection<Position> findAllPositionByProvider(final Provider s) {
+		Collection<Position> res;
+		res = this.positionRepository.findAllParadeByProvider(s.getUserAccount().getId());
+		Assert.notNull(res);
+		return res;
 	}
 }
