@@ -48,10 +48,10 @@ public class PositionProviderController {
 		positions = this.positionService.findAllFinalMode();
 		myPositions = this.positionService.findAllPositionByProvider(s);
 		result = new ModelAndView("position/list");
-		result.addObject("sponsorpositions", myPositions);
+		result.addObject("providerpositions", myPositions);
 		result.addObject("positions", positions);
 		result.addObject("lang", this.lang);
-		result.addObject("rol", "sponsor");
+		result.addObject("rol", "provider");
 		//result.addObject("listPositions", "list");
 
 		result.addObject("requetURI", "position/provider/list.do");

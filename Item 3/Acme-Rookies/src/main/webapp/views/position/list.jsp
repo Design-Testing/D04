@@ -93,12 +93,32 @@
 	</security:authorize>
 	
 	<display:column>
-	
 		<acme:button url="audit/auditor/listAll.do?positionId=${row.id}" name="display" code="audit.display"/>
-	
 	</display:column>
 
-	
+	<security:authorize access="hasRole('PROVIDER')">
+			<jstl:if test="${rol eq 'provider'}">
+				<jstl:set var="ctrl" value="0" />
+				<jstl:forEach var="r" items="${providerpositions}">
+					<jstl:if test="${r eq row}">
+						<jstl:set var="ctrl" value="1" />
+					</jstl:if>
+				</jstl:forEach>
+				<display:column>
+					<jstl:choose>
+						<jstl:when test="${ctrl == 0}">
+							<acme:link url="sponsorship/provider/create.do?positionId=${row.id}"
+								code="position.to.sponsors" />
+						</jstl:when>
+						<jstl:otherwise>
+							<acme:link
+								url="sponsorship/provider/display.do?positionId=${row.id}"
+								code="position.sponsored" />
+						</jstl:otherwise>
+					</jstl:choose>
+				</display:column>
+			</jstl:if>
+		</security:authorize>
 </display:table>
 
 <jstl:if test="${not empty msg}">

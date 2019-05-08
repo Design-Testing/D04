@@ -34,7 +34,7 @@ public interface SponsorshipRepository extends JpaRepository<Sponsorship, Intege
 	@Query("select s from Sponsorship s where s.position.id=?1 and s.provider.userAccount.id=?2")
 	Sponsorship findByPosition(int positionId, int sponsorUAId);
 
-	@Query("select case when (count(sp) > 0) then false else true end from Sponsorship sp where sp.position.id=?1 and sp.position.userAccount.id=?2")
+	@Query("select case when (count(sp) > 0) then false else true end from Sponsorship sp where sp.position.id=?1 and sp.provider.userAccount.id=?2")
 	boolean availableSponsorshipPosition(int positionId, int sponsorUAId);
 
 	@Query("select sp from Sponsorship sp where sp.creditCard.expirationYear<?2 or (sp.creditCard.expirationMonth<?1 and sp.creditCard.expirationYear=?2)")
