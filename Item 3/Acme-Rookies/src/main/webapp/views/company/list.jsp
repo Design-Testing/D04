@@ -10,6 +10,10 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<security:authorize access="hasRole('ADMIN')">
+	
+	<acme:button url="company/computeScores.do" name="display" code="company.compute.scores"/>
+</security:authorize>
 
 <display:table name="companies" id="row"
 	requestURI="company/list.do" pagesize="5"

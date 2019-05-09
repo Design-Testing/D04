@@ -77,6 +77,7 @@
 		<security:intercept-url pattern="/company/display2.do" access="hasRole('COMPANY')" />
 		<security:intercept-url pattern="/company/deletePersonalData.do" access="hasRole('COMPANY')" />
 		<security:intercept-url pattern="/company/computeScore.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/company/computeScores.do" access="hasRole('ADMIN')" />
 		
 		<!-- PROVIDER -->
 		<security:intercept-url pattern="/provider/list.do" access="permitAll" />

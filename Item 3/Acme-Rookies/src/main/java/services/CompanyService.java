@@ -262,6 +262,15 @@ public class CompanyService {
 		return normRes;
 	}
 
+	public void computeScores() {
+
+		final Collection<Company> companies = this.findAll();
+		if (!companies.isEmpty())
+			for (final Company c : companies)
+				this.computeScore(c);
+
+	}
+
 	public void flush() {
 		this.companyRepository.flush();
 	}
