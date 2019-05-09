@@ -32,6 +32,7 @@
 <acme:display code="company.commercialName" value="${company.commercialName}"/>
 <acme:display code="company.address" value="${company.address}"/>
 <acme:display code="company.vat" value="${company.vat}"/>
+<acme:display code="company.score" value="${company.score}"/>
 
 <br>
 <security:authorize access="hasRole('HACKER')">

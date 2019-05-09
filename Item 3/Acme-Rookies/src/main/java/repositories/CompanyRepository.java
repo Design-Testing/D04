@@ -42,4 +42,13 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	@Query("select g from Company g where g.score=(select max(b.score) from Company b)")
 	Collection<Company> getCompaniesHighestAuditScore();
 
+	@Query("select avg(1.0 + (select au.score from Audit au where au.id=auu.id) -1.0) from Audit auu where auu.position.company.id=?1 and auu.score IS NOT NULL")
+	Double getAvgScore(int companyId);
+
+	@Query("select min(1.0 + (select au.score from Audit au where au.id=auu.id) -1.0) from Audit auu where auu.position.company.id=?1 and auu.score IS NOT NULL")
+	Integer getMinScore(int companyId);
+
+	@Query("select max(1.0 + (select au.score from Audit au where au.id=auu.id) -1.0) from Audit auu where auu.position.company.id=?1 and auu.score IS NOT NULL")
+	Integer getMaxScore(int companyId);
+
 }

@@ -59,6 +59,36 @@ public class CompanyController extends AbstractController {
 		return res;
 	}
 
+	// LIST SCORES ----------------------------------------------------------------
+
+	@RequestMapping(value = "/listScore", method = RequestMethod.GET)
+	public ModelAndView listScore() {
+		final ModelAndView res;
+		final Collection<Company> companies = this.companyService.findAll();
+
+		res = new ModelAndView("company/list");
+		res.addObject("companies", companies);
+		res.addObject("rolAdmin", true);
+
+		return res;
+	}
+
+	// COMPUTE SCORE ----------------------------------------------------------------
+
+	@RequestMapping(value = "/computeScore", method = RequestMethod.GET)
+	public ModelAndView computeScore(@RequestParam final int companyId) {
+		final ModelAndView res;
+		final Collection<Company> companies = this.companyService.findAll();
+
+		this.companyService.computeScore(this.companyService.findOne(companyId));
+
+		res = new ModelAndView("company/list");
+		res.addObject("companies", companies);
+		res.addObject("rolAdmin", true);
+
+		return res;
+	}
+
 	// CREATE ---------------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)

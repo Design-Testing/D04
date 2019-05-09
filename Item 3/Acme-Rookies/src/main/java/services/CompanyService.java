@@ -28,16 +28,19 @@ import forms.CompanyForm;
 public class CompanyService {
 
 	@Autowired
-	private CompanyRepository	companyRepository;
+	private CompanyRepository		companyRepository;
 
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private UserAccountService	userAccountService;
+	private AdministratorService	administratorService;
 
 	@Autowired
-	private Validator			validator;
+	private UserAccountService		userAccountService;
+
+	@Autowired
+	private Validator				validator;
 
 
 	//METODOS CRUD
@@ -230,53 +233,34 @@ public class CompanyService {
 		return res;
 	}
 
-	//	public double computeScore(final Actor a) {
-	//		final boolean isCompany = this.actorService.checkAuthority(a, Authority.COMPANY);
-	//		Assert.isTrue(isCompany);
-	//
-	//		Assert.notNull(a);
-	//		int p = 0;
-	//		int n = 0;
-	//
-	//		this.administratorService.findByPrincipal();
-	//		final Collection<String> pwords = this.configurationParametersService.findPositiveWords();
-	//		final Collection<String> nwords = this.configurationParametersService.findNegativeWords();
-	//
-	//		final Collection<String> messagesStrings = new ArrayList<>();
-	//		for (final Message m : this.messageService.findActorMessages(a)) {
-	//			final String body = m.getBody().toLowerCase();
-	//			final String subject = m.getSubject().toLowerCase();
-	//			messagesStrings.add(subject);
-	//			messagesStrings.add(body);
-	//		}
-	//
-	//		for (final String pword : pwords)
-	//			for (final String comment : messagesStrings) {
-	//				final boolean bool = comment.matches(".*" + pword + ".*");
-	//				if (bool)
-	//					p++;
-	//			}
-	//
-	//		for (final String nword : nwords)
-	//			for (final String comment : messagesStrings) {
-	//				final boolean bool = comment.matches(".*" + nword + ".*");
-	//				if (bool)
-	//					n++;
-	//			}
-	//
-	//		final int min = -n;
-	//		final int max = p;
-	//		final int range = max - min;
-	//		final int res = p - n;
-	//		final double normRes;
-	//
-	//		if (range != 0)
-	//			normRes = (2 * ((res - min) / range)) - 1;
-	//		else
-	//			normRes = 0;
-	//
-	//		return normRes;
-	//	}
+	public Double computeScore(final Actor a) {
+		final boolean isCompany = this.actorService.checkAuthority(a, Authority.COMPANY);
+		Assert.isTrue(isCompany);
+
+		Assert.notNull(a);
+
+		this.administratorService.findByPrincipal();
+
+		final Integer min = this.companyRepository.getMinScore(a.getId());
+		final Integer max = this.companyRepository.getMaxScore(a.getId());
+
+		final int range = max - min;
+		final Double res = this.companyRepository.getAvgScore(a.getId());
+
+		final Double normRes;
+
+		if (range != 0)
+			normRes = (res - min) / (max - min);
+		else
+			normRes = 0.;
+
+		final Company company = this.findOne(a.getId());
+		company.setScore(normRes);
+
+		this.companyRepository.save(company);
+
+		return normRes;
+	}
 
 	public void flush() {
 		this.companyRepository.flush();

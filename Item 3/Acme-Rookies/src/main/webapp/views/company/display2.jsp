@@ -43,6 +43,7 @@ function generatePDF(){
 	doc.text('<spring:message code="company.creditCard.expirationMonth"/> : <jstl:out value="${company.creditCard.expirationMonth}"/>', 10, 150)
 	doc.text('<spring:message code="company.creditCard.expirationYear"/> : <jstl:out value="${company.creditCard.expirationYear}"/>', 10, 160)
 	doc.text('<spring:message code="company.creditCard.cvv"/> : <jstl:out value="${company.creditCard.cvv}"/>', 10, 170)
+	doc.text('<spring:message code="company.score"/> : <jstl:out value="${company.score}"/>', 10, 180)
 	doc.save('<spring:message code="display.document.fileName"/>.pdf')
 }
 function deletePersonalData(){
@@ -77,6 +78,7 @@ function deletePersonalData(){
 <acme:display code="company.address" value="${company.address}"/><br>
 </jstl:if>
 <acme:display code="company.vat" value="${company.vat}"/><br>
+<acme:display code="company.score" value="${company.score}"/>
 
 <h3><spring:message code="company.creditCard"/></h3>
 <acme:display code="company.creditCard.holderName" value="${company.creditCard.holderName}"/>

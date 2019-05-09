@@ -19,11 +19,30 @@
 	<display:column property="name" titleKey="actor.name" />
 		
 	<display:column property="email" titleKey="actor.email" />
+	
+	<jstl:choose>
+	<jstl:when test="${not empty row.score}">
+		<display:column property="score" titleKey="company.score" />
+	</jstl:when>
+	<jstl:otherwise>
+		<display:column titleKey="company.score">
+			<jstl:out value="-"></jstl:out>
+		</display:column>
+	</jstl:otherwise>
+	</jstl:choose>
 
 	
 	<display:column>
 	<acme:button url="company/display.do?companyId=${row.id}" name="display" code="company.display"/>
 	</display:column>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	
+		<display:column>
+	<acme:button url="company/computeScore.do?companyId=${row.id}" name="display" code="company.compute.score"/>
+	</display:column>
+	
+	</security:authorize>
 
 
 </display:table>
