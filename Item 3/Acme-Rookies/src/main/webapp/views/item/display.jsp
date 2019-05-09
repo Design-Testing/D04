@@ -23,7 +23,12 @@
 
 <br>
 
-<input type="button" class="btn btn-danger" name="back"
+<security:authorize access="hasRole('PROVIDER')">
+	
+		<input type="button" class="btn btn-danger" name="back"
            value="<spring:message code="item.back" />"
            onclick="relativeRedir('item/provider/list.do');"/>
+	
+</security:authorize>
+
 
