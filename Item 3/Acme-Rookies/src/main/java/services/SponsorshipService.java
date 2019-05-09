@@ -179,7 +179,7 @@ public class SponsorshipService {
 		sponsorship.setProvider(this.providerService.findByPrincipal());
 		sponsorship.setCreditCard(creditCard);
 
-		this.validator.validate(sponsorship, binding);
+		//this.validator.validate(sponsorship, binding);
 
 		if (binding.hasErrors())
 			throw new ValidationException();

@@ -97,7 +97,7 @@ public class SponsorshipProviderController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid @ModelAttribute("sponsorship") final SponsorshipForm sponsorshipForm, final BindingResult binding) {
+	public ModelAndView save(@Valid @ModelAttribute("sponsorshipForm") final SponsorshipForm sponsorshipForm, final BindingResult binding) {
 		ModelAndView result;
 
 		Sponsorship sponsorship;
