@@ -70,23 +70,10 @@
 			<td><spring:message code="desviation.company.score" /></td>
 			<td>${desviationCompanyScore}</td>
 		</tr>
-		<jstl:choose>
-			<jstl:when test="${companiesHighestScore.size() eq 1}">
 				<tr>
 					<td><spring:message code="largest.company.score" /></td>
 					<td>${companiesHighestScore}</td>
 				</tr>
-			</jstl:when>
-			<jstl:otherwise>
-				<jstl:forEach items="${companiesHighestScore}" var="cscore"
-					varStatus="in">
-					<tr>
-						<td><spring:message code="largest.company.score" /> ${in.index + 1}</td>
-						<td>${cscore}</td>
-					</tr>
-				</jstl:forEach>
-			</jstl:otherwise>
-		</jstl:choose>
 	</table>
 	<jstl:if test="${companiesHighestScore.size() gt 1}">
 		<p><spring:message code="largest.company.score.two" /><p/>
