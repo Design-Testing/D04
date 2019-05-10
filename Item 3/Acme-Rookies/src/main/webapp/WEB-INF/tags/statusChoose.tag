@@ -38,6 +38,9 @@
 	<jstl:when test="${status eq 'PENDING'}">
 		<spring:message code="pending" />
 	</jstl:when>
+	<jstl:when test="${status eq 'SUBMITTED'}">
+		<spring:message code="submitted" />
+	</jstl:when>
 	<jstl:otherwise>
 		<spring:message code="invalid.status" />
 	</jstl:otherwise>

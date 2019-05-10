@@ -27,7 +27,9 @@
 
 	<display:column property="rooky" titleKey="application.rooky" />
 		
-	<display:column property="status" titleKey="application.status" />
+	<display:column titleKey="application.status">
+		<acme:statusChoose status="${row.status}"/>
+	</display:column>
 	
 	<display:column property="problem.title" titleKey="application.problem" />
 	
@@ -47,7 +49,7 @@
 			</display:column>
 	</security:authorize>
 
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKY')">
 	<display:column>
 				<jstl:if test="${row.status eq 'PENDING'}">
 					<acme:button url="application/rooky/edit.do?applicationId=${row.id}"
@@ -62,7 +64,7 @@
 	</display:column>
 	</security:authorize>
 	
-	<security:authorize access="hasRole('HACKER')">	
+	<security:authorize access="hasRole('ROOKY')">	
 	<display:column>
 		<acme:button url="application/rooky/display.do?applicationId=${row.id}" name="display" code="application.display" />
 	</display:column>

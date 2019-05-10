@@ -29,9 +29,7 @@
 
 <acme:display code="application.link" value="${application.link}"/>
 
-<acme:display code="application.status" value="${application.status}"/>
-
-
+<spring:message code="application.status" />: <acme:statusChoose status="${application.status}"/>
 
 <jstl:choose>
 	<jstl:when test="${lang eq 'en' }">
@@ -65,7 +63,7 @@
 
 <br><br>
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKY')">
 
 <jstl:if test="${application.status eq 'PENDING'}">
 <acme:button url="application${rolURL}/listPending.do" name="back"
@@ -81,7 +79,7 @@
 </jstl:if>
 </security:authorize>
 
-<security:authorize access="hasAnyRole('COMPANY','HACKER')">
+<security:authorize access="hasAnyRole('COMPANY','ROOKY')">
 
 <jstl:if test="${application.status eq 'ACCEPTED'}">
 <acme:button url="application${rolURL}/listAccepted.do" name="back"

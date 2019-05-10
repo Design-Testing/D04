@@ -46,10 +46,10 @@
 	</jstl:choose>
 	</display:column>
 	
-	<security:authorize access="hasRole('HACKER')">
-	<jstl:if test="${rol eq 'hacker'}">
+	<security:authorize access="hasRole('ROOKY')">
+	<jstl:if test="${rol eq 'rooky'}">
 	<jstl:set var="ctrl" value="0"/>
-	<jstl:forEach var="t" items="${hackerPositions}">
+	<jstl:forEach var="t" items="${rookyPositions}">
 		<jstl:if test="${t eq row}">
 			<jstl:set var="ctrl" value="1"/>
 		</jstl:if>
@@ -58,7 +58,7 @@
 			<display:column>
 				<jstl:choose>
 					<jstl:when test="${ctrl == 0}">
-						<acme:button url="application/hacker/create.do?positionId=${row.id}" name="apply" code="position.application"/>
+						<acme:button url="application/rooky/create.do?positionId=${row.id}" name="apply" code="position.application"/>
 					</jstl:when>
 					<jstl:otherwise>
 						<spring:message code="position.applied" />

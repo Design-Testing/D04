@@ -38,9 +38,19 @@ img.resize {
 
 <acme:display code="position.profile" value="${position.profile}"/>
 
-<acme:display code="position.skills" value="${position.skills}"/>
+<spring:message code="position.skills"/>
+<jstl:forEach items="${position.skills}" var="l">
+	<ul>
+		<li><jstl:out value="${l}"/></li>
+	</ul>
+</jstl:forEach>
 
-<acme:display code="position.technologies" value="${position.technologies}"/>
+<spring:message code="position.technologies"/>
+<jstl:forEach items="${position.technologies}" var="l">
+	<ul>
+		<li><jstl:out value="${l}"/></li>
+	</ul>
+</jstl:forEach>
 
 <acme:display code="position.salary" value="${position.salary}"/>
 
