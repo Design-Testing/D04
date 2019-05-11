@@ -84,8 +84,8 @@
 		<security:intercept-url pattern="/provider/display.do" access="permitAll" />
 		<security:intercept-url pattern="/provider/create.do" access="permitAll" />
 		<security:intercept-url pattern="/provider/edit.do" access="permitAll" />
-		<security:intercept-url pattern="/provider/display2.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/provider/deletePersonalData.do" access="hasRole('COMPANY')" />
+		<security:intercept-url pattern="/provider/display2.do" access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/provider/deletePersonalData.do" access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/sponsorship/provider/**" access="hasRole('PROVIDER')" /> 
 		<security:intercept-url pattern="/position/provider/**" access="hasRole('PROVIDER')" /> 
 		
