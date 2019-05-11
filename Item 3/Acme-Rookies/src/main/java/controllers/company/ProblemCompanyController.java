@@ -75,20 +75,18 @@ public class ProblemCompanyController extends AbstractController {
 		final Problem problem = this.problemService.findOne(problemId);
 		final Collection<Application> applications = this.applicationService.findAllByProblem(problemId);
 
-		if (problem != null) {
-
+		final Company principal = this.companyService.findByPrincipal();
+		if (problem != null && (problem.getCompany().getId() == principal.getId())) {
 			res = new ModelAndView("problem/display");
 			res.addObject("problem", problem);
 			res.addObject("applications", applications);
 			res.addObject("position", problem.getPosition());
-
 		} else
 			res = new ModelAndView("redirect:/misc/403.jsp");
 
 		return res;
 
 	}
-
 	//List
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -171,12 +169,13 @@ public class ProblemCompanyController extends AbstractController {
 
 		paramPositionId = request.getParameter("positionId");
 		final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
-		result = this.positionCompanyController.display(positionId);
+		result = new ModelAndView("redirect:/position/company/display.do?positionId=" + positionId);
 		final Collection<Application> applications = this.applicationService.findAllByProblem(problemId);
 		if (applications.isEmpty()) {
 			final Problem problem = this.problemService.findOne(problemId);
 			this.problemService.delete(problem);
-			result.addObject("problem", problem);
+			result.addObject("trace", "problem.deleted");
+			result.addObject("problemdeleted", problem.getTitle());
 		} else
 			result.addObject("errortrace", "not.empty.applications");
 		return result;

@@ -62,7 +62,7 @@ img.resize {
 <spring:message code="position.problem"/>
 
 <security:authorize access="hasRole('COMPANY')">
-<jstl:if test="${position.mode eq 'DRAFT' and (company.id eq ownerId)}">
+<jstl:if test="${position.mode eq 'DRAFT' and (company.id eq position.company.id)}">
 <acme:button url="problem/company/create.do?positionId=${position.id}" name="create" code="position.create" />
 <br>
 </jstl:if>
@@ -80,7 +80,7 @@ img.resize {
 
 	<security:authorize access="hasRole('COMPANY')">	
 	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq ownerId)}">
+	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq position.company.id)}">
             <input type="button" name="edit"
                 value="<spring:message code="problem.edit" />"
                 onclick="relativeRedir('problem/company/edit.do?problemId=${row.id}&positionId=${row.position.id}')" />
@@ -88,16 +88,19 @@ img.resize {
 	</display:column>
 	
 	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq ownerId)}">
+	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq position.company.id)}">
 		<acme:button url="problem/company/finalMode.do?problemId=${row.id}" name="finalMode" code="problem.finalMode"/>
 	</jstl:if>
 	</display:column>
 	
 	<display:column>
+	<jstl:if test="${company.id eq position.company.id}">
 		<acme:button url="problem/company/display.do?problemId=${row.id}" name="display" code="problem.display"/>
+	</jstl:if>
 	</display:column>
 	
 	</security:authorize>
+	
 	<security:authorize access="hasRole('HACKER')">
 		<jstl:set var="hk" value="1"/>
 	</security:authorize>
@@ -128,4 +131,7 @@ img.resize {
 </jstl:choose>
 <jstl:if test="${not empty errortrace}">
 	<h3 style="color: red;"><spring:message code="${errortrace}"/></h3>
+</jstl:if>
+<jstl:if test="${not empty trace and not empty problemdeleted}">
+	<h3 style="color: red;"><spring:message code="${trace}"/> <jstl:out value="${problemdeleted}"/></h3>
 </jstl:if>
