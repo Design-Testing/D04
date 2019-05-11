@@ -18,13 +18,22 @@
 <spring:message code="problem.mode"/>:
  <acme:modeChoose mode="${problem.mode}"/>
 <br>
-<acme:display code="problem.attachments" value="${problem.attachments}" />
+<spring:message code="problem.attachments"/>: 
+<jstl:forEach items="${problem.attachments}" var="l">
+	<ul>
+		<li><jstl:out value="${l}"/></li>
+	</ul>
+</jstl:forEach>
 <br>
 <jstl:if test="${empty applications}">
 	<acme:button url="problem/company/delete.do?problemId=${problem.id}&positionId=${position.id}" name="delete" code="problem.delete"/>	
 </jstl:if>
 
 <acme:button url="position/company/display.do?positionId=${problem.position.id}" name="back"
-		code="problem.back" />
+		code="problem.position.associated" />
+		
+<jstl:if test="${not empty errortrace}">
+	<h3 style="color: red;"><spring:message code="${errortrace}"/></h3>
+</jstl:if>
 
 <br />

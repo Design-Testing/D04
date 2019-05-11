@@ -66,6 +66,7 @@
 			<li><a href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.public.list" /></a></li>
+			<li><a href="problem/company/list.do"><spring:message code="master.page.problem" /></a></li>
 			
 			<!-- POSITION -->
 			<li><a class="fNiv"><spring:message	code="master.page.position" /></a>

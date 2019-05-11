@@ -126,3 +126,6 @@ img.resize {
 		<acme:button url="position/list.do" name="back" code="position.back"/>
 	</jstl:otherwise>
 </jstl:choose>
+<jstl:if test="${not empty errortrace}">
+	<h3 style="color: red;"><spring:message code="${errortrace}"/></h3>
+</jstl:if>
