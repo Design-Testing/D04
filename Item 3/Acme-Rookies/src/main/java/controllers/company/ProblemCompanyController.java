@@ -169,15 +169,17 @@ public class ProblemCompanyController extends AbstractController {
 
 		paramPositionId = request.getParameter("positionId");
 		final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
-		result = new ModelAndView("redirect:/position/company/display.do?positionId=" + positionId);
 		final Collection<Application> applications = this.applicationService.findAllByProblem(problemId);
 		if (applications.isEmpty()) {
 			final Problem problem = this.problemService.findOne(problemId);
 			this.problemService.delete(problem);
+			result = new ModelAndView("redirect:/position/company/display.do?positionId=" + positionId);
 			result.addObject("trace", "problem.deleted");
 			result.addObject("problemdeleted", problem.getTitle());
-		} else
-			result.addObject("errortrace", "not.empty.applications");
+		} else {
+			result = new ModelAndView("problem/error");
+			result.addObject("ok", "not.empty.applications");
+		}
 		return result;
 	}
 

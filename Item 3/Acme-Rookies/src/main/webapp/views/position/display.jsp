@@ -101,7 +101,7 @@ img.resize {
 	
 	</security:authorize>
 	
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKY')">
 		<jstl:set var="hk" value="1"/>
 	</security:authorize>
 	<security:authorize access="hasRole('AUDITOR')">
@@ -120,7 +120,7 @@ img.resize {
 		<acme:button url="position/company/myPositions.do" name="back" code="position.back"/>
 	</jstl:when>
 	<jstl:when test="${hk eq 1}">
-		<acme:button url="position/hacker/list.do" name="back" code="position.back"/>
+		<acme:button url="position/rooky/list.do" name="back" code="position.back"/>
 	</jstl:when>
 	<jstl:when test="${aud eq 1}">
 		<acme:button url="audit/auditor/listFreePositions.do" name="back" code="position.back"/>
@@ -132,6 +132,6 @@ img.resize {
 <jstl:if test="${not empty errortrace}">
 	<h3 style="color: red;"><spring:message code="${errortrace}"/></h3>
 </jstl:if>
-<jstl:if test="${not empty trace and not empty problemdeleted}">
+<jstl:if test="${not empty trace}">
 	<h3 style="color: red;"><spring:message code="${trace}"/> <jstl:out value="${problemdeleted}"/></h3>
 </jstl:if>

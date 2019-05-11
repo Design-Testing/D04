@@ -1491,18 +1491,21 @@
 		======= Application ========= =================================================================== -->
 
 	<bean id="application1" class="domain.Application">
-		<property name="status" value="PENDING" />
+		<property name="status" value="SUBMITTED" />
 		<property name="moment" value="2018/03/16 15:20" />
 		<property name="rooky" ref="rooky1" />
 		<property name="position" ref="position1" />
 		<property name="problem" ref="problem1" />
+		<property name="explanation" value="Explanation application 1" />
+		<property name="link" value="https://www.google.com" />
+		<property name="submitMoment" value="2018/04/11 12:30" />
 		<property name="curricula" ref="curricula3" />
 	</bean>
 
 	<bean id="application2" class="domain.Application">
 		<property name="status" value="PENDING" />
 		<property name="moment" value="2018/03/15 15:21" />
-		<property name="rooky" ref="rooky1" />
+		<property name="rooky" ref="rooky2" />
 		<property name="position" ref="position1" />
 		<property name="problem" ref="problem2" />
 		<property name="curricula" ref="curricula4" />
@@ -1524,7 +1527,7 @@
 	<bean id="application4" class="domain.Application">
 		<property name="status" value="PENDING" />
 		<property name="moment" value="2018/03/15 15:31" />
-		<property name="rooky" ref="rooky1" />
+		<property name="rooky" ref="rooky2" />
 		<property name="position" ref="position4" />
 		<property name="problem" ref="problem4" />
 		<property name="curricula" ref="curricula6" />
