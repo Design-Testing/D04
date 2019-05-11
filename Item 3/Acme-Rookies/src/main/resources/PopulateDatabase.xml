@@ -149,7 +149,7 @@
 	</bean>
 
 	<bean id="system" class="domain.Administrator">
-		<property name="name" value="AcmeParade" />
+		<property name="name" value="AcmeRookies" />
 		<property name="surname">
 			<list>
 				<value>System</value>

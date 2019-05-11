@@ -31,6 +31,9 @@ public class ConfigurationParametersService {
 	@Autowired
 	private ActorService						actorService;
 
+	@Autowired
+	private MessageService						messageService;
+
 
 	public ConfigurationParameters create() {
 		final Actor principal = this.administratorService.findByPrincipal();
@@ -132,6 +135,7 @@ public class ConfigurationParametersService {
 		cfg.setSysName(newSysName);
 		cfg.setRebranding(true);
 		this.save(cfg);
+		this.messageService.rebrandNotification(sysName);
 	}
 
 	public ConfigurationParameters find() {
