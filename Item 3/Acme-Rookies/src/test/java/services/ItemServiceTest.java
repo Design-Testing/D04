@@ -1,9 +1,8 @@
 
 package services;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,10 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import domain.Curricula;
-import domain.EducationData;
-import domain.PersonalData;
-import domain.Rooky;
+import domain.Item;
+import domain.Provider;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -28,77 +25,63 @@ public class ItemServiceTest extends AbstractTest {
 
 	// Services
 	@Autowired
-	private EducationDataService	educationDataService;
+	private ItemService		itemService;
 
 	@Autowired
-	private RookyService			hackerService;
-
-	@Autowired
-	private CurriculaService		curriculaService;
-
-	@Autowired
-	private PersonalDataService		personalDataService;
+	private ProviderService	providerService;
 
 
 	@Test
 	public void driverCreateSave() {
+
+		final Collection<String> links = new ArrayList<String>();
+		links.add("http://link1.com");
 		final Object testingData[][] = {
 			{
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky crea EducationData 
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider crea Item 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "degree1", "institution1", 5, "2014-09-15", "2018-09-20", null
+				"provider1", "name test 1", "description test 1", links, "http://photo.com", null
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Negativo: Un member intenta crear una EducationData sin grado
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Negativo: Un member intenta crear una Item sin grado
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker2", null, "institution1", 5, "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
+				"provider1", null, "description test 1", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky crea EducationData con institución en blanco
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider crea Item con descripción en blanco
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "degree1", "", 3, "2014-09-15", "2018-09-20", org.springframework.dao.DataIntegrityViolationException.class
+				"provider1", "name test 1", "", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky crea EducationData con fecha de finalización anterior a fecha de inicio
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider crea Item con photo que no se corresponde con pattern de URL
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "degree1", "institution2", 3, "2014-09-15", "2013-09-20", IllegalArgumentException.class
+				"provider1", "name test 1", "description test 1", links, "photo no url", javax.validation.ConstraintViolationException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateCreateSave((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Integer) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Class<?>) testingData[i][6]);
+			this.templateCreateSave((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Collection<String>) testingData[i][3], (String) testingData[i][4], (Class<?>) testingData[i][5]);
 	}
 
-	protected void templateCreateSave(final String user, final String degree, final String institution, final Integer mark, final String startDate, final String endDate, final Class<?> expected) {
+	protected void templateCreateSave(final String user, final String name, final String description, final Collection<String> links, final String photo, final Class<?> expected) {
 
 		Class<?> caught = null;
 
 		try {
 			this.authenticate(user);
-			Curricula curricula = this.curriculaService.create();
-			PersonalData pd = curricula.getPersonalRecord();
-			pd = this.personalDataService.save(pd);
-			curricula.setPersonalRecord(pd);
-			curricula = this.curriculaService.save(curricula);
-			final EducationData lRec = this.educationDataService.create();
-			lRec.setDegree(degree);
-			lRec.setInstitution(institution);
-			lRec.setMark(mark);
-			Date start = null;
-			Date end = null;
-			if (endDate != null)
-				end = (new SimpleDateFormat("yyyy-MM-dd")).parse(endDate);
-			start = (new SimpleDateFormat("yyyy-MM-dd")).parse(startDate);
-			lRec.setStartDate(start);
-			lRec.setEndDate(end);
-			final EducationData lRecSaved = this.educationDataService.save(lRec, curricula.getId());
-			Assert.isTrue(lRecSaved.getId() != 0);
-			this.educationDataService.flush();
+			final Item item = this.itemService.create();
+			item.setName(name);
+			item.setDescription(description);
+			item.setLinks(links);
+			item.setPhoto(photo);
+			final Item res = this.itemService.save(item);
+			Assert.notNull(res);
+			this.itemService.flush();
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
@@ -109,58 +92,59 @@ public class ItemServiceTest extends AbstractTest {
 	}
 	@Test
 	public void driverEdit() {
+		final Collection<String> links = new ArrayList<String>();
+		links.add("http://link1.com");
 		final Object testingData[][] = {
 			{
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky crea EducationData 
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider crea Item 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "degree1", "institution1", 5, "2014-09-15", "2018-09-20", null
+				"provider1", "item1", "name test 1", "description test 1", links, "http://photo.com", null
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Negativo: Un member intenta crear una EducationData sin grado
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Negativo: Un member intenta crear una Item sin grado
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker2", null, "institution1", 5, "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
+				"provider1", "item1", null, "description test 1", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky crea EducationData con institución en blanco
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider crea Item con descripción en blanco
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "degree1", "", 3, "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
+				"provider1", "item1", "name test 1", "", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky crea EducationData con fecha de finalización anterior a fecha de inicio
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider crea Item con photo que no se corresponde con pattern de URL
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "degree1", "institution2", 3, "2014-09-15", "2013-09-20", IllegalArgumentException.class
+				"provider1", "item1", "name test 1", "description test 1", links, "photo no url", javax.validation.ConstraintViolationException.class
+			}, {
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider intenta actualizar Item que no es suyo
+				//			C: 100% Recorre 49 de las 49 lineas posibles
+				//			D: cobertura de datos=6/405
+				"provider1", "item3", "name test 1", "description test 1", links, "http://photo.com", IllegalArgumentException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateEdit((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Integer) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Class<?>) testingData[i][6]);
+			this.templateEdit((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (Collection<String>) testingData[i][4], (String) testingData[i][5], (Class<?>) testingData[i][6]);
 	}
 
-	private void templateEdit(final String user, final String degree, final String institution, final Integer mark, final String startDate, final String endDate, final Class<?> expected) {
+	private void templateEdit(final String user, final String item, final String name, final String description, final Collection<String> links, final String photo, final Class<?> expected) {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Rooky principal = this.hackerService.findByPrincipal();
-			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(principal.getId());
-			final Curricula curricula = curriculas.iterator().next();
-			final EducationData lR = curricula.getEducations().iterator().next();
-			lR.setInstitution(institution);
-			lR.setDegree(degree);
-			lR.setMark(mark);
-			Date start = null;
-			Date end = null;
-			if (endDate != null)
-				end = (new SimpleDateFormat("yyyy-MM-dd")).parse(endDate);
-			start = (new SimpleDateFormat("yyyy-MM-dd")).parse(startDate);
-			lR.setStartDate(start);
-			lR.setEndDate(end);
-			this.educationDataService.save(lR, curricula.getId());
-			this.educationDataService.flush();
+			final Provider principal = this.providerService.findByPrincipal();
+			final Item itemFound = this.itemService.findOne(this.getEntityId(item));
+			itemFound.setName(name);
+			itemFound.setDescription(description);
+			itemFound.setLinks(links);
+			itemFound.setPhoto(photo);
+			final Item res = this.itemService.save(itemFound);
+			Assert.notNull(res);
+			this.itemService.flush();
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
@@ -175,32 +159,33 @@ public class ItemServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Positivo: Rooky borra EducationData 
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Positivo: Provider borra Item 
 				//			C: 100% Recorre 78 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
-				"hacker2", null
+				"provider1", "item1", null
 			}, {
-				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Negativo: Compañía intenta borrar EducationData 
+				//			A: Acme ProviderRank Req. 17 -> Providers can manage their history
+				//			B: Test Negativo: Provider intenta borrr item que no es suyo
 				//			C: 10,25% Recorre 8 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
-				"company1", IllegalArgumentException.class
+				"provider1", "item3", IllegalArgumentException.class
 			},
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateDelete((String) testingData[i][0], (Class<?>) testingData[i][1]);
+			this.templateDelete((String) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
-	private void templateDelete(final String actor, final Class<?> expected) {
+	private void templateDelete(final String actor, final String item, final Class<?> expected) {
 		Class<?> caught = null;
 		try {
 			this.authenticate(actor);
-			final Rooky hacker = this.hackerService.findByPrincipal();
-			final EducationData lRec = this.curriculaService.findCurriculaByRooky(hacker.getId()).iterator().next().getEducations().iterator().next();
-			this.educationDataService.delete(lRec);
-			this.educationDataService.flush();
+			final Provider provider = this.providerService.findByPrincipal();
+			final Item itemFound = this.itemService.findOne(this.getEntityId(item));
+			this.itemService.delete(itemFound);
+			Assert.isTrue(!this.itemService.findAll().contains(itemFound));
+			this.itemService.flush();
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
