@@ -26,7 +26,7 @@ public class RookyServiceTest extends AbstractTest {
 
 	// Services
 	@Autowired
-	private RookyService	hackerService;
+	private RookyService	rookyService;
 
 
 	/* ========================= Test Login Rooky =========================== */
@@ -36,10 +36,10 @@ public class RookyServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				//				A: Acme RookyRank Login Use Case
-				//				B: Test Positivo: Un hacker puede loguearse correctamente
+				//				B: Test Positivo: Un rooky puede loguearse correctamente
 				//				C: % Recorre 22 de la 22 lineas posibles
 				//				D: cobertura de datos = 2/2
-				"hacker1", null
+				"rooky1", null
 			}, {
 				//				A: Acme RookyRank Login usuario no registrado
 				//				B: Test Negativo: Un usuario no registrado no puede logearse
@@ -52,15 +52,15 @@ public class RookyServiceTest extends AbstractTest {
 			this.templateLogin((String) testingData[i][0], (Class<?>) testingData[i][1]);
 	}
 
-	private void templateLogin(final String hackerUsername, final Class<?> expected) {
+	private void templateLogin(final String rookyUsername, final Class<?> expected) {
 		Class<?> caught;
 
 		caught = null;
 
 		try {
-			super.authenticate(hackerUsername);
+			super.authenticate(rookyUsername);
 			this.unauthenticate();
-			this.hackerService.flush();
+			this.rookyService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 
@@ -80,16 +80,16 @@ public class RookyServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				//				A: Acme RookyRank Register to de system as a company
-				//				B: Test Positivo: Creación correcta de un hacker
+				//				B: Test Positivo: Creación correcta de un rooky
 				//				C: % Recorre 181 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"hacker1", "hacker1", "Rooky1", surnames, "garcia@gmail.es", "+34647307406", null
+				"rooky1", "rooky1", "Rooky1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
 				//				A: Acme RookyRank Register to de system as a company
-				//				B: Test Negativo: Creación incorrecta de un hacker con telefono inválido
+				//				B: Test Negativo: Creación incorrecta de un rooky con telefono inválido
 				//				C: % Recorre 114 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"hacker2", "hacker2", "Rooky1", surnames2, "lanzas@gmail.com", "mi telefono", null
+				"rooky2", "rooky2", "Rooky1", surnames2, "lanzas@gmail.com", "mi telefono", null
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -99,22 +99,22 @@ public class RookyServiceTest extends AbstractTest {
 	private void templateCreateAndSave(final String username, final String password, final String name, final Collection<String> surname, final String email, final String phone, final Class<?> expected) {
 
 		Class<?> caught;
-		Rooky hacker;
+		Rooky rooky;
 		final UserAccount userAccount;
 
 		caught = null;
 
 		try {
-			hacker = this.hackerService.create();
-			hacker.setName(name);
-			hacker.setSurname(surname);
-			hacker.setEmail(email);
-			hacker.setPhone(phone);
-			userAccount = hacker.getUserAccount();
+			rooky = this.rookyService.create();
+			rooky.setName(name);
+			rooky.setSurname(surname);
+			rooky.setEmail(email);
+			rooky.setPhone(phone);
+			userAccount = rooky.getUserAccount();
 			userAccount.setUsername(username);
 			userAccount.setPassword(password);
-			hacker.setUserAccount(userAccount);
-			hacker = this.hackerService.save(hacker);
+			rooky.setUserAccount(userAccount);
+			rooky = this.rookyService.save(rooky);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 
@@ -134,34 +134,34 @@ public class RookyServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				// 				A: Acme RookyRank Edit his o her personal data
-				//				B: Test Positivo: Edición correcta de los datos de un hacker
+				//				B: Test Positivo: Edición correcta de los datos de un rooky
 				//				C: % Recorre 181 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Rooky1", surnames, "garcia@gmail.es", "+34647307406", null
+				"rooky1", "rooky1", "Rooky1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
 				// 				A: Acme RookyRank Edit his o her personal data
-				//				B: Test Positivo: Edición correcta de los datos de un hacker con phone vacio
+				//				B: Test Positivo: Edición correcta de los datos de un rooky con phone vacio
 				//				C: % Recorre 181 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Rooky1", surnames, "garcia@gmail.es", "", null
+				"rooky1", "rooky1", "Rooky1", surnames, "garcia@gmail.es", "", null
 			}, {
 				// 				A: Acme RookyRank Edit his o her personal data
-				//				B: Test Negativo: Edición incorrecta de los datos de un hacker con mail inválido
+				//				B: Test Negativo: Edición incorrecta de los datos de un rooky con mail inválido
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Rooky1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
+				"rooky1", "rooky1", "Rooky1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
 			}, {
 				// 				A: Acme RookyRank Edit his o her personal data
-				//				B: Test Negativo: Edición incorrecta de los datos de un hacker con name vacio
+				//				B: Test Negativo: Edición incorrecta de los datos de un rooky con name vacio
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "", surnames, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
+				"rooky1", "rooky1", "", surnames, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}, {
 				// 				A: Acme RookyRank Edit his o her personal data
-				//				B: Test Negativo: Edición incorrecta de los datos de un hacker con apellidos vacio
+				//				B: Test Negativo: Edición incorrecta de los datos de un rooky con apellidos vacio
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
-				"hacker1", "hacker1", "Rooky1", surnames2, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
+				"rooky1", "rooky1", "Rooky1", surnames2, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -170,19 +170,19 @@ public class RookyServiceTest extends AbstractTest {
 
 	private void templateEditRooky(final String username, final String password, final String name, final Collection<String> surname, final String email, final String phone, final Class<?> expected) {
 		Class<?> caught;
-		Rooky hacker;
-		hacker = this.hackerService.findOne(this.getEntityId(username));
+		Rooky rooky;
+		rooky = this.rookyService.findOne(this.getEntityId(username));
 
 		caught = null;
 		try {
 			super.authenticate(username);
-			hacker.setName(name);
-			hacker.setSurname(surname);
-			hacker.setEmail(email);
-			hacker.setPhone(phone);
-			this.hackerService.save(hacker);
+			rooky.setName(name);
+			rooky.setSurname(surname);
+			rooky.setEmail(email);
+			rooky.setPhone(phone);
+			this.rookyService.save(rooky);
 			this.unauthenticate();
-			this.hackerService.flush();
+			this.rookyService.flush();
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
