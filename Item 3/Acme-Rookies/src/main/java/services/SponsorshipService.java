@@ -65,6 +65,8 @@ public class SponsorshipService {
 		Assert.notNull(sponsorship);
 		Assert.isTrue(sponsorship.getId() != 0);
 		Assert.isTrue(this.sponsorshipRepository.exists(sponsorship.getId()));
+		final Provider principal = this.providerService.findByPrincipal();
+		Assert.isTrue(principal.getId() == sponsorship.getProvider().getId(), "you can not delte a sponsorship that is not yours");
 		this.sponsorshipRepository.delete(sponsorship);
 	}
 

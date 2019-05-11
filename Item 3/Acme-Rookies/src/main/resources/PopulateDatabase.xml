@@ -1293,6 +1293,98 @@
 		<!-- Relations -->
 		<property name="company" ref="company1" />
 	</bean>
+	
+		<bean id="position7" class="domain.Position">
+		<property name="title" value="Position 7" />
+		<property name="description" value="Description position 7" />
+		<property name="deadline" value="2020/04/24 00:00" />
+		<property name="ticker" value="COMM-1784" />
+		<property name="profile" value="Profile for position 7" />
+		<property name="salary" value="1750.0" />
+		<property name="mode" value="FINAL" />
+		<property name="skills">
+			<list>
+				<value>Skill1 for position 7</value>
+				<value>Skill2 for position 7</value>
+			</list>
+		</property>
+		<property name="technologies">
+			<list>
+				<value>Technology1 for position 7</value>
+			</list>
+		</property>
+		<!-- Relations -->
+		<property name="company" ref="company2" />
+	</bean>
+	
+	<bean id="position8" class="domain.Position">
+		<property name="title" value="Position 8" />
+		<property name="description" value="Description position 8" />
+		<property name="deadline" value="2020/04/24 00:00" />
+		<property name="ticker" value="COMM-1783" />
+		<property name="profile" value="Profile for position 8" />
+		<property name="salary" value="1750.0" />
+		<property name="mode" value="FINAL" />
+		<property name="skills">
+			<list>
+				<value>Skill1 for position 8</value>
+				<value>Skill2 for position 8</value>
+			</list>
+		</property>
+		<property name="technologies">
+			<list>
+				<value>Technology1 for position 8</value>
+			</list>
+		</property>
+		<!-- Relations -->
+		<property name="company" ref="company2" />
+	</bean>
+	
+	<bean id="position9" class="domain.Position">
+		<property name="title" value="Position 9" />
+		<property name="description" value="Description position 9" />
+		<property name="deadline" value="2020/04/24 00:00" />
+		<property name="ticker" value="COMM-1782" />
+		<property name="profile" value="Profile for position 9" />
+		<property name="salary" value="1750.0" />
+		<property name="mode" value="FINAL" />
+		<property name="skills">
+			<list>
+				<value>Skill1 for position 9</value>
+				<value>Skill2 for position 9</value>
+			</list>
+		</property>
+		<property name="technologies">
+			<list>
+				<value>Technology1 for position 9</value>
+			</list>
+		</property>
+		<!-- Relations -->
+		<property name="company" ref="company2" />
+	</bean>
+	
+	<bean id="position10" class="domain.Position">
+		<property name="title" value="Position 10" />
+		<property name="description" value="Description position 10" />
+		<property name="deadline" value="2020/04/24 00:00" />
+		<property name="ticker" value="COMM-1781" />
+		<property name="profile" value="Profile for position 10" />
+		<property name="salary" value="1750.0" />
+		<property name="mode" value="FINAL" />
+		<property name="skills">
+			<list>
+				<value>Skill1 for position 10</value>
+				<value>Skill2 for position 10</value>
+			</list>
+		</property>
+		<property name="technologies">
+			<list>
+				<value>Technology1 for position 10</value>
+			</list>
+		</property>
+		<!-- Relations -->
+		<property name="company" ref="company2" />
+	</bean>
 
 	<!-- =================================================================== 
 		======= Problem ========= =================================================================== -->
@@ -1835,6 +1927,15 @@
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position6" />
 		<property name="isDraft" value="true" />
+	</bean>
+	
+	<bean id="audit7" class="domain.Audit">
+		<property name="text" value="Text audit 7" />
+		<property name="score" value="8" />
+		<property name="moment" value="2019/04/23 16:30" />
+		<property name="auditor" ref="auditor2" />
+		<property name="position" ref="position10" />
+		<property name="isDraft" value="false" />
 	</bean>
 	
 	<!-- =================================================================== 
