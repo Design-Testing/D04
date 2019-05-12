@@ -14,7 +14,7 @@
     <form:hidden path="version"/>
 
     <acme:textbox path="freeText" code="record.freeText"/>
-    <acme:textbox path="attachments" code="record.attachments"/>
+    <acme:textarea path="attachments" code="record.attachments"/>
 
 
     <br/>
