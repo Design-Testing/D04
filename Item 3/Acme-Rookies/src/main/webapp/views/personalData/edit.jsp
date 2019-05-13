@@ -50,8 +50,6 @@
 
     <!---------------------------- BOTONES -------------------------->
 
- 	<acme:submit name="save" code="general.save"/>
- 	
     <input type="button" class="btn btn-danger" name="cancel"
            value="<spring:message code="general.cancel" />"
            onclick="relativeRedir('curricula/display.do?curriculaId=${curriculaId}');"/>

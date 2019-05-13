@@ -149,7 +149,7 @@ public class ApplicationRookyController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Application> applications;
 
-		applications = this.applicationService.findAllSubmittedByRooky();
+		applications = this.applicationService.findAllPendingByRooky();
 
 		String listApplications;
 		String rol;

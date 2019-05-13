@@ -72,7 +72,6 @@
 	
 	<acme:textbox code="company.edit.address" path="address" />
 	<acme:numberbox code="company.edit.vat" path="vat" min="0" max="1"/>
-	<acme:textbox code="company.edit.commercialName" path="commercialName" />
 	
 	<h3><spring:message code="company.edit.creditCard"/></h3>
 	<acme:textbox code="company.edit.holder" path="holderName" />

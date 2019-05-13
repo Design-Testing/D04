@@ -41,17 +41,19 @@
 				<jstl:forEach items="${companiesMorePositions}" var="c"
 					varStatus="in">
 					<tr>
-						<td><spring:message code="largest.company" /> ${in.index + 1}</td>
-						<td>${c}</td>
+						<td><spring:message code="largest.company" /></td>
+						<td>${companyMorePositions}</td>
 					</tr>
 				</jstl:forEach>
 			</jstl:otherwise>
 		</jstl:choose>
 	</table>
 	<jstl:if test="${companiesMorePositions.size() gt 1}">
-		<p><spring:message code="largest.company.two" /><p/>
+		<p>
+			<spring:message code="largest.company.two" />
+		<p />
 	</jstl:if>
-	
+
 	<table>
 		<spring:message code="dashboard.company.score" />
 		<tr>
@@ -81,7 +83,8 @@
 				<jstl:forEach items="${companiesHighestScore}" var="cscore"
 					varStatus="in">
 					<tr>
-						<td><spring:message code="largest.company.score" /> ${in.index + 1}</td>
+						<td><spring:message code="largest.company.score" />
+							${in.index + 1}</td>
 						<td>${cscore}</td>
 					</tr>
 				</jstl:forEach>
@@ -89,7 +92,9 @@
 		</jstl:choose>
 	</table>
 	<jstl:if test="${companiesHighestScore.size() gt 1}">
-		<p><spring:message code="largest.company.score.two" /><p/>
+		<p>
+			<spring:message code="largest.company.score.two" />
+		<p />
 	</jstl:if>
 
 	<table>
@@ -115,7 +120,7 @@
 			<td>${avgSalary}</td>
 		</tr>
 	</table>
-	
+
 
 	<table>
 		<spring:message code="dashboard.applications.rooky" />
@@ -135,28 +140,17 @@
 			<td><spring:message code="desviation.applications.rooky" /></td>
 			<td>${desviationRooky}</td>
 		</tr>
-		<jstl:choose>
-			<jstl:when test="${rookysMoreApplications.size() eq 1}">
-				<tr>
-					<td><spring:message code="largest.rooky" /></td>
-					<td>${rookyMoreApplications}</td>
-				</tr>
-			</jstl:when>
-			<jstl:otherwise>
-				<jstl:forEach items="${rookysMoreApplications}" var="h"
-					varStatus="i">
-					<tr>
-						<td><spring:message code="largest.rooky" /> ${i.index + 1}</td>
-						<td>${h}</td>
-					</tr>
-				</jstl:forEach>
-			</jstl:otherwise>
-		</jstl:choose>
+		<tr>
+			<td><spring:message code="largest.rooky" /></td>
+			<td>${rookyMoreApplications}</td>
+		</tr>
 	</table>
 	<jstl:if test="${rookysMoreApplications.size() gt 1}">
-		<p><spring:message code="largest.rooky.two" /><p/>
+		<p>
+			<spring:message code="largest.rooky.two" />
+		<p />
 	</jstl:if>
-	
+
 	<table>
 		<spring:message code="dashboard.positions" />
 		<tr>
@@ -218,8 +212,8 @@
 			<td>${ratioFinders}</td>
 		</tr>
 	</table>
-	
-		<table>
+
+	<table>
 		<spring:message code="dashboard.sponsorship.provider" />
 		<tr>
 			<td><spring:message code="average.sponsorship.provider" /></td>
@@ -248,7 +242,8 @@
 				<jstl:forEach items="${providersTenPercent}" var="ptp"
 					varStatus="in">
 					<tr>
-						<td><spring:message code="provider.ten.percent" /> ${in.index + 1}</td>
+						<td><spring:message code="provider.ten.percent" />
+							${in.index + 1}</td>
 						<td>${ptp}</td>
 					</tr>
 				</jstl:forEach>
@@ -256,10 +251,12 @@
 		</jstl:choose>
 	</table>
 	<jstl:if test="${providersTenPercent.size() gt 1}">
-		<p><spring:message code="provider.ten.percent.two" /><p/>
+		<p>
+			<spring:message code="provider.ten.percent.two" />
+		<p />
 	</jstl:if>
-	
-			<table>
+
+	<table>
 		<spring:message code="dashboard.sponsorship.position" />
 		<tr>
 			<td><spring:message code="average.sponsorship.position" /></td>
@@ -278,5 +275,5 @@
 			<td>${desviationSponsorshipPerPosition}</td>
 		</tr>
 	</table>
-	
+
 </security:authorize>

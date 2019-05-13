@@ -15,12 +15,6 @@
 <acme:display code="item.name" value="${item.name}" />
 <acme:display code="item.description" value="${item.description}" />
 <acme:display code="item.links" value="${item.links}" />
-<spring:message code="item.links"/>
-<jstl:forEach items="${item.links}" var="l">
-	<ul>
-		<li><a href="${l}">${l}</a></li>
-	</ul>
-</jstl:forEach>
 
 <jstl:if test="${not empty item.photo}">
 <spring:message code="item.photo"/>:<br>

@@ -60,7 +60,8 @@
 		
 		<!-- APPLICATION -->
 		<security:intercept-url pattern="/application/company/**" access="hasRole('COMPANY')" /> 
-		<security:intercept-url pattern="/application/rooky/**" access="hasRole('ROOKY')" /> 
+		<security:intercept-url pattern="/application/rooky/**" access="permitAll" /> 
+		
 		
 		<!-- POSITION -->
  		<security:intercept-url pattern="/position/list.do" access="permitAll" />
