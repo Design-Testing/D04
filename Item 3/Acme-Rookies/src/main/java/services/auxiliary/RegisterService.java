@@ -13,6 +13,7 @@ import security.UserAccountRepository;
 import services.AdministratorService;
 import services.AuditorService;
 import services.CompanyService;
+import services.FolderService;
 import services.ProviderService;
 import services.RookyService;
 import services.UserAccountService;
@@ -53,6 +54,9 @@ public class RegisterService {
 	@Autowired
 	private ProviderService			providerService;
 
+	@Autowired
+	private FolderService			folderService;
+
 
 	public Administrator saveAdmin(final Administrator admin, final BindingResult binding) {
 		Administrator result;
@@ -70,6 +74,7 @@ public class RegisterService {
 			uaSaved.setPassword(ua.getPassword());
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
+			this.folderService.setFoldersByDefault(result);
 		} else {
 			final Administrator old = this.administratorService.findOne(admin.getId());
 
@@ -100,6 +105,7 @@ public class RegisterService {
 			uaSaved.setPassword(ua.getPassword());
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
+			this.folderService.setFoldersByDefault(result);
 		} else {
 			final Provider old = this.providerService.findOne(provider.getId());
 
@@ -130,6 +136,7 @@ public class RegisterService {
 			uaSaved.setPassword(ua.getPassword());
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
+			this.folderService.setFoldersByDefault(result);
 		} else {
 			final Rooky old = this.rookyService.findOne(rooky.getId());
 
@@ -160,6 +167,7 @@ public class RegisterService {
 			uaSaved.setPassword(ua.getPassword());
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
+			this.folderService.setFoldersByDefault(result);
 		} else {
 			final Company old = this.companyService.findOne(company.getId());
 
@@ -309,6 +317,7 @@ public class RegisterService {
 			uaSaved.setPassword(ua.getPassword());
 			uaSaved = this.userAccountService.save(uaSaved);
 			result.setUserAccount(uaSaved);
+			this.folderService.setFoldersByDefault(result);
 		} else {
 			final Auditor old = this.auditorService.findOne(auditor.getId());
 
