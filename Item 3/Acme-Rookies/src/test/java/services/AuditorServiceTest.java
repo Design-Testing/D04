@@ -73,24 +73,36 @@ public class AuditorServiceTest extends AbstractTest {
 	/* ========================= Test Create and Save Auditor =========================== */
 
 	@Test
-	public void driverCreateAndSaveAuditor() {
+	public void driverCreateAndSaveAuditor1() {
 		final Collection<String> surnames = new ArrayList<>();
 		surnames.add("Garcia");
 		final Collection<String> surnames2 = new ArrayList<>();
 		surnames2.add("Lanzas");
 		final Object testingData[][] = {
-			/*{
-				//				A: Acme Rookies Register to de system as a company
-				//				B: Test Positivo: Creación correcta de un auditor
-				//				C: % Recorre 181 de la 181 lineas posibles
-				//				D: cobertura de datos = 12/29
-				"auditor1", "auditor1", "Auditor1", surnames, "garcia@gmail.es", "+34647307406", null
-			},*/ {
+			{
 				//				A: Acme Rookies Register to de system as a company
 				//				B: Test Negativo: Creación incorrecta de un auditor con telefono inválido
 				//				C: % Recorre 114 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "auditor2", "Auditor2", surnames2, "lanzas@gmail.com", "mi telefono", null
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateCreateAndSave((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Collection<String>) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Class<?>) testingData[i][6]);
+	}
+	@Test
+	public void driverCreateAndSaveAuditor2() {
+		final Collection<String> surnames = new ArrayList<>();
+		surnames.add("Garcia");
+		final Collection<String> surnames2 = new ArrayList<>();
+		surnames2.add("Lanzas");
+		final Object testingData[][] = {
+			{
+				//				A: Acme Rookies Register to de system as a company
+				//				B: Test Positivo: Creación correcta de un auditor
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
+				"auditor1", "auditor1", "Auditor1", surnames, "garcia@gmail.es", "+34647307406", null
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)

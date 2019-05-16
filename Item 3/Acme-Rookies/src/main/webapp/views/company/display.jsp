@@ -32,7 +32,17 @@
 <acme:display code="company.commercialName" value="${company.commercialName}"/>
 <acme:display code="company.address" value="${company.address}"/>
 <acme:display code="company.vat" value="${company.vat}"/>
-<acme:display code="company.score" value="${company.score}"/>
+
+<jstl:choose>
+	<jstl:when test="${not empty row.score and row.score not eq 0}">
+		<acme:display code="company.score" value="${company.score}"/>
+	</jstl:when>
+	<jstl:otherwise>
+		<display:column titleKey="company.score">
+			<acme:display code="company.score" value="N/A"/>
+		</display:column>
+	</jstl:otherwise>
+	</jstl:choose>
 
 <br>
 <security:authorize access="hasRole('HACKER')">

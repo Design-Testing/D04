@@ -15,6 +15,8 @@
 	<acme:button url="company/computeScores.do" name="display" code="company.compute.scores"/>
 </security:authorize>
 
+
+
 <display:table name="companies" id="row"
 	requestURI="company/list.do" pagesize="5"
 	class="displaytag">
@@ -25,12 +27,12 @@
 	<display:column property="email" titleKey="actor.email" />
 	
 	<jstl:choose>
-	<jstl:when test="${not empty row.score}">
+	<jstl:when test="${not empty row.score and row.score not eq 0}">
 		<display:column property="score" titleKey="company.score" />
 	</jstl:when>
 	<jstl:otherwise>
 		<display:column titleKey="company.score">
-			<jstl:out value="-"></jstl:out>
+			<jstl:out value="N/A"></jstl:out>
 		</display:column>
 	</jstl:otherwise>
 	</jstl:choose>
