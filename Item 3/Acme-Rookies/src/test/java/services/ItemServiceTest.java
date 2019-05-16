@@ -40,26 +40,26 @@ public class ItemServiceTest extends AbstractTest {
 			{
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Positivo: Provider crea Item 
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			C: Recorre 6 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "name test 1", "description test 1", links, "http://photo.com", null
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Negativo: Un member intenta crear una Item sin grado
-				//			C: 32,65% Recorre 16 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			C: Recorre 5 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", null, "description test 1", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Positivo: Provider crea Item con descripción en blanco
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			C: Recorre 5 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "name test 1", "", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Positivo: Provider crea Item con photo que no se corresponde con pattern de URL
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			C: Recorre 5 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "name test 1", "description test 1", links, "photo no url", javax.validation.ConstraintViolationException.class
 			}
 		};
@@ -98,32 +98,32 @@ public class ItemServiceTest extends AbstractTest {
 			{
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Positivo: Provider crea Item 
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			C: Recorre 6 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "item1", "name test 1", "description test 1", links, "http://photo.com", null
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Negativo: Un member intenta crear una Item sin grado
-				//			C: 32,65% Recorre 16 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			C: Recorre 5 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "item1", null, "description test 1", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
-				//			B: Test Positivo: Provider crea Item con descripción en blanco
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			B: Test Negativo: Provider crea Item con descripción en blanco
+				//			C: Recorre 5 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "item1", "name test 1", "", links, "http://photo.com", javax.validation.ConstraintViolationException.class
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
-				//			B: Test Positivo: Provider crea Item con photo que no se corresponde con pattern de URL
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			B: Test Negativo: Provider crea Item con photo que no se corresponde con pattern de URL
+				//			C: Recorre 5 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "item1", "name test 1", "description test 1", links, "photo no url", javax.validation.ConstraintViolationException.class
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
-				//			B: Test Positivo: Provider intenta actualizar Item que no es suyo
-				//			C: 100% Recorre 49 de las 49 lineas posibles
-				//			D: cobertura de datos=6/405
+				//			B: Test Negativo: Provider intenta actualizar Item que no es suyo
+				//			C: Recorre 4 de las 7 lineas posibles
+				//			D: cobertura de datos=4/16
 				"provider1", "item3", "name test 1", "description test 1", links, "http://photo.com", IllegalArgumentException.class
 			}
 		};
@@ -161,13 +161,13 @@ public class ItemServiceTest extends AbstractTest {
 			{
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Positivo: Provider borra Item 
-				//			C: 100% Recorre 78 de las 78 lineas posibles
+				//			C: Recorre 6 de las 6 lineas posibles
 				//			D: cobertura de datos=1/3
 				"provider1", "item1", null
 			}, {
 				//			A: Acme Rookies Req. 10.1 -> Providers can manage their items
 				//			B: Test Negativo: Provider intenta borrr item que no es suyo
-				//			C: 10,25% Recorre 8 de las 78 lineas posibles
+				//			C: Recorre 4 de las 6 lineas posibles
 				//			D: cobertura de datos=1/3
 				"provider1", "item3", IllegalArgumentException.class
 			},

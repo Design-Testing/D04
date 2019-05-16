@@ -81,8 +81,8 @@ public class AuditorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				//				A: Acme Rookies Register to the system as a auditor
-				//				B: Test Negativo: Creación incorrecta de un auditor con telefono inválido
-				//				C: % Recorre 114 de la 181 lineas posibles
+				//				B: Test Positivo: Creación incorrecta de un auditor 
+				//				C: % Recorre 9 de la 13 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "auditor2", "Auditor2", surnames2, "lanzas@gmail.com", "mi telefono", null
 			}
@@ -100,7 +100,7 @@ public class AuditorServiceTest extends AbstractTest {
 			{
 				//				A: Acme Rookies Register to de system as a auditor
 				//				B: Test Positivo: Creación correcta de un auditor
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 9 de la 13 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor1", "auditor1", "Auditor1", surnames, "garcia@gmail.es", "+34647307406", null
 			}
@@ -152,31 +152,31 @@ public class AuditorServiceTest extends AbstractTest {
 			{
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un auditor
-				//				C: % Recorre 181 de las 181 lineas posibles
+				//				C: % Recorre 10 de las 13 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"auditor1", "auditor1", "Auditor1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un auditor con phone vacio
-				//				C: % Recorre 181 de las 181 lineas posibles
+				//				C: % Recorre 11 de las 13 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"auditor1", "auditor1", "Auditor1", surnames, "garcia@gmail.es", "", null
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un auditor con mail inválido
-				//				C: % Recorre 114 de las 181 lineas posibles
+				//				C: % Recorre 114 de las 13 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"auditor1", "auditor1", "Auditor1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un auditor con name vacio
-				//				C: % Recorre 114 de las 181 lineas posibles
+				//				C: % Recorre 11 de las 13 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"auditor1", "auditor1", "", surnames, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un auditor con apellidos vacio
-				//				C: % Recorre 114 de las 181 lineas posibles
+				//				C: % Recorre 11 de las 13 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"auditor1", "auditor1", "Auditor1", surnames2, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}
