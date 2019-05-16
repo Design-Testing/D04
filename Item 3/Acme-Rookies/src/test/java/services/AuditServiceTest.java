@@ -30,11 +30,23 @@ public class AuditServiceTest extends AbstractTest {
 	@Test
 	public void driverAudit() {
 		final Object testingData[][] = {
-			{		// Enrole correcto
+			{
+				//			    A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
+				//				B: Test Positivo: Creación correcta de un audit
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor1", "position8", "text test", 6, null
-			}, {	// Enrole con dropOut seteado (no activo) 
+			}, {
+				//			    A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
+				//				B: Test Negativo: Text en blanco
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor1", "position9", "", 5, javax.validation.ConstraintViolationException.class
-			}, {	// No existe enrole
+			}, {
+				//              A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
+				//				B: Test Negativo : Score nula
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor2", "position10", "test text", null, javax.validation.ConstraintViolationException.class
 			}
 		};
@@ -77,13 +89,29 @@ public class AuditServiceTest extends AbstractTest {
 	@Test
 	public void driverEditAudit() {
 		final Object testingData[][] = {
-			{		// Positivo
+			{
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Positivo: Edición correcta de un audit
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor2", "audit1", "text test edited", 6, null
-			}, {	// Negativo: texto en blanco
+			}, {
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Negativo: Texto en blanco
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor2", "audit1", "", 5, javax.validation.ConstraintViolationException.class
-			}, {	// Negativo: No es su audit
+			}, {
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Negativo: otro auditor intenta editar audit de otro auditor
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor1", "audit1", "test text edited", 6, java.lang.IllegalArgumentException.class
-			}, {	// Negativo: No está en darft mode
+			}, {
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Negativo: no está en draft mode
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor2", "audit7", "test text edited", 6, java.lang.IllegalArgumentException.class
 			}
 		};
@@ -125,11 +153,23 @@ public class AuditServiceTest extends AbstractTest {
 	@Test
 	public void driverDeleteAudit() {
 		final Object testingData[][] = {
-			{		// Positivo
+			{
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Positivo: Eliminación correcta de un audit
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor2", "audit1", null
-			}, {	// Negativo: no esta en fradt mode
+			}, {
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Negativo: no está en draft mode
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor2", "audit7", java.lang.IllegalArgumentException.class
-			}, {	// Negativo: No es su audit
+			}, {
+				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
+				//				B: Test Negativo: otro auditor intenta eliminar audit de otro auditor
+				//				C: % Recorre 181 de la 181 lineas posibles
+				//				D: cobertura de datos = 12/29
 				"auditor1", "audit1", java.lang.IllegalArgumentException.class
 			}
 		};

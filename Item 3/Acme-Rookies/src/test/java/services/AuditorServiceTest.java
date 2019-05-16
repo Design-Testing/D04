@@ -80,7 +80,7 @@ public class AuditorServiceTest extends AbstractTest {
 		surnames2.add("Lanzas");
 		final Object testingData[][] = {
 			{
-				//				A: Acme Rookies Register to de system as a company
+				//				A: Acme Rookies Register to the system as a auditor
 				//				B: Test Negativo: Creación incorrecta de un auditor con telefono inválido
 				//				C: % Recorre 114 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
@@ -98,7 +98,7 @@ public class AuditorServiceTest extends AbstractTest {
 		surnames2.add("Lanzas");
 		final Object testingData[][] = {
 			{
-				//				A: Acme Rookies Register to de system as a company
+				//				A: Acme Rookies Register to de system as a auditor
 				//				B: Test Positivo: Creación correcta de un auditor
 				//				C: % Recorre 181 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29

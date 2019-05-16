@@ -35,13 +35,13 @@ public class ProviderServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//				A: Acme ProviderRank Login Use Case
+				//				A: Acme Rookies Login Use Case
 				//				B: Test Positivo: Un provider puede loguearse correctamente
 				//				C: % Recorre 22 de la 22 lineas posibles
 				//				D: cobertura de datos = 2/2
 				"provider1", null
 			}, {
-				//				A: Acme ProviderRank Login usuario no registrado
+				//				A: Acme Rookies Login usuario no registrado
 				//				B: Test Negativo: Un usuario no registrado no puede logearse
 				//				C: % Recorre 8 de la 22 lineas posibles
 				//				D: cobertura de datos = 2/2
@@ -79,13 +79,13 @@ public class ProviderServiceTest extends AbstractTest {
 		surnames2.add("Lanzas");
 		final Object testingData[][] = {
 			{
-				//				A: Acme ProviderRank Register to de system as a company
+				//				A: Acme Rookies Register to de system as a company
 				//				B: Test Positivo: Creación correcta de un provider
 				//				C: % Recorre 181 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"provider1", "provider1", "Provider1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
-				//				A: Acme ProviderRank Register to de system as a company
+				//				A: Acme Rookies Register to de system as a company
 				//				B: Test Negativo: Creación incorrecta de un provider con telefono inválido
 				//				C: % Recorre 114 de la 181 lineas posibles
 				//				D: cobertura de datos = 12/29
@@ -133,31 +133,31 @@ public class ProviderServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				// 				A: Acme ProviderRank Edit his o her personal data
+				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un provider
 				//				C: % Recorre 181 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
-				// 				A: Acme ProviderRank Edit his o her personal data
+				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un provider con phone vacio
 				//				C: % Recorre 181 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames, "garcia@gmail.es", "", null
 			}, {
-				// 				A: Acme ProviderRank Edit his o her personal data
+				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un provider con mail inválido
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
 			}, {
-				// 				A: Acme ProviderRank Edit his o her personal data
+				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un provider con name vacio
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "", surnames, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}, {
-				// 				A: Acme ProviderRank Edit his o her personal data
+				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un provider con apellidos vacio
 				//				C: % Recorre 114 de las 181 lineas posibles
 				//				D: cobertura de datos = 19/32
