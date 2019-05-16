@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -19,6 +21,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+	@Index(columnList = "rooky"), @Index(columnList = "position"), @Index(columnList = "rooky, status"), @Index(columnList = "problem"),
+})
 public class Application extends DomainEntity {
 
 	private String		status;
@@ -28,7 +33,7 @@ public class Application extends DomainEntity {
 	private String		link;
 
 	private Position	position;
-	private Hacker		hacker;
+	private Rooky		rooky;
 	private Problem		problem;
 	private Curricula	curricula;
 
@@ -95,12 +100,12 @@ public class Application extends DomainEntity {
 
 	@Valid
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rooky getRooky() {
+		return this.rooky;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRooky(final Rooky rooky) {
+		this.rooky = rooky;
 	}
 
 	@Valid

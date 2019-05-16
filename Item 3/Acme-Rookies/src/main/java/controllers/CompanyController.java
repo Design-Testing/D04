@@ -59,6 +59,36 @@ public class CompanyController extends AbstractController {
 		return res;
 	}
 
+	// COMPUTE SCORE ----------------------------------------------------------------
+
+	@RequestMapping(value = "/computeScore", method = RequestMethod.GET)
+	public ModelAndView computeScore(@RequestParam final int companyId) {
+		final ModelAndView res;
+		final Collection<Company> companies = this.companyService.findAll();
+
+		this.companyService.computeScore(this.companyService.findOne(companyId));
+
+		res = new ModelAndView("company/list");
+		res.addObject("companies", companies);
+
+		return res;
+	}
+
+	// COMPUTE SCORES ----------------------------------------------------------------
+
+	@RequestMapping(value = "/computeScores", method = RequestMethod.GET)
+	public ModelAndView computeScores() {
+		final ModelAndView res;
+		final Collection<Company> companies = this.companyService.findAll();
+
+		this.companyService.computeScores();
+
+		res = new ModelAndView("company/list");
+		res.addObject("companies", companies);
+
+		return res;
+	}
+
 	// CREATE ---------------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -135,7 +165,9 @@ public class CompanyController extends AbstractController {
 				result.addObject("alert", "company.edit.correct");
 				result.addObject("companyForm", companyForm);
 			} catch (final ValidationException oops) {
-				result = this.createEditModelAndView(companyForm);
+				result.addObject("errors", binding.getAllErrors());
+				companyForm.setTermsAndCondicions(false);
+				result.addObject("companyForm", companyForm);
 			} catch (final Throwable e) {
 				if (e.getMessage().contains("username is register"))
 					result.addObject("alert", "company.edit.usernameIsUsed");

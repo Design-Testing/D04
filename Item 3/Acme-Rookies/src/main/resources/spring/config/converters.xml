@@ -18,13 +18,18 @@
 	">
 
 	<util:list id="converters">
-	<!-- HACKER -->
-	<bean class="converters.HackerToStringConverter"/>
-	<bean class="converters.StringToHackerConverter"/>
 	
 	<!-- COMPANY -->
 	<bean class="converters.CompanyToStringConverter"/>
 	<bean class="converters.StringToCompanyConverter"/>
+	
+	<!-- ROOKY -->
+	<bean class="converters.RookyToStringConverter"/>
+	<bean class="converters.StringToRookyConverter"/>
+	
+	<!-- AUDITOR -->
+	<bean class="converters.AuditorToStringConverter"/>
+	<bean class="converters.StringToAuditorConverter"/>
 	
 	<!-- APPLICATION -->
 	<bean class="converters.ApplicationToStringConverter"/>
@@ -33,6 +38,14 @@
 	<!-- POSITION -->
 	<bean class="converters.PositionToStringConverter"/>
 	<bean class="converters.StringToPositionConverter"/>
+	
+	<!-- AUDIT -->
+	<bean class="converters.AuditToStringConverter"/>
+	<bean class="converters.StringToAuditConverter"/>
+	
+	<!-- ITEM -->
+	<bean class="converters.ItemToStringConverter"/>
+	<bean class="converters.StringToItemConverter"/>
 	
 	<!-- PROBLEM -->
 	<bean class="converters.ProblemToStringConverter"/>

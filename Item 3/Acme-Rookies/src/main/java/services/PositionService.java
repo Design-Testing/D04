@@ -22,6 +22,7 @@ import domain.Application;
 import domain.Company;
 import domain.Position;
 import domain.Problem;
+import domain.Provider;
 import forms.PositionForm;
 
 @Service
@@ -44,10 +45,13 @@ public class PositionService {
 	private ApplicationService				applicationService;
 
 	@Autowired
-	private HackerService					hackerService;
+	private RookyService					rookyService;
 
 	@Autowired
 	private ConfigurationParametersService	configParamService;
+
+	@Autowired
+	private ProviderService					providerService;
 
 	@Autowired
 	private Validator						validator;
@@ -95,8 +99,8 @@ public class PositionService {
 		return result;
 	}
 
-	public Collection<Position> findAppliedByHacker() {
-		final Collection<Position> result = this.positionRepository.findAppliedByHacker(this.hackerService.findByPrincipal().getId());
+	public Collection<Position> findAppliedByRooky() {
+		final Collection<Position> result = this.positionRepository.findAppliedByRooky(this.rookyService.findByPrincipal().getId());
 		Assert.notNull(result);
 		return result;
 	}
@@ -286,6 +290,51 @@ public class PositionService {
 
 	public Collection<Position> findPositions(final String keyword, final Double minSalary, final Double maxSalary, final Date minDeadline, final Date maxDeadline) {
 		final Collection<Position> res = this.positionRepository.findPositions(keyword, minSalary, maxSalary, minDeadline, maxDeadline);
+		Assert.notNull(res);
+		return res;
+	}
+
+	public Collection<Position> findFreePositionsByAuditor(final int auditorId) {
+		final Collection<Position> audited = this.positionRepository.findAuditedPositionsByAuditor(auditorId);
+		System.out.println(audited);
+		final Collection<Position> res = this.positionRepository.findAllFinal();
+		System.out.println(res);
+		res.removeAll(audited);
+		System.out.println(res);
+		Assert.notNull(res);
+		return res;
+	}
+
+	public boolean exists(final Integer positionId) {
+		Assert.isTrue(positionId != 0, "position id cannot be zero");
+		return this.positionRepository.exists(positionId);
+	}
+
+	public Double[] getStatisticsOfAuditScoreOfPositions() {
+		return this.positionRepository.getStatisticsOfAuditScoreOfPositions();
+	}
+
+	public Double[] getStatisticsOfAuditScoreOfPosition(final int positionId) {
+		return this.positionRepository.getStatisticsOfAuditScoreOfPosition(positionId);
+	}
+
+	public Double getAvgSalaryOfPositionsHighestAvgAuditScore() {
+		return this.positionRepository.getAvgSalaryOfPositionsHighestAvgAuditScore();
+	}
+
+	public Collection<Position> positionsAvailableProvider() {
+		Collection<Position> myPositions;
+		Collection<Position> positions;
+		final Provider s = this.providerService.findByPrincipal();
+		positions = this.findAllFinalMode();
+		myPositions = this.findAllPositionByProvider(s);
+		positions.removeAll(myPositions);
+		return positions;
+	}
+
+	public Collection<Position> findAllPositionByProvider(final Provider s) {
+		Collection<Position> res;
+		res = this.positionRepository.findAllParadeByProvider(s.getUserAccount().getId());
 		Assert.notNull(res);
 		return res;
 	}

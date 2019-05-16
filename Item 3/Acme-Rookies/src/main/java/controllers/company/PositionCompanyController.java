@@ -19,10 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CompanyService;
 import services.PositionService;
 import services.ProblemService;
+import services.SponsorshipService;
 import controllers.AbstractController;
 import domain.Company;
 import domain.Position;
 import domain.Problem;
+import domain.Sponsorship;
 import forms.PositionForm;
 
 @Controller
@@ -30,15 +32,18 @@ import forms.PositionForm;
 public class PositionCompanyController extends AbstractController {
 
 	@Autowired
-	private PositionService	positionService;
+	private PositionService		positionService;
 
 	@Autowired
-	private CompanyService	companyService;
+	private CompanyService		companyService;
 
 	@Autowired
-	private ProblemService	problemService;
+	private ProblemService		problemService;
 
-	final String			lang	= LocaleContextHolder.getLocale().getLanguage();
+	@Autowired
+	private SponsorshipService	sponsorshipService;
+
+	final String				lang	= LocaleContextHolder.getLocale().getLanguage();
 
 
 	// CREATE --------------------------------------------------------
@@ -72,7 +77,13 @@ public class PositionCompanyController extends AbstractController {
 			result.addObject("rol", "company");
 			result.addObject("lang", this.lang);
 			result.addObject("problems", problems);
-
+			final Sponsorship sp = this.sponsorshipService.findRandomSponsorship(positionId);
+			if (sp != null) {
+				final String imgbanner = sp.getBanner();
+				result.addObject("imgbanner", imgbanner);
+				final String targetpage = sp.getTargetPage();
+				result.addObject("targetpage", targetpage);
+			}
 		} else
 			result = new ModelAndView("redirect:misc/403");
 

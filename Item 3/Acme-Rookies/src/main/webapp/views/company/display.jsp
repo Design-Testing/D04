@@ -20,7 +20,7 @@
 
 <acme:display code="company.name" value="${company.name}"/>
 <spring:message code="company.photo"/>:<br>
-<img src="${company.photo}" alt="<spring:message code="hacker.alt.image"/>" width="20%" height="20%"/>
+<img src="${company.photo}" alt="<spring:message code="company.alt.image"/>" width="20%" height="20%"/>
 <br>
 <jstl:if test="${not empty company.surname}">
 <jstl:forEach items="${company.surname}" var="df">
@@ -32,6 +32,15 @@
 <acme:display code="company.commercialName" value="${company.commercialName}"/>
 <acme:display code="company.address" value="${company.address}"/>
 <acme:display code="company.vat" value="${company.vat}"/>
+
+<jstl:choose>
+	<jstl:when test="${(not empty company.score) and (company.score ne 0)}">
+		<acme:display code="company.score" value="${company.score}"/>
+	</jstl:when>
+	<jstl:otherwise>
+			<acme:display code="company.score" value="N/A"/>
+	</jstl:otherwise>
+	</jstl:choose>
 
 <br>
 <security:authorize access="hasRole('HACKER')">

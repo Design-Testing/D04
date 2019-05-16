@@ -15,9 +15,9 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Hacker;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rooky;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -31,7 +31,7 @@ public class PositionDataServiceTest extends AbstractTest {
 	private PositionDataService	positionDataService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookyService		hackerService;
 
 	@Autowired
 	private CurriculaService	curriculaService;
@@ -44,26 +44,26 @@ public class PositionDataServiceTest extends AbstractTest {
 	public void driverCreateSave() {
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea PositionData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea PositionData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "title1", "description1", "2014-09-15", "2018-09-20", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Un hacker intenta crear una PositionData con título nulo
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", null, "institution1", "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea PositionData con descripción en blanco
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea PositionData con descripción en blanco
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", "title2", "", "2014-09-15", "2018-09-20", org.springframework.dao.DataIntegrityViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea PositionData con fecha de finalización anterior a fecha de comienzo
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea PositionData con fecha de finalización anterior a fecha de comienzo
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", "title3", "institution3", "2014-09-15", "2013-09-20", IllegalArgumentException.class
@@ -109,26 +109,26 @@ public class PositionDataServiceTest extends AbstractTest {
 	public void driverEdit() {
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea PositionData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea PositionData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "title1", "description1", "2014-09-15", "2018-09-20", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Un hacker intenta crear una PositionData con título nulo
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", null, "institution1", "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea PositionData con descripción en blanco
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea PositionData con descripción en blanco
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", "title2", "", "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea PositionData con fecha de finalización anterior a fecha de comienzo
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea PositionData con fecha de finalización anterior a fecha de comienzo
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", "title3", "institution3", "2014-09-15", "2013-09-20", IllegalArgumentException.class
@@ -143,8 +143,8 @@ public class PositionDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Hacker principal = this.hackerService.findByPrincipal();
-			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(principal.getId());
+			final Rooky principal = this.hackerService.findByPrincipal();
+			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(principal.getId());
 			final Curricula curricula = curriculas.iterator().next();
 			final PositionData lR = curricula.getPositions().iterator().next();
 			lR.setTitle(title);
@@ -172,13 +172,13 @@ public class PositionDataServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker borra PositionData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky borra PositionData 
 				//			C: 100% Recorre 78 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
 				"hacker2", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Compañía intenta borrar PositionData 
 				//			C: 10,25% Recorre 8 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
@@ -194,8 +194,8 @@ public class PositionDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(actor);
-			final Hacker hacker = this.hackerService.findByPrincipal();
-			final PositionData lRec = this.curriculaService.findCurriculaByHacker(hacker.getId()).iterator().next().getPositions().iterator().next();
+			final Rooky hacker = this.hackerService.findByPrincipal();
+			final PositionData lRec = this.curriculaService.findCurriculaByRooky(hacker.getId()).iterator().next().getPositions().iterator().next();
 			this.positionDataService.delete(lRec);
 			this.positionDataService.flush();
 			this.unauthenticate();

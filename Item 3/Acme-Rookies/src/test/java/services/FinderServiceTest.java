@@ -32,49 +32,49 @@ public class FinderServiceTest extends AbstractTest {
 	public void driverCreateAndSaveFinder() {
 		final Object testingData[][] = {
 			{
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda vacios)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "", null, null, null, null, new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda vacios menos keyword)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "jotaunit", null, null, null, null, new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda vacios menos min salary)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "", "1000.0", null, null, null, new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda vacios menos max salary)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "", null, "1500.0", null, null, new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda vacios menos min deadline)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "", null, null, "2019-02-02 20:00", null, new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda vacios menos max deadline)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "", null, null, null, "2019-02-02 20:00", new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Positivo: Un hacker puede actualizar su finder (todos los parametros de busqueda)
 				//				C: % Recorre 31 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
 				"hacker1", "jotaunit", "200.0", "1000.0", "2019-02-02 10:00", "2019-02-02 20:00", new ArrayList<Position>(), null
 			}, {
-				//				A: Acme HackerRank R.17.2. Manage finder
+				//				A: Acme RookyRank R.17.2. Manage finder
 				//				B: Test Negativo: Un hacker puede actualizar su finder. Ningun actor ajeno a el puede hacerlo
 				//				C: % Recorre 6 de las 31 lineas posibles
 				//				D: % cobertura de datos= 8/32
@@ -115,7 +115,7 @@ public class FinderServiceTest extends AbstractTest {
 			else
 				maxDeadline = null;
 
-			final Finder finder = this.finderService.findHackerFinder();
+			final Finder finder = this.finderService.findRookyFinder();
 			finder.setKeyword(keyword);
 			finder.setPositions(positions);
 			finder.setMinSalary(minSalary);
@@ -137,13 +137,13 @@ public class FinderServiceTest extends AbstractTest {
 	public void driverFindFinder() {
 		final Object testingData[][] = {
 			{
-				//				A: Acme HackerRank R.17.2. Listing finder's contents
+				//				A: Acme RookyRank R.17.2. Listing finder's contents
 				//				B: Test Positivo: Un hacker puede listar el contenido de su finder
 				//				C: % Recorre 34 de las 34 lineas posibles
 				//				D: % cobertura de datos= 2/2
 				"hacker1", null
 			}, {
-				//				A: Acme HackerRank R.17.2. Listing finder's contents
+				//				A: Acme RookyRank R.17.2. Listing finder's contents
 				//				B: Test Positivo: Un HACKER puede listar el contenido de su finder
 				//				C: % Recorre 14 de las 31 lineas posibles
 				//				D: % cobertura de datos= 2/2
@@ -158,7 +158,7 @@ public class FinderServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(principal);
-			final Finder finder = this.finderService.findHackerFinder();
+			final Finder finder = this.finderService.findRookyFinder();
 			this.finderService.find(finder);
 			this.finderService.flush();
 			this.unauthenticate();
@@ -174,13 +174,13 @@ public class FinderServiceTest extends AbstractTest {
 	public void driverClearFinder() {
 		final Object testingData[][] = {
 			{
-				//				A: Acme HackerRank R.17.2. Clear finder
+				//				A: Acme RookyRank R.17.2. Clear finder
 				//				B: Test Positivo: Un hacker puede limpiar su finder
 				//				C: % Recorre 35 de las 35 lineas posibles
 				//				D: % cobertura de datos= 2/2
 				"hacker1", null
 			}, {
-				//				A: Acme HackerRank R.17.2. Clear finder
+				//				A: Acme RookyRank R.17.2. Clear finder
 				//				B: Test Negativo: Un HACKER puede limpiar su finder
 				//				C: % Recorre 14 de las 35 lineas posibles
 				//				D: % cobertura de datos= 2/2
@@ -195,7 +195,7 @@ public class FinderServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(principal);
-			final Finder finder = this.finderService.findHackerFinder();
+			final Finder finder = this.finderService.findRookyFinder();
 			this.finderService.clear(finder);
 			this.finderService.flush();
 			this.unauthenticate();

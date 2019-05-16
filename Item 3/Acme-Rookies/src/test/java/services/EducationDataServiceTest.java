@@ -16,8 +16,8 @@ import org.springframework.util.Assert;
 import utilities.AbstractTest;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
 import domain.PersonalData;
+import domain.Rooky;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -31,7 +31,7 @@ public class EducationDataServiceTest extends AbstractTest {
 	private EducationDataService	educationDataService;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookyService			hackerService;
 
 	@Autowired
 	private CurriculaService		curriculaService;
@@ -44,26 +44,26 @@ public class EducationDataServiceTest extends AbstractTest {
 	public void driverCreateSave() {
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea EducationData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea EducationData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "degree1", "institution1", 5, "2014-09-15", "2018-09-20", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Un member intenta crear una EducationData sin grado
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", null, "institution1", 5, "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea EducationData con institución en blanco
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea EducationData con institución en blanco
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "degree1", "", 3, "2014-09-15", "2018-09-20", org.springframework.dao.DataIntegrityViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea EducationData con fecha de finalización anterior a fecha de inicio
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea EducationData con fecha de finalización anterior a fecha de inicio
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "degree1", "institution2", 3, "2014-09-15", "2013-09-20", IllegalArgumentException.class
@@ -111,26 +111,26 @@ public class EducationDataServiceTest extends AbstractTest {
 	public void driverEdit() {
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea EducationData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea EducationData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "degree1", "institution1", 5, "2014-09-15", "2018-09-20", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Un member intenta crear una EducationData sin grado
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker2", null, "institution1", 5, "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea EducationData con institución en blanco
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea EducationData con institución en blanco
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "degree1", "", 3, "2014-09-15", "2018-09-20", javax.validation.ConstraintViolationException.class
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker crea EducationData con fecha de finalización anterior a fecha de inicio
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky crea EducationData con fecha de finalización anterior a fecha de inicio
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
 				"hacker1", "degree1", "institution2", 3, "2014-09-15", "2013-09-20", IllegalArgumentException.class
@@ -145,8 +145,8 @@ public class EducationDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Hacker principal = this.hackerService.findByPrincipal();
-			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByHacker(principal.getId());
+			final Rooky principal = this.hackerService.findByPrincipal();
+			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(principal.getId());
 			final Curricula curricula = curriculas.iterator().next();
 			final EducationData lR = curricula.getEducations().iterator().next();
 			lR.setInstitution(institution);
@@ -175,13 +175,13 @@ public class EducationDataServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
-				//			B: Test Positivo: Hacker borra EducationData 
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
+				//			B: Test Positivo: Rooky borra EducationData 
 				//			C: 100% Recorre 78 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
 				"hacker2", null
 			}, {
-				//			A: Acme HackerRank Req. 17 -> Hackers can manage their history
+				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Compañía intenta borrar EducationData 
 				//			C: 10,25% Recorre 8 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
@@ -197,8 +197,8 @@ public class EducationDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(actor);
-			final Hacker hacker = this.hackerService.findByPrincipal();
-			final EducationData lRec = this.curriculaService.findCurriculaByHacker(hacker.getId()).iterator().next().getEducations().iterator().next();
+			final Rooky hacker = this.hackerService.findByPrincipal();
+			final EducationData lRec = this.curriculaService.findCurriculaByRooky(hacker.getId()).iterator().next().getEducations().iterator().next();
 			this.educationDataService.delete(lRec);
 			this.educationDataService.flush();
 			this.unauthenticate();

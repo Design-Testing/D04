@@ -255,55 +255,6 @@ public class ActorService {
 			a.setSpammer(true);
 	}
 
-	public double computeScore(final Actor a) {
-		final boolean isHacker = this.checkAuthority(a, Authority.HACKER);
-		final boolean isCompany = this.checkAuthority(a, Authority.COMPANY);
-		Assert.isTrue(isHacker || isCompany);
-
-		Assert.notNull(a);
-		int p = 0;
-		int n = 0;
-
-		this.administratorService.findByPrincipal();
-		final Collection<String> pwords = this.configurationParametersService.findPositiveWords();
-		final Collection<String> nwords = this.configurationParametersService.findNegativeWords();
-
-		final Collection<String> messagesStrings = new ArrayList<>();
-		for (final Message m : this.messageService.findActorMessages(a)) {
-			final String body = m.getBody().toLowerCase();
-			final String subject = m.getSubject().toLowerCase();
-			messagesStrings.add(subject);
-			messagesStrings.add(body);
-		}
-
-		for (final String pword : pwords)
-			for (final String comment : messagesStrings) {
-				final boolean bool = comment.matches(".*" + pword + ".*");
-				if (bool)
-					p++;
-			}
-
-		for (final String nword : nwords)
-			for (final String comment : messagesStrings) {
-				final boolean bool = comment.matches(".*" + nword + ".*");
-				if (bool)
-					n++;
-			}
-
-		final int min = -n;
-		final int max = p;
-		final int range = max - min;
-		final int res = p - n;
-		final double normRes;
-
-		if (range != 0)
-			normRes = (2 * ((res - min) / range)) - 1;
-		else
-			normRes = 0;
-
-		return normRes;
-	}
-
 	/**
 	 * An administrator can ban system actors, so he must be able to modify them. That's an ancilliary method to "banActor" and "unbanActor", it checks
 	 * administrator only changes actor's spammer attribute or that the score is too negative (<-0.5)

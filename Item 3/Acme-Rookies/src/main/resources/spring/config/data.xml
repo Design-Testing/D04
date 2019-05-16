@@ -25,26 +25,27 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://bjdtatkry6dlobx3l6ph-mysql.services.clever-cloud.com:3306/bjdtatkry6dlobx3l6ph" />
-		<property name="user" value="uyyajkyjkniwtqt9" />
-		<property name="password" value="T9uxmSFaSk6kmk6VcwlH" />
+			value="jdbc:mysql://bn5olgqqpj4s77muib4o-mysql.services.clever-cloud.com:3306/bn5olgqqpj4s77muib4o" />
+		<property name="user" value="uedcrh1eeh05fck6" />
+		<property name="password" value="SfoFb5tBwkf5XDvzLg6K" />
 		<property name="minPoolSize" value="1" />
 		<property name="maxPoolSize" value="5" />
 	</bean> -->
-	 
+
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Acme-HackerRank" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Acme-Rookies" />
 		<property name="user" value="acme-user" />
 		<property name="password" value="ACME-Us3r-P@ssw0rd" />
 		<property name="minPoolSize" value="1" />
 		<property name="maxPoolSize" value="5" />
 	</bean>
 
+
 	<!-- JPA -->
 
 	<bean id="persistenceUnit" class="java.lang.String">
-		<constructor-arg value="Acme-HackerRank" />
+		<constructor-arg value="Acme-Rookies" />
 	</bean>
 
 	<bean id="sqlDialect" class="java.lang.String">

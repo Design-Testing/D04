@@ -37,16 +37,19 @@
 	<jstl:when test="${rol eq 'company' }">
 		<acme:button url="position/company/display.do?positionId=${row.id}" name="display" code="position.display"/>
 	</jstl:when>
+	<jstl:when test="${rol eq 'auditor' }">
+		<acme:button url="audit/auditor/create.do?positionId=${row.id}" name="create" code="position.create.audit"/>
+	</jstl:when>
 	<jstl:otherwise>
 		<acme:button url="position/display.do?positionId=${row.id}" name="display" code="position.display"/>
 	</jstl:otherwise>
 	</jstl:choose>
 	</display:column>
 	
-	<security:authorize access="hasRole('HACKER')">
-	<jstl:if test="${rol eq 'hacker'}">
+	<security:authorize access="hasRole('ROOKY')">
+	<jstl:if test="${rol eq 'rooky'}">
 	<jstl:set var="ctrl" value="0"/>
-	<jstl:forEach var="t" items="${hackerPositions}">
+	<jstl:forEach var="t" items="${rookyPositions}">
 		<jstl:if test="${t eq row}">
 			<jstl:set var="ctrl" value="1"/>
 		</jstl:if>
@@ -55,7 +58,7 @@
 			<display:column>
 				<jstl:choose>
 					<jstl:when test="${ctrl == 0}">
-						<acme:button url="application/hacker/create.do?positionId=${row.id}" name="apply" code="position.application"/>
+						<acme:button url="application/rooky/create.do?positionId=${row.id}" name="apply" code="position.application"/>
 					</jstl:when>
 					<jstl:otherwise>
 						<spring:message code="position.applied" />
@@ -88,8 +91,34 @@
 	</display:column>
 	
 	</security:authorize>
-
 	
+	<display:column>
+		<acme:button url="audit/auditor/listAll.do?positionId=${row.id}" name="display" code="audit.display"/>
+	</display:column>
+
+	<security:authorize access="hasRole('PROVIDER')">
+			<jstl:if test="${rol eq 'provider'}">
+				<jstl:set var="ctrl" value="0" />
+				<jstl:forEach var="r" items="${providerpositions}">
+					<jstl:if test="${r eq row}">
+						<jstl:set var="ctrl" value="1" />
+					</jstl:if>
+				</jstl:forEach>
+				<display:column>
+					<jstl:choose>
+						<jstl:when test="${ctrl == 0}">
+							<acme:link url="sponsorship/provider/create.do?positionId=${row.id}"
+								code="position.to.sponsors" />
+						</jstl:when>
+						<jstl:otherwise>
+							<acme:link
+								url="sponsorship/provider/display.do?positionId=${row.id}"
+								code="position.sponsored" />
+						</jstl:otherwise>
+					</jstl:choose>
+				</display:column>
+			</jstl:if>
+		</security:authorize>
 </display:table>
 
 <jstl:if test="${not empty msg}">

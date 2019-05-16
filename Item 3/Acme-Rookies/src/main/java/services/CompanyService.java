@@ -28,16 +28,19 @@ import forms.CompanyForm;
 public class CompanyService {
 
 	@Autowired
-	private CompanyRepository	companyRepository;
+	private CompanyRepository		companyRepository;
 
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private UserAccountService	userAccountService;
+	private AdministratorService	administratorService;
 
 	@Autowired
-	private Validator			validator;
+	private UserAccountService		userAccountService;
+
+	@Autowired
+	private Validator				validator;
 
 
 	//METODOS CRUD
@@ -194,6 +197,20 @@ public class CompanyService {
 		return res;
 	}
 
+	public Double[] getStatisticsOfScoreOfCompanies() {
+		return this.companyRepository.getStatisticsOfScoreOfCompanies();
+	}
+
+	public Double[] getStatisticsOfAuditScoreOfCompany(final int companyId) {
+		return this.companyRepository.getStatisticsOfAuditScoreOfCompany(companyId);
+	}
+
+	public Collection<Company> getCompaniesHighestAuditScore() {
+		final Collection<Company> res = this.companyRepository.getCompaniesHighestAuditScore();
+		Assert.notNull(res);
+		return res;
+	}
+
 	/**
 	 * The average, minimum, maximum and standard deviation of the number of positions per company
 	 * 
@@ -214,6 +231,44 @@ public class CompanyService {
 		final Collection<Company> res = this.companyRepository.getCompaniesMorePositions();
 		Assert.notNull(res);
 		return res;
+	}
+
+	public Double computeScore(final Actor a) {
+		final boolean isCompany = this.actorService.checkAuthority(a, Authority.COMPANY);
+		Assert.isTrue(isCompany);
+
+		Assert.notNull(a);
+
+		this.administratorService.findByPrincipal();
+
+		final Integer min = this.companyRepository.getMinScore(a.getId());
+		final Integer max = this.companyRepository.getMaxScore(a.getId());
+
+		final int range = max - min;
+		final Double res = this.companyRepository.getAvgScore(a.getId());
+
+		final Double normRes;
+
+		if (range != 0)
+			normRes = (res - min) / (max - min);
+		else
+			normRes = 0.;
+
+		final Company company = this.findOne(a.getId());
+		company.setScore(normRes);
+
+		this.companyRepository.save(company);
+
+		return normRes;
+	}
+
+	public void computeScores() {
+
+		final Collection<Company> companies = this.findAll();
+		if (!companies.isEmpty())
+			for (final Company c : companies)
+				this.computeScore(c);
+
 	}
 
 	public void flush() {

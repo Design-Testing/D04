@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import repositories.ActorRepository;
+import repositories.AdministratorRepository;
+import repositories.AuditorRepository;
+import repositories.CompanyRepository;
+import repositories.ProviderRepository;
+import repositories.RookyRepository;
 import domain.Actor;
 
 @Component
@@ -16,21 +20,41 @@ import domain.Actor;
 public class StringToActorConverter implements Converter<String, Actor> {
 
 	@Autowired
-	private ActorRepository	actorRepository;
+	private CompanyRepository		companyRepository;
+
+	@Autowired
+	private RookyRepository			rookyRepository;
+
+	@Autowired
+	private AdministratorRepository	administratorRepository;
+
+	@Autowired
+	private ProviderRepository		providerRepository;
+
+	@Autowired
+	private AuditorRepository		auditorRepository;
 
 
 	@Override
 	public Actor convert(final String text) {
 
-		final Actor result;
-		final int id;
+		Actor result;
+		int id;
 
 		try {
 			if (StringUtils.isEmpty(text))
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.actorRepository.findOne(id);
+				result = this.companyRepository.findOne(id);
+				if (result == null)
+					result = this.rookyRepository.findOne(id);
+				if (result == null)
+					result = this.administratorRepository.findOne(id);
+				if (result == null)
+					result = this.providerRepository.findOne(id);
+				if (result == null)
+					result = this.auditorRepository.findOne(id);
 			}
 
 		} catch (final Throwable oops) {

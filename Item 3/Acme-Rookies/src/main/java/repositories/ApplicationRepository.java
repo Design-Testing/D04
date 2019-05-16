@@ -10,8 +10,8 @@ import domain.Application;
 
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
-	@Query("select a from Application a where a.hacker.userAccount.id=?1")
-	Collection<Application> findAllByHackerId(Integer hackerUAId);
+	@Query("select a from Application a where a.rooky.userAccount.id=?1")
+	Collection<Application> findAllByRookyId(Integer rookyUAId);
 
 	@Query("select a from Application a join a.position p where p.company.userAccount.id=?1")
 	Collection<Application> findAllByCompanyId(Integer companyUAId);
@@ -25,17 +25,17 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select a from Application a join a.position p where p.company.userAccount.id=?1 AND a.status='SUBMITTED'")
 	Collection<Application> findAllSubmittedByCompany(int companyUAId);
 
-	@Query("select a from Application a where a.status='ACCEPTED' AND a.hacker.userAccount.id=?1")
-	Collection<Application> findAllAcceptedByHacker(int hackerUAId);
+	@Query("select a from Application a where a.status='ACCEPTED' AND a.rooky.userAccount.id=?1")
+	Collection<Application> findAllAcceptedByRooky(int rookyUAId);
 
-	@Query("select a from Application a where a.status='REJECTED' AND a.hacker.userAccount.id=?1")
-	Collection<Application> findAllRejectedByHacker(int hackerUAId);
+	@Query("select a from Application a where a.status='REJECTED' AND a.rooky.userAccount.id=?1")
+	Collection<Application> findAllRejectedByRooky(int rookyUAId);
 
-	@Query("select a from Application a where a.status='SUBMITTED' AND a.hacker.userAccount.id=?1")
-	Collection<Application> findAllSubmittedByHacker(int hackerUAId);
+	@Query("select a from Application a where a.status='SUBMITTED' AND a.rooky.userAccount.id=?1")
+	Collection<Application> findAllSubmittedByRooky(int rookyUAId);
 
-	@Query("select a from Application a where a.status='PENDING' AND a.hacker.userAccount.id=?1")
-	Collection<Application> findAllPendingByHacker(int hackerUAId);
+	@Query("select a from Application a where a.status='PENDING' AND a.rooky.userAccount.id=?1")
+	Collection<Application> findAllPendingByRooky(int rookyUAId);
 
 	@Query("select a from Application a where a.position.id=?1")
 	Collection<Application> findApplicationsByPosition(int positionId);

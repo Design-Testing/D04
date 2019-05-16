@@ -62,8 +62,9 @@ public class AdministratorController extends AbstractController {
 				result.addObject("alert", "administartor.edit.correct");
 				result.addObject("actorForm", actorForm);
 			} catch (final ValidationException oops) {
-				result = new ModelAndView("hacker/edit");
+				result = new ModelAndView("administrator/edit");
 				result.addObject("actorForm", actorForm);
+				result.addObject("errors", binding.getAllErrors());
 			} catch (final Throwable e) {
 				if (e.getMessage().contains("username is register"))
 					result.addObject("alert", "administartor.edit.usernameIsUsed");

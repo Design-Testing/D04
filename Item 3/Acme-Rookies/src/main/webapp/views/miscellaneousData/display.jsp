@@ -13,8 +13,12 @@
 
 	
 <acme:display code="record.freeText" value="${miscellaneousData.freeText}" />
-<acme:display code="record.attachments" value="${miscellaneousData.attachments}" />
-
+<spring:message code="record.attachments"/>
+<jstl:forEach items="${miscellaneousData.attachments}" var="l">
+	<ul>
+		<li><jstl:out value="${l}"/></li>
+	</ul>
+</jstl:forEach>
 
 <br>
 

@@ -1,17 +1,26 @@
+
 package controllers.administrator;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import services.ActorService;
 import services.ConfigurationParametersService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.ConfigurationParameters;
 
 @Controller
@@ -21,23 +30,22 @@ public class ConfigurationParametersAdministratorController extends AbstractCont
 	@Autowired
 	private ConfigurationParametersService	configurationParametersService;
 
+	@Autowired
+	private ActorService					actorService;
+
 
 	//To open the view to edit-----------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {
-
 		ModelAndView result;
+
 		ConfigurationParameters configurationParameters;
-
 		configurationParameters = this.configurationParametersService.find();
-
 		Assert.notNull(configurationParameters);
-
 		result = this.createEditModelAndView(configurationParameters);
 
 		return result;
-
 	}
 
 	//To save what has been edited-----------------
@@ -60,6 +68,86 @@ public class ConfigurationParametersAdministratorController extends AbstractCont
 
 		return result;
 
+	}
+
+	@RequestMapping(value = "/rebrand", method = RequestMethod.GET)
+	public ModelAndView rebrand() {
+		final ModelAndView result;
+		final Actor principal = this.actorService.findByPrincipal();
+		final boolean rebrand = this.configurationParametersService.find().isRebranding();
+		final Boolean isAdmin = this.actorService.checkAuthority(principal, Authority.ADMIN);
+		Assert.isTrue(isAdmin);
+
+		if (isAdmin && !rebrand)
+			result = new ModelAndView("configurationParameters/rebranding");
+		else if (rebrand) {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.only.once");
+		} else {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.commit.error");
+		}
+
+		return result;
+
+	}
+
+	@RequestMapping(value = "/rebranding", method = RequestMethod.GET)
+	public ModelAndView rebranding(@RequestParam final String newSysName) {
+		ModelAndView result;
+		try {
+			this.configurationParametersService.rebranding(newSysName);
+			result = this.toWelcome("rebranding.process.finished");
+		} catch (final Throwable e) {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.commit.error");
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/notifyRebrand", method = RequestMethod.GET)
+	public ModelAndView notifyRebrand() {
+		final ModelAndView result;
+		final Actor principal = this.actorService.findByPrincipal();
+		final boolean rebrand = this.configurationParametersService.find().isRebranding();
+		final Boolean isAdmin = this.actorService.checkAuthority(principal, Authority.ADMIN);
+		Assert.isTrue(isAdmin);
+
+		if (isAdmin && !rebrand) {
+			this.configurationParametersService.notifyRebranding();
+			result = this.toWelcome("rebranding.notify.process.finished");
+		} else if (rebrand) {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.notify.only.once");
+		} else {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.notify.error");
+		}
+
+		return result;
+
+	}
+
+	private ModelAndView toWelcome(final String alert) {
+		ModelAndView result;
+		result = new ModelAndView("welcome/index");
+		final String lang = LocaleContextHolder.getLocale().getLanguage();
+
+		String mensaje = null;
+		if (lang.equals("en"))
+			mensaje = this.configurationParametersService.findWelcomeMessageEn();
+		else if (lang.equals("es"))
+			mensaje = this.configurationParametersService.findWelcomeMessageEsp();
+
+		final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		final String moment = formatter.format(new Date());
+
+		result = new ModelAndView("welcome/index");
+		result.addObject("moment", moment);
+		result.addObject("mensaje", mensaje);
+
+		result.addObject("alert", alert);
+		return result;
 	}
 
 	//Ancillary methods------------------

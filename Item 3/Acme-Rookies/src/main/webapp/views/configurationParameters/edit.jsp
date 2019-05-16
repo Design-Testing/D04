@@ -14,6 +14,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="rebranding" />
 	
 	<form:label path="sysName">
 		<spring:message code="configurationParameters.sysName" />:

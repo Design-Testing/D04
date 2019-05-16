@@ -25,9 +25,11 @@
 
 	<display:column property="position.title" titleKey="application.position"/>
 
-	<display:column property="hacker" titleKey="application.hacker" />
+	<display:column property="rooky" titleKey="application.rooky" />
 		
-	<display:column property="status" titleKey="application.status" />
+	<display:column titleKey="application.status">
+		<acme:statusChoose status="${row.status}"/>
+	</display:column>
 	
 	<display:column property="problem.title" titleKey="application.problem" />
 	
@@ -47,10 +49,10 @@
 			</display:column>
 	</security:authorize>
 
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKY')">
 	<display:column>
 				<jstl:if test="${row.status eq 'PENDING'}">
-					<acme:button url="application/hacker/edit.do?applicationId=${row.id}"
+					<acme:button url="application/rooky/edit.do?applicationId=${row.id}"
 						name="submit" code="application.submit" />
 				</jstl:if>
 			</display:column>
@@ -62,9 +64,9 @@
 	</display:column>
 	</security:authorize>
 	
-	<security:authorize access="hasRole('HACKER')">	
+	<security:authorize access="hasRole('ROOKY')">	
 	<display:column>
-		<acme:button url="application/hacker/display.do?applicationId=${row.id}" name="display" code="application.display" />
+		<acme:button url="application/rooky/display.do?applicationId=${row.id}" name="display" code="application.display" />
 	</display:column>
 	</security:authorize>
 

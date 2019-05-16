@@ -11,29 +11,16 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-
-<div id="problems">
-        <ul style="list-style-type: disc">
-            <li><b><spring:message code="problems"/></b>
-        </ul>
-    </div>
+<security:authorize access="hasRole('COMPANY')">
     
     <display:table pagesize="10" class="displaytag" keepStatus="true"
                name="problems" requestURI="${requestURI}" id="row">
     <!-- Attributes -->
 	
-    <spring:message var="title" code="problem.title"/>
-    <display:column property="title" sortable="true"/>
-    <spring:message var="statement" code="problem.statement"/>
-    <display:column property="statement" sortable="true"/>
-    <spring:message var="hint" code="problem.hint"/>
-    <display:column property="hint" sortable="true"/>
-    <spring:message var="attachments" code="problem.attachments"/>
-    <display:column property="attachments" sortable="true"/>
-    <spring:message var="mode" code="problem.mode"/>
-    <display:column property="mode" sortable="true"/>
-    <spring:message var="company" code="problem.company"/>
-    <display:column property="company" sortable="true"/>
+    <display:column property="title" titleKey="problem.title"/>
+    <display:column property="statement" titleKey="problem.statement"/>
+    <display:column property="mode" titleKey="problem.mode"/>
+    <display:column property="company" titleKey="problem.company"/>
     
 	<display:column>
 	<jstl:if test="${row.mode eq 'DRAFT'}">
@@ -43,17 +30,7 @@
 	</jstl:if>
 	</display:column>
 	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT'}">
-            <input type="button" name="toFinalMode"
-                value="<spring:message code="problem.finalMode" />"
-                onclick="relativeRedir('problem/company/finalMode.do?problemId=${row.id}')" />
-	</jstl:if>
-	</display:column>
-	
-	<display:column>
-			<input type="button" name="delete"
-                value="<spring:message code="problem.delete" />"
-                onclick="relativeRedir('problem/company/delete.do?problemId=${row.id}&positionId=${row.position.id}')" />
+		<acme:link url="position/company/display.do?positionId=${row.position.id}" code="problem.position"/>
 	</display:column>
 	
 	<display:column>
@@ -63,4 +40,4 @@
 	</display:column>
         
 	</display:table>
-	
+</security:authorize>

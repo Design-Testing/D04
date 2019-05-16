@@ -9,9 +9,12 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
@@ -26,6 +29,11 @@ import cz.jirutka.validator.collection.constraints.EachNotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+	@Index(columnList = "company"), @Index(columnList = "mode"), @Index(columnList = "salary"), @Index(columnList = "salary"),
+}, uniqueConstraints = {
+	@UniqueConstraint(columnNames = "ticker")
+})
 public class Position extends DomainEntity {
 
 	private String				title;

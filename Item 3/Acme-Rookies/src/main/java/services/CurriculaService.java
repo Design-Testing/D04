@@ -12,10 +12,10 @@ import org.springframework.util.Assert;
 import repositories.CurriculaRepository;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rooky;
 
 @Service
 @Transactional
@@ -25,7 +25,7 @@ public class CurriculaService {
 	private CurriculaRepository			curriculaRepository;
 
 	@Autowired
-	private HackerService				hackerService;
+	private RookyService				hackerService;
 
 	@Autowired
 	private PersonalDataService			personalDataService;
@@ -42,7 +42,7 @@ public class CurriculaService {
 
 	public Curricula create() {
 		final Curricula curricula = new Curricula();
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 
 		final PersonalData personalData = this.personalDataService.create();
 
@@ -65,7 +65,7 @@ public class CurriculaService {
 
 	}
 
-	public Curricula createForNewHacker() {
+	public Curricula createForNewRooky() {
 		final Curricula curricula = new Curricula();
 
 		final PersonalData personalData = this.personalDataService.create();
@@ -105,11 +105,11 @@ public class CurriculaService {
 	public Curricula save(final Curricula curricula) {
 		Assert.notNull(curricula);
 		final Curricula res;
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		if (curricula.getId() != 0)
-			Assert.isTrue(this.hackerService.findHackerByCurricula(curricula.getId()).equals(hacker), "logged actor doesnt match curricula's owner");
+			Assert.isTrue(this.hackerService.findRookyByCurricula(curricula.getId()).equals(hacker), "logged actor doesnt match curricula's owner");
 		else
-			curricula.setHacker(hacker);
+			curricula.setRooky(hacker);
 		res = this.curriculaRepository.save(curricula);
 		return res;
 	}
@@ -117,9 +117,9 @@ public class CurriculaService {
 	public void delete(final Curricula curricula) {
 		Assert.notNull(curricula);
 		Assert.isTrue(curricula.getId() != 0);
-		final Hacker hacker = this.hackerService.findByPrincipal();
+		final Rooky hacker = this.hackerService.findByPrincipal();
 		final Curricula retrieved = this.findOne(curricula.getId());
-		Assert.isTrue(this.hackerService.findHackerByCurricula(retrieved.getId()) == hacker, "Not possible to delete the curricula of other hacker.");
+		Assert.isTrue(this.hackerService.findRookyByCurricula(retrieved.getId()) == hacker, "Not possible to delete the curricula of other hacker.");
 		this.curriculaRepository.delete(retrieved.getId());
 	}
 
@@ -128,14 +128,14 @@ public class CurriculaService {
 	 * 
 	 * @author a8081
 	 */
-	public Double[] getStatisticsOfCurriculaPerHacker() {
-		final Double[] res = this.curriculaRepository.getStatisticsOfCurriculaPerHacker();
+	public Double[] getStatisticsOfCurriculaPerRooky() {
+		final Double[] res = this.curriculaRepository.getStatisticsOfCurriculaPerRooky();
 		Assert.notNull(res);
 		return res;
 	}
 
-	public Collection<Curricula> findCurriculaByHacker(final int id) {
-		final Collection<Curricula> result = this.curriculaRepository.findCurriculaByHacker(id);
+	public Collection<Curricula> findCurriculaByRooky(final int id) {
+		final Collection<Curricula> result = this.curriculaRepository.findCurriculaByRooky(id);
 		return result;
 	}
 
@@ -165,7 +165,7 @@ public class CurriculaService {
 
 	public Curricula makeCopyAndSave(final Curricula curricula) {
 		Curricula result = this.create();
-		result.setHacker(curricula.getHacker());
+		result.setRooky(curricula.getRooky());
 
 		final PersonalData pd = this.personalDataService.makeCopyAndSave(curricula.getPersonalRecord());
 		result.setPersonalRecord(pd);
@@ -189,7 +189,7 @@ public class CurriculaService {
 			pds.add(this.positionDataService.makeCopyAndSave(pod, result));
 		result.setPositions(pds);
 
-		result.setHacker(null);
+		result.setRooky(null);
 		Assert.notNull(result, "copy of curricula is null");
 		result = this.curriculaRepository.save(result);
 		Assert.notNull(result, "retrieves copy curricula is null");

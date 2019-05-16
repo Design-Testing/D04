@@ -9,12 +9,12 @@
  --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="${bannerURL}" alt="Acme Hacker Rank Co., Inc." /></a>
+	<a href="#"><img src="${bannerURL}" alt="<jstl:out value="${sysName}"/> Co., Inc." /></a>
 </div>
 
 <div>
@@ -31,14 +31,19 @@
 					<li class="arrow"></li>
 					<li><a href="configurationParameters/administrator/edit.do"><spring:message code="master.page.configurationParameters.edit" /></a></li>
 					<li><a href="dashboard/administrator/dataBreach.do"><spring:message	code="master.page.administrator.data.breach" /></a></li>
+					<li><a href="configurationParameters/administrator/rebrand.do"><spring:message code="master.page.configurationParameters.rebrand" /></a></li>
+					<li><a href="configurationParameters/administrator/notifyRebrand.do"><spring:message code="master.page.configurationParameters.notify.rebrand" /></a></li>
+					<li><a href="company/computeScores.do"><spring:message code="master.page.compute.scores" /></a></li>
 				</ul>
 			</li>
 			
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="dashboard/administrator/statistics.do"><spring:message	code="master.page.dashboard" /></a></li>
 			<li><a href="administrator/create.do"><spring:message	code="master.page.create.administrator" /></a></li>
+			<li><a href="auditor/create.do"><spring:message	code="master.page.create.auditor" /></a></li>
 				
 		</security:authorize>
 		
@@ -58,9 +63,11 @@
 				</ul>
 			</li>
 			
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.public.list" /></a></li>
+			<li><a href="problem/company/list.do"><spring:message code="master.page.problem" /></a></li>
 			
 			<!-- POSITION -->
 			<li><a class="fNiv"><spring:message	code="master.page.position" /></a>
@@ -74,23 +81,57 @@
 		</security:authorize>
 		
 		<!-- ========================================================================================================= -->
-		<!-- ========================================  HACKER  ================================================ -->
+		<!-- ========================================  PROVIDER  ================================================ -->
 		<!-- ========================================================================================================= -->
 		
-		<security:authorize access="hasRole('HACKER')">
+		<security:authorize access="hasRole('PROVIDER')">
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
+			<li><a href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
+			<li><a href="position/list.do"><spring:message code="master.page.position.public.list" /></a></li>
+			<li><a href="item/provider/list.do"><spring:message code="master.page.my.items" /></a></li>
+			<%-- POSITION --%>
+			<li><a href="position/provider/list.do"><spring:message code="master.page.position.myPositions" /></a></li>
+			<%-- SPONSORSHIP --%>
+			<li><a href="sponsorship/provider/list.do"><spring:message code="master.page.provider.sponsorship" /></a></li>
+		
+		</security:authorize>
+		
+		<!-- ========================================================================================================= -->
+		<!-- ========================================  ROOKY  ================================================ -->
+		<!-- ========================================================================================================= -->
+		
+		<security:authorize access="hasRole('ROOKY')">
 			<li><a class="fNiv"><spring:message	code="master.page.applications" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="application/hacker/listPending.do"><spring:message code="master.page.application.listPending" /></a></li>
-					<li><a href="application/hacker/listSubmitted.do"><spring:message code="master.page.application.listSubmitted" /></a></li>
-					<li><a href="application/hacker/listAccepted.do"><spring:message code="master.page.application.listAccepted" /></a></li>
-					<li><a href="application/hacker/listRejected.do"><spring:message code="master.page.application.listRejected" /></a></li>
+					<li><a href="application/rooky/listPending.do"><spring:message code="master.page.application.listPending" /></a></li>
+					<li><a href="application/rooky/listSubmitted.do"><spring:message code="master.page.application.listSubmitted" /></a></li>
+					<li><a href="application/rooky/listAccepted.do"><spring:message code="master.page.application.listAccepted" /></a></li>
+					<li><a href="application/rooky/listRejected.do"><spring:message code="master.page.application.listRejected" /></a></li>
 				</ul>
 			</li>
-			<li><a href="finder/hacker/edit.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a href="finder/rooky/edit.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
-			<li><a href="position/hacker/list.do"><spring:message code="master.page.position.list" /></a></li>
+			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
+			<li><a href="position/rooky/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="curricula/displayAll.do"><spring:message code="master.page.curricula" /></a></li>
+			
+		</security:authorize>
+		
+		<!-- ========================================================================================================= -->
+		<!-- ========================================  AUDITOR  ================================================ -->
+		<!-- ========================================================================================================= -->
+		
+		<security:authorize access="hasRole('AUDITOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.audits" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="audit/auditor/listDraft.do"><spring:message code="master.page.audit.listDraft" /></a></li>
+					<li><a href="audit/auditor/listFinal.do"><spring:message code="master.page.audit.listFinal" /></a></li>
+				</ul>
+			</li>
+			<li><a href="audit/auditor/listFreePositions.do"><spring:message code="master.page.audit.free.positions" /></a></li>
 			
 		</security:authorize>
 		
@@ -102,11 +143,13 @@
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.hacker.edit" /></a></li>
+			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
 			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a class="fNiv" href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
-			<li><a class="fNiv" href="hacker/create.do"><spring:message code="master.page.hacker.register" /></a></li>
-			
+			<li><a href="item/provider/listAll.do"><spring:message code="master.page.item.list" /></a></li>
+			<li><a class="fNiv" href="rooky/create.do"><spring:message code="master.page.rooky.register" /></a></li>
+			<li><a class="fNiv" href="provider/create.do"><spring:message code="master.page.provider.register" /></a></li>			
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -125,9 +168,17 @@
 							<li><a href="administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 							<li><a href="administrator/display.do"><spring:message code="master.page.administrator.display" /></a></li>
 						</security:authorize>
-						<security:authorize access="hasRole('HACKER')">
-							<li><a href="hacker/edit.do"><spring:message code="master.page.hacker.edit" /></a></li>
-							<li><a href="hacker/display.do"><spring:message code="master.page.hacker.display" /></a></li>
+						<security:authorize access="hasRole('ROOKY')">
+							<li><a href="rooky/edit.do"><spring:message code="master.page.rooky.edit" /></a></li>
+							<li><a href="rooky/display.do"><spring:message code="master.page.rooky.display" /></a></li>
+						</security:authorize>
+						<security:authorize access="hasRole('AUDITOR')">
+							<li><a href="auditor/edit.do"><spring:message code="master.page.auditor.edit" /></a></li>
+							<li><a href="auditor/display2.do"><spring:message code="master.page.auditor.display" /></a></li>
+						</security:authorize>
+						<security:authorize access="hasRole('PROVIDER')">
+							<li><a href="provider/edit.do"><spring:message code="master.page.provider.edit" /></a></li>
+							<li><a href="provider/display2.do"><spring:message code="master.page.provider.display" /></a></li>
 						</security:authorize>
 					<li><a href="folder/list.do"><spring:message code="master.page.folder.list" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>

@@ -1,12 +1,3 @@
-<%--
- * action-2.jsp
- *
- * Copyright (C) 2019 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -18,6 +9,13 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<style type="text/css">
+img.resize {
+  max-width:10%;
+  max-height:10%;
+}
+</style>
 
 
 <acme:display code="position.title" value="${position.title}"/>
@@ -40,9 +38,19 @@
 
 <acme:display code="position.profile" value="${position.profile}"/>
 
-<acme:display code="position.skills" value="${position.skills}"/>
+<spring:message code="position.skills"/>
+<jstl:forEach items="${position.skills}" var="l">
+	<ul>
+		<li><jstl:out value="${l}"/></li>
+	</ul>
+</jstl:forEach>
 
-<acme:display code="position.technologies" value="${position.technologies}"/>
+<spring:message code="position.technologies"/>
+<jstl:forEach items="${position.technologies}" var="l">
+	<ul>
+		<li><jstl:out value="${l}"/></li>
+	</ul>
+</jstl:forEach>
 
 <acme:display code="position.salary" value="${position.salary}"/>
 
@@ -54,7 +62,7 @@
 <spring:message code="position.problem"/>
 
 <security:authorize access="hasRole('COMPANY')">
-<jstl:if test="${position.mode eq 'DRAFT' and (company.id eq ownerId)}">
+<jstl:if test="${position.mode eq 'DRAFT' and (company.id eq position.company.id)}">
 <acme:button url="problem/company/create.do?positionId=${position.id}" name="create" code="position.create" />
 <br>
 </jstl:if>
@@ -72,7 +80,7 @@
 
 	<security:authorize access="hasRole('COMPANY')">	
 	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq ownerId)}">
+	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq position.company.id)}">
             <input type="button" name="edit"
                 value="<spring:message code="problem.edit" />"
                 onclick="relativeRedir('problem/company/edit.do?problemId=${row.id}&positionId=${row.position.id}')" />
@@ -80,31 +88,50 @@
 	</display:column>
 	
 	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq ownerId)}">
+	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq position.company.id)}">
 		<acme:button url="problem/company/finalMode.do?problemId=${row.id}" name="finalMode" code="problem.finalMode"/>
 	</jstl:if>
 	</display:column>
 	
 	<display:column>
+	<jstl:if test="${company.id eq position.company.id}">
 		<acme:button url="problem/company/display.do?problemId=${row.id}" name="display" code="problem.display"/>
+	</jstl:if>
 	</display:column>
 	
 	</security:authorize>
-	<security:authorize access="hasRole('HACKER')">
+	
+	<security:authorize access="hasRole('ROOKY')">
 		<jstl:set var="hk" value="1"/>
+	</security:authorize>
+	<security:authorize access="hasRole('AUDITOR')">
+		<jstl:set var="aud" value="1"/>
 	</security:authorize>
         
 </display:table>
 <br><br>
+<jstl:if test="${not empty imgbanner}">
+	<a href="<jstl:out value="${targetpage}"/>">
+		<img class="resize" src="${imgbanner}" alt="Banner"/>
+	</a><br /><br />
+</jstl:if>
 <jstl:choose>
 	<jstl:when test="${rol eq 'company' }">
 		<acme:button url="position/company/myPositions.do" name="back" code="position.back"/>
 	</jstl:when>
 	<jstl:when test="${hk eq 1}">
-		<acme:button url="position/hacker/list.do" name="back" code="position.back"/>
+		<acme:button url="position/rooky/list.do" name="back" code="position.back"/>
+	</jstl:when>
+	<jstl:when test="${aud eq 1}">
+		<acme:button url="audit/auditor/listFreePositions.do" name="back" code="position.back"/>
 	</jstl:when>
 	<jstl:otherwise>
 		<acme:button url="position/list.do" name="back" code="position.back"/>
 	</jstl:otherwise>
 </jstl:choose>
-
+<jstl:if test="${not empty errortrace}">
+	<h3 style="color: red;"><spring:message code="${errortrace}"/></h3>
+</jstl:if>
+<jstl:if test="${not empty trace}">
+	<h3 style="color: red;"><spring:message code="${trace}"/> <jstl:out value="${problemdeleted}"/></h3>
+</jstl:if>

@@ -75,24 +75,22 @@ public class ProblemCompanyController extends AbstractController {
 		final Problem problem = this.problemService.findOne(problemId);
 		final Collection<Application> applications = this.applicationService.findAllByProblem(problemId);
 
-		if (problem != null) {
-
+		final Company principal = this.companyService.findByPrincipal();
+		if (problem != null && (problem.getCompany().getId() == principal.getId())) {
 			res = new ModelAndView("problem/display");
 			res.addObject("problem", problem);
 			res.addObject("applications", applications);
 			res.addObject("position", problem.getPosition());
-
 		} else
 			res = new ModelAndView("redirect:/misc/403.jsp");
 
 		return res;
 
 	}
-
 	//List
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam final int positionId) {
+	public ModelAndView list() {
 		final ModelAndView res;
 		final Company company = this.companyService.findByPrincipal();
 		final Collection<Problem> problems = this.problemService.findProblemByCompany();
@@ -100,11 +98,12 @@ public class ProblemCompanyController extends AbstractController {
 		res = new ModelAndView("problem/list");
 		res.addObject("company", company);
 		res.addObject("problems", problems);
+		res.addObject("requestURI", "/problem/company/list");
 
 		return res;
 	}
-	// EDIT 
 
+	// EDIT 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int problemId, @RequestParam final int positionId) {
 		ModelAndView result;
@@ -170,11 +169,17 @@ public class ProblemCompanyController extends AbstractController {
 
 		paramPositionId = request.getParameter("positionId");
 		final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
-
-		final Problem problem = this.problemService.findOne(problemId);
-		this.problemService.delete(problem);
-		result = this.positionCompanyController.display(positionId);
-		result.addObject("problem", problem);
+		final Collection<Application> applications = this.applicationService.findAllByProblem(problemId);
+		if (applications.isEmpty()) {
+			final Problem problem = this.problemService.findOne(problemId);
+			this.problemService.delete(problem);
+			result = new ModelAndView("redirect:/position/company/display.do?positionId=" + positionId);
+			result.addObject("trace", "problem.deleted");
+			result.addObject("problemdeleted", problem.getTitle());
+		} else {
+			result = new ModelAndView("problem/error");
+			result.addObject("ok", "not.empty.applications");
+		}
 		return result;
 	}
 

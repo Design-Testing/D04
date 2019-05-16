@@ -31,6 +31,9 @@ public class ConfigurationParametersService {
 	@Autowired
 	private ActorService						actorService;
 
+	@Autowired
+	private MessageService						messageService;
+
 
 	public ConfigurationParameters create() {
 		final Actor principal = this.administratorService.findByPrincipal();
@@ -112,6 +115,38 @@ public class ConfigurationParametersService {
 		return this.configurationParametersRepository.findBanner();
 	}
 
+	public String findSysName() {
+		return this.configurationParametersRepository.findSysName();
+	}
+
+	public void rebranding(final String newSysName) {
+		this.administratorService.findByPrincipal();
+		Assert.notNull(newSysName);
+		Assert.isTrue(!newSysName.isEmpty());
+		final ConfigurationParameters cfg = this.find();
+		Assert.isTrue(!cfg.isRebranding());
+		final String sysName = this.findSysName();
+		String welEn = cfg.getWelcomeMessageEn();
+		String welEs = cfg.getWelcomeMessageEsp();
+		welEn = welEn.replace(sysName, newSysName);
+		welEs = welEs.replace(sysName, newSysName);
+		cfg.setWelcomeMessageEn(welEn);
+		cfg.setWelcomeMessageEsp(welEs);
+		cfg.setSysName(newSysName);
+		cfg.setRebranding(true);
+		this.save(cfg);
+		this.messageService.rebrandNotification(sysName);
+	}
+
+	public void notifyRebranding() {
+		this.administratorService.findByPrincipal();
+		final ConfigurationParameters cfg = this.find();
+		Assert.isTrue(!cfg.isRebranding());
+		cfg.setRebranding(true);
+		this.save(cfg);
+		this.messageService.rebrandNotification();
+	}
+
 	public ConfigurationParameters find() {
 		final ConfigurationParameters res = (ConfigurationParameters) this.configurationParametersRepository.findAll().toArray()[0];
 		Assert.notNull(res);
@@ -119,72 +154,10 @@ public class ConfigurationParametersService {
 	}
 
 	public ConfigurationParameters save(final ConfigurationParameters c) {
-
 		Assert.notNull(c);
 		final Administrator a = this.administratorService.findByPrincipal();
 		final Boolean isAdmin = this.actorService.checkAuthority(a, Authority.ADMIN);
 		Assert.isTrue(isAdmin);
-
-		//		if (c.getId() == 0) {
-		//			c.setBanner("https://tinyurl.com/acme-madruga");
-		//			c.setCountryPhoneCode("+34");
-		//
-		//			this.positionService.createDefault("Presidente", "President");
-		//			this.positionService.createDefault("Vicepresidente", "Vice President");
-		//			this.positionService.createDefault("Secretario", "Secretary");
-		//			this.positionService.createDefault("Tesorero", "Treasurer");
-		//			this.positionService.createDefault("Historiador", "Historian");
-		//			this.positionService.createDefault("Promotor", "Fundraiser");
-		//			this.positionService.createDefault("Vocal", "Officer");
-		//
-		//			c.setMaxFinderResults(10);
-		//			c.setFinderTime(1);
-		//			c.setWelcomeMessageEn("Welcome to Acme Madrugá, the site to organise your processions.");
-		//			c.setWelcomeMessageEsp("¡Bienvenidos a Acme Madrugá! Tu sitio para organizar procesiones.");
-		//			final Collection<String> negativeWords = new ArrayList<>();
-		//			negativeWords.add("not");
-		//			negativeWords.add("bad");
-		//			negativeWords.add("horrible");
-		//			negativeWords.add("average");
-		//			negativeWords.add("disaster");
-		//			negativeWords.add("no");
-		//			negativeWords.add("malo");
-		//			negativeWords.add("mediocre");
-		//			negativeWords.add("desastre");
-		//			c.setNegativeWords(negativeWords);
-		//
-		//			final Collection<String> positiveWords = new ArrayList<>();
-		//			positiveWords.add("good");
-		//			positiveWords.add("fantastic");
-		//			positiveWords.add("excellent");
-		//			positiveWords.add("great");
-		//			positiveWords.add("amazing");
-		//			positiveWords.add("terrific");
-		//			positiveWords.add("beautiful");
-		//			positiveWords.add("bueno");
-		//			positiveWords.add("fantastico");
-		//			positiveWords.add("excelente");
-		//			positiveWords.add("genial");
-		//			positiveWords.add("increble");
-		//			positiveWords.add("estupendo");
-		//			positiveWords.add("bonito");
-		//			c.setPositiveWords(positiveWords);
-		//
-		//			final Collection<String> spamWords = new ArrayList<>();
-		//			spamWords.add("sex");
-		//			spamWords.add("viagra");
-		//			spamWords.add("cialis");
-		//			spamWords.add("one million");
-		//			spamWords.add("you've been selected");
-		//			spamWords.add("nigeria");
-		//			spamWords.add("sexo");
-		//			spamWords.add("un millón");
-		//			spamWords.add("has sido seleccionado");
-		//			c.setSpamWords(spamWords);
-		//
-		//			c.setSysName("Acme Madrugá");
-		//
-		//		}
 
 		final ConfigurationParameters result = this.configurationParametersRepository.save(c);
 		Assert.notNull(result);
