@@ -34,13 +34,11 @@
 <acme:display code="company.vat" value="${company.vat}"/>
 
 <jstl:choose>
-	<jstl:when test="${not empty row.score and row.score not eq 0}">
+	<jstl:when test="${(not empty company.score) and (company.score ne 0)}">
 		<acme:display code="company.score" value="${company.score}"/>
 	</jstl:when>
 	<jstl:otherwise>
-		<display:column titleKey="company.score">
 			<acme:display code="company.score" value="N/A"/>
-		</display:column>
 	</jstl:otherwise>
 	</jstl:choose>
 

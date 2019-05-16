@@ -27,7 +27,7 @@
 	<display:column property="email" titleKey="actor.email" />
 	
 	<jstl:choose>
-	<jstl:when test="${not empty row.score and row.score not eq 0}">
+	<jstl:when test="${(not empty row.score) and (row.score ne 0)}">
 		<display:column property="score" titleKey="company.score" />
 	</jstl:when>
 	<jstl:otherwise>
