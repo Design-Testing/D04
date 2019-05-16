@@ -32,6 +32,7 @@
 					<li><a href="configurationParameters/administrator/edit.do"><spring:message code="master.page.configurationParameters.edit" /></a></li>
 					<li><a href="dashboard/administrator/dataBreach.do"><spring:message	code="master.page.administrator.data.breach" /></a></li>
 					<li><a href="configurationParameters/administrator/rebrand.do"><spring:message code="master.page.configurationParameters.rebrand" /></a></li>
+					<li><a href="configurationParameters/administrator/notifyRebrand.do"><spring:message code="master.page.configurationParameters.notify.rebrand" /></a></li>
 					<li><a href="company/computeScores.do"><spring:message code="master.page.compute.scores" /></a></li>
 				</ul>
 			</li>

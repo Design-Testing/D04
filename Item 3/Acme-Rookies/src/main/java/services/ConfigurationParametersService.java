@@ -138,6 +138,15 @@ public class ConfigurationParametersService {
 		this.messageService.rebrandNotification(sysName);
 	}
 
+	public void notifyRebranding() {
+		this.administratorService.findByPrincipal();
+		final ConfigurationParameters cfg = this.find();
+		Assert.isTrue(!cfg.isRebranding());
+		cfg.setRebranding(true);
+		this.save(cfg);
+		this.messageService.rebrandNotification();
+	}
+
 	public ConfigurationParameters find() {
 		final ConfigurationParameters res = (ConfigurationParameters) this.configurationParametersRepository.findAll().toArray()[0];
 		Assert.notNull(res);

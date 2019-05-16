@@ -398,4 +398,41 @@ public class MessageService {
 		}
 	}
 
+	public void rebrandNotification() {
+		final Administrator actor = this.administratorService.findByPrincipal();
+		final Message m = new Message();
+		final Collection<String> tags = new ArrayList<>();
+		m.setTags(tags);
+		final Administrator sender = this.administratorService.findSystem();
+		final String sysName = this.configurationParametersService.findSysName();
+
+		m.setSubject("Rebranding - Renombramiento");
+		m.setBody("The system brand has been modified. The new brand is " + sysName + ". \n" + "La marca del sistema se ha modificado. La nueva marca es " + sysName + ".");
+		m.setPriority("HIGH");
+		m.setSender(sender);
+
+		final Collection<Actor> actors = this.actorService.findAll();
+		actors.remove(this.administratorService.findSystem());
+		actors.remove(actor);
+		m.setRecipients(actors);
+
+		final Folder outbox = this.folderService.findOutboxByUserId(sender.getUserAccount().getId());
+		final Collection<Message> outboxMessages = outbox.getMessages();
+		final Date moment = new Date(System.currentTimeMillis() - 1000);
+		m.setMoment(moment);
+		Folder notificationBox;
+		final Message sent = this.save(m);
+
+		outboxMessages.add(sent);
+		outbox.setMessages(outboxMessages);
+
+		for (final Actor r : actors) {
+			notificationBox = this.folderService.findNotificationboxByUserId(r.getUserAccount().getId());
+			final Collection<Message> inboxMessages = notificationBox.getMessages();
+			inboxMessages.add(sent);
+			notificationBox.setMessages(inboxMessages);
+			this.folderService.save(notificationBox, r);
+		}
+	}
+
 }
