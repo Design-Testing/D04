@@ -33,21 +33,21 @@ public class AuditServiceTest extends AbstractTest {
 			{
 				//			    A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
 				//				B: Test Positivo: Creación correcta de un audit
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 16 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor1", "position8", "text test", 6, null
 			}, {
 				//			    A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
 				//				B: Test Negativo: Text en blanco
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 17 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor1", "position9", "", 5, javax.validation.ConstraintViolationException.class
 			}, {
 				//              A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
 				//				B: Test Negativo : Score nula
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 17 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"auditor2", "position10", "test text", null, javax.validation.ConstraintViolationException.class
+				"auditor2", "position10", "test text", null, java.lang.IllegalArgumentException.class
 			}
 		};
 
@@ -92,25 +92,25 @@ public class AuditServiceTest extends AbstractTest {
 			{
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Positivo: Edición correcta de un audit
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 15 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "audit1", "text test edited", 6, null
 			}, {
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Negativo: Texto en blanco
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 14 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "audit1", "", 5, javax.validation.ConstraintViolationException.class
 			}, {
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Negativo: otro auditor intenta editar audit de otro auditor
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 9 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor1", "audit1", "test text edited", 6, java.lang.IllegalArgumentException.class
 			}, {
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Negativo: no está en draft mode
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 10 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "audit7", "test text edited", 6, java.lang.IllegalArgumentException.class
 			}
@@ -156,19 +156,19 @@ public class AuditServiceTest extends AbstractTest {
 			{
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Positivo: Eliminación correcta de un audit
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 7 de la 7 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "audit1", null
 			}, {
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Negativo: no está en draft mode
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 4 de la 7 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor2", "audit7", java.lang.IllegalArgumentException.class
 			}, {
 				//			    A: Acme Rookies Req 3.2 An auditor is able to manage his/her audits
 				//				B: Test Negativo: otro auditor intenta eliminar audit de otro auditor
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 6 de la 7 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"auditor1", "audit1", java.lang.IllegalArgumentException.class
 			}

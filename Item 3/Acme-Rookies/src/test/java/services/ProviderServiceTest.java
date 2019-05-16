@@ -81,13 +81,13 @@ public class ProviderServiceTest extends AbstractTest {
 			{
 				//				A: Acme Rookies Register to de system as a company
 				//				B: Test Positivo: Creación correcta de un provider
-				//				C: % Recorre 181 de la 181 lineas posibles
+				//				C: % Recorre 5 de la 9 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"provider1", "provider1", "Provider1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
 				//				A: Acme Rookies Register to de system as a company
-				//				B: Test Negativo: Creación incorrecta de un provider con telefono inválido
-				//				C: % Recorre 114 de la 181 lineas posibles
+				//				B: Test Postivo: Creación correcta de un provider
+				//				C: % Recorre 5 de la 9 lineas posibles
 				//				D: cobertura de datos = 12/29
 				"provider2", "provider2", "Provider1", surnames2, "lanzas@gmail.com", "mi telefono", null
 			}
@@ -135,31 +135,31 @@ public class ProviderServiceTest extends AbstractTest {
 			{
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un provider
-				//				C: % Recorre 181 de las 181 lineas posibles
+				//				C: % Recorre 7 de las 9 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames, "garcia@gmail.es", "+34647307406", null
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Positivo: Edición correcta de los datos de un provider con phone vacio
-				//				C: % Recorre 181 de las 181 lineas posibles
+				//				C: % Recorre 6 de las 9 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames, "garcia@gmail.es", "", null
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un provider con mail inválido
-				//				C: % Recorre 114 de las 181 lineas posibles
+				//				C: % Recorre 6 de las 9 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames, "no tengo email", "+34647307406", ConstraintViolationException.class
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un provider con name vacio
-				//				C: % Recorre 114 de las 181 lineas posibles
+				//				C: % Recorre 6 de las 9 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "", surnames, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}, {
 				// 				A: Acme Rookies Edit his o her personal data
 				//				B: Test Negativo: Edición incorrecta de los datos de un provider con apellidos vacio
-				//				C: % Recorre 114 de las 181 lineas posibles
+				//				C: % Recorre 6 de las 9 lineas posibles
 				//				D: cobertura de datos = 19/32
 				"provider1", "provider1", "Provider1", surnames2, "garcia@gmail.es", "+34647307406", ConstraintViolationException.class
 			}

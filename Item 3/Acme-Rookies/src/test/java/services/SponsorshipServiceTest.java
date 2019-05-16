@@ -47,19 +47,19 @@ public class SponsorshipServiceTest extends AbstractTest {
 			{
 				//				A: Acme Rookies Req. 13.1 -> Providers can manage their sponsorships
 				//			B: Test Positivo: Provider crea sponsorship
-				//			C: 100% Recorre 11 de las 13 lineas posibles
+				//			C: Recorre 11 de las 13 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider1", "position8", "http://test.com", "http://test.com", creditCard, null
 			}, {
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Negativo: Provider crea sponsorship sin credit card
-				//			C: 100% Recorre 7 de las 13 lineas posibles
+				//			C: Recorre 7 de las 13 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider1", "position9", "http://test.com", "http://test.com", null, java.lang.IllegalArgumentException.class
 			}, {
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Negativo: Provider crea sponsorship con target page no url
-				//			C: 100% Recorre 10 de las 13 lineas posibles
+				//			C: Recorre 10 de las 13 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider2", "position10", "http://test.com", "", creditCard, javax.validation.ConstraintViolationException.class
 			}
@@ -119,19 +119,19 @@ public class SponsorshipServiceTest extends AbstractTest {
 			{
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Positivo: Provider edita sponsorship correctamente
-				//			C: 100% Recorre 8 de las 13 lineas posibles
+				//			C: Recorre 8 de las 13 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider1", "sponsorship1", "http://test.com", "http://test.com", creditCard, null
 			}, {
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Negativo: Provider edita sponsorship con banner no url
-				//			C: 100% Recorre 7 de las 13 lineas posibles
+				//			C: Recorre 7 de las 13 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider1", "sponsorship1", "test no url", "http://test.com", creditCard, javax.validation.ConstraintViolationException.class
 			}, {
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Negativo: Provider intenta editar sponsorship de otro provider
-				//			C: 100% Recorre 5 de las 13 lineas posibles
+				//			C: Recorre 5 de las 13 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider1", "sponsorship2", "http://test.com", "http://test.com", creditCard, java.lang.IllegalArgumentException.class
 			}
@@ -177,13 +177,13 @@ public class SponsorshipServiceTest extends AbstractTest {
 			{
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Positivo: Provider elimina sponsorship correctamente
-				//			C: 100% Recorre 6 de las 6 lineas posibles
+				//			C: Recorre 6 de las 6 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider2", "sponsorship2", null
 			}, {
 				//				A: Acme Rookies Req. 10.1 -> Providers can manage their sponsorships
 				//			B: Test Negativo: Provider intenta eliminar sponsorship de otro provider
-				//			C: 100% Recorre 5 de las 6 lineas posibles
+				//			C: Recorre 5 de las 6 lineas posibles
 				//			D: cobertura de datos=6/405
 				"provider1", "sponsorship2", java.lang.IllegalArgumentException.class
 			}
