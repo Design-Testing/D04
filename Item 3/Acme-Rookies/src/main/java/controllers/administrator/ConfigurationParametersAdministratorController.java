@@ -105,6 +105,29 @@ public class ConfigurationParametersAdministratorController extends AbstractCont
 		return result;
 	}
 
+	@RequestMapping(value = "/notifyRebrand", method = RequestMethod.GET)
+	public ModelAndView notifyRebrand() {
+		final ModelAndView result;
+		final Actor principal = this.actorService.findByPrincipal();
+		final boolean rebrand = this.configurationParametersService.find().isRebranding();
+		final Boolean isAdmin = this.actorService.checkAuthority(principal, Authority.ADMIN);
+		Assert.isTrue(isAdmin);
+
+		if (isAdmin && !rebrand) {
+			this.configurationParametersService.notifyRebranding();
+			result = this.toWelcome("rebranding.notify.process.finished");
+		} else if (rebrand) {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.notify.only.once");
+		} else {
+			result = new ModelAndView("configurationParameters/rebranding");
+			result.addObject("errortrace", "rebrand.notify.error");
+		}
+
+		return result;
+
+	}
+
 	private ModelAndView toWelcome(final String alert) {
 		ModelAndView result;
 		result = new ModelAndView("welcome/index");
