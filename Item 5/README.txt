@@ -16,3 +16,4 @@ d) “My-Partners-Bugs.pdf”, which describes the intentional bugs that your pa
 group injected in the project that they released to you and your results. Please, 
 note that the suite must cover the requirements in Acme-Rookies and the previous 
 version of the project.
+
