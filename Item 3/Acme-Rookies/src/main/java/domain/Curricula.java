@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "rooky"), @Index(columnList = "personal_record")
+	@Index(columnList = "rooky")
 })
 public class Curricula extends DomainEntity {
 
