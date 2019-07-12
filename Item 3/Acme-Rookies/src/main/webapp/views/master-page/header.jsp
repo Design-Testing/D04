@@ -26,6 +26,9 @@
 		<!-- ========================================================================================================= -->
 		
 		<security:authorize access="hasRole('ADMIN')">
+			<li><a href="position/list.do"><spring:message code="master.page.public.position.list" /></a></li>
+			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.serach.position" /></a></li>
 			<li><a class="fNiv"><spring:message	code="master.page.configurationParameters" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -37,10 +40,7 @@
 				</ul>
 			</li>
 			
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
-			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
-			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="dashboard/administrator/statistics.do"><spring:message	code="master.page.dashboard" /></a></li>
 			<li><a href="administrator/create.do"><spring:message	code="master.page.create.administrator" /></a></li>
 			<li><a href="auditor/create.do"><spring:message	code="master.page.create.auditor" /></a></li>
@@ -52,6 +52,9 @@
 		<!-- ========================================================================================================= -->
 		
 		<security:authorize access="hasRole('COMPANY')">
+			<li><a href="position/list.do"><spring:message code="master.page.public.position.list" /></a></li>
+			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.serach.position" /></a></li>
 			<!-- APPLICATIONS -->
 			<li><a class="fNiv"><spring:message	code="master.page.applications" /></a>
 				<ul>
@@ -63,10 +66,7 @@
 				</ul>
 			</li>
 			
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
-			<li><a href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
-			<li><a href="position/list.do"><spring:message code="master.page.position.public.list" /></a></li>
 			<li><a href="problem/company/list.do"><spring:message code="master.page.problem" /></a></li>
 			
 			<!-- POSITION -->
@@ -102,6 +102,9 @@
 		<!-- ========================================================================================================= -->
 		
 		<security:authorize access="hasRole('ROOKY')">
+			<li><a href="position/list.do"><spring:message code="master.page.public.position.list" /></a></li>
+			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.serach.position" /></a></li>
 			<li><a class="fNiv"><spring:message	code="master.page.applications" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -112,7 +115,6 @@
 				</ul>
 			</li>
 			<li><a href="finder/rooky/edit.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
-			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
 			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
 			<li><a href="position/rooky/list.do"><spring:message code="master.page.position.list" /></a></li>
 			<li><a href="curricula/displayAll.do"><spring:message code="master.page.curricula" /></a></li>
@@ -143,11 +145,9 @@
 		<security:authorize access="isAnonymous()">
 			<li><a href="position/list.do"><spring:message code="master.page.public.position.list" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a href="finder/searching.do"><spring:message code="master.page.serach.position" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
-			
 			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
-			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
-			
 			<li><a class="fNiv" href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
 			<li><a href="item/provider/listAll.do"><spring:message code="master.page.item.list" /></a></li>
 			<li><a class="fNiv" href="rooky/create.do"><spring:message code="master.page.rooky.register" /></a></li>
