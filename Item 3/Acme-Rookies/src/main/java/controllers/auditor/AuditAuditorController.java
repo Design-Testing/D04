@@ -8,6 +8,9 @@ import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -16,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import services.ActorService;
 import services.AuditService;
 import services.AuditorService;
 import services.PositionService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Audit;
 import domain.Auditor;
 import domain.Position;
@@ -37,6 +43,9 @@ public class AuditAuditorController extends AbstractController {
 
 	@Autowired
 	private PositionService	positionService;
+
+	@Autowired
+	private ActorService	actorService;
 
 	final String			lang	= LocaleContextHolder.getLocale().getLanguage();
 
@@ -137,7 +146,27 @@ public class AuditAuditorController extends AbstractController {
 
 		audit = this.auditService.findOne(auditId);
 
-		if (audit != null) {
+		boolean visible = true;
+
+		final SecurityContext context = SecurityContextHolder.getContext();
+		final Authentication authentication = context.getAuthentication();
+		final Object principal = authentication.getPrincipal();
+
+		if (principal.toString().equals("anonymousUser") && audit.getIsDraft().equals(true))
+			visible = false;
+		else if (!principal.toString().equals("anonymousUser")) {
+			final Actor logged = this.actorService.findByPrincipal();
+			final Authority authAuditor = new Authority();
+			authAuditor.setAuthority("AUDITOR");
+			if (logged.getUserAccount().getAuthorities().contains(authAuditor)) {
+				if (!audit.getAuditor().equals(logged) && audit.getIsDraft().equals(true))
+					visible = false;
+			} else if (audit.getIsDraft().equals(true))
+				visible = false;
+
+		}
+
+		if (audit != null && visible) {
 			result = new ModelAndView("audit/display");
 			result.addObject("audit", audit);
 		} else

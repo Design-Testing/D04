@@ -53,7 +53,7 @@
 	
 		
 	<display:column>
-		<acme:button url="audit/auditor/display.do?auditId=${row.id}" name="display" code="audit.display" />
+		<acme:button url="audit/auditor/display.do?auditId=${row.id}" name="display" code="audit.display2" />
 	</display:column>
 	
 	
