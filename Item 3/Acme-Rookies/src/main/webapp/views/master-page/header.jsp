@@ -141,11 +141,13 @@
 				
 		
 		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			<li><a href="position/list.do"><spring:message code="master.page.public.position.list" /></a></li>
 			<li><a class="fNiv" href="company/list.do"><spring:message code="master.page.company.list" /></a></li>
+			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			
 			<li><a class="fNiv" href="provider/list.do"><spring:message code="master.page.provider.list" /></a></li>
 			<li><a href="finder/searching.do"><spring:message code="master.page.finder.rooky.edit" /></a></li>
-			<li><a href="position/list.do"><spring:message code="master.page.position.list" /></a></li>
+			
 			<li><a class="fNiv" href="company/create.do"><spring:message code="master.page.company.register" /></a></li>
 			<li><a href="item/provider/listAll.do"><spring:message code="master.page.item.list" /></a></li>
 			<li><a class="fNiv" href="rooky/create.do"><spring:message code="master.page.rooky.register" /></a></li>
