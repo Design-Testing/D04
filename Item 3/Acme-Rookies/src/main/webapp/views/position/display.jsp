@@ -79,19 +79,7 @@ img.resize {
 
 
 	<security:authorize access="hasRole('COMPANY')">	
-	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq position.company.id)}">
-            <input type="button" name="edit"
-                value="<spring:message code="problem.edit" />"
-                onclick="relativeRedir('problem/company/edit.do?problemId=${row.id}&positionId=${row.position.id}')" />
-	</jstl:if>
-	</display:column>
 	
-	<display:column>
-	<jstl:if test="${row.mode eq 'DRAFT' and (company.id eq position.company.id)}">
-		<acme:button url="problem/company/finalMode.do?problemId=${row.id}" name="finalMode" code="problem.finalMode"/>
-	</jstl:if>
-	</display:column>
 	
 	<display:column>
 	<jstl:if test="${company.id eq position.company.id}">

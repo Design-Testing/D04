@@ -180,7 +180,7 @@ public class ProblemCompanyController extends AbstractController {
 		Assert.isTrue(problems.contains(problem));
 		if (problem.getMode().equals("DRAFT")) {
 			this.problemService.toFinalMode(problemId);
-			result = this.positionCompanyController.display(problem.getPosition().getId());
+			result = this.list();
 		} else
 			result = new ModelAndView("redirect:/misc/403.jsp");
 		return result;

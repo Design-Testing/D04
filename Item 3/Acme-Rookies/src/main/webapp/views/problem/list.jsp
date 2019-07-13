@@ -38,6 +38,12 @@
                 value="<spring:message code="problem.display" />"
                 onclick="relativeRedir('problem/company/display.do?problemId=${row.id}')" />
 	</display:column>
+	
+	<display:column>
+	<jstl:if test="${row.mode eq 'DRAFT' }">
+		<acme:button url="problem/company/finalMode.do?problemId=${row.id}" name="finalMode" code="problem.finalMode"/>
+	</jstl:if>
+	</display:column>
         
 	</display:table>
 	
