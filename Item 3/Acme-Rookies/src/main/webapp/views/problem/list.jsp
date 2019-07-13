@@ -30,7 +30,12 @@
 	</jstl:if>
 	</display:column>
 	<display:column>
-		<acme:link url="position/company/display.do?positionId=${row.position.id}" code="problem.position"/>
+		<jstl:if test="${not empty row.position}">
+			<acme:link url="position/company/display.do?positionId=${row.position.id}" code="problem.asigned.position"/>
+		</jstl:if>
+		<jstl:if test="${empty row.position}">
+			<spring:message code="problem.not.asigned" />
+		</jstl:if>
 	</display:column>
 	
 	<display:column>
