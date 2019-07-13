@@ -70,9 +70,11 @@ public class ProblemService {
 			problem.setCompany(company);
 			problem.setMode("DRAFT");
 		} else {
-			final Position position = problem.getPosition();
-			final Collection<Position> positions = this.positionService.findAllByCompany();
-			Assert.isTrue(positions.contains(position));
+			final Problem retrieved = this.findOne(problem.getId());
+			if (problem.getPosition() != null) {
+				final Position position = problem.getPosition();
+				Assert.isTrue(retrieved.getPosition().equals(position), "position can not change");
+			}
 			Assert.isTrue(problem.getMode().equals("DRAFT"), "No puedes modificar un problem que est� en FINAL MODE");
 			Assert.isTrue(problem.getCompany().equals(company), "No puede modificar un problem que no le pertenezca");
 

@@ -40,4 +40,8 @@
 	</display:column>
         
 	</display:table>
+	
+	 <input type="button" name="edit"
+                value="<spring:message code="problem.create" />"
+                onclick="relativeRedir('problem/company/create.do')" />
 </security:authorize>
