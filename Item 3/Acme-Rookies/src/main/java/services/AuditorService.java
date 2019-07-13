@@ -72,7 +72,6 @@ public class AuditorService {
 		if (auditor.getId() == 0) {
 			this.actorService.setAuthorityUserAccount(Authority.AUDITOR, auditor);
 			result = this.auditorRepository.save(auditor);
-			//			this.folderService.setFoldersByDefault(result);
 
 			Assert.isTrue(logged.getAuthorities().contains(authAdmin), "to create a auditor you must be a admin");
 

@@ -61,7 +61,6 @@ public class ProviderService {
 		if (provider.getId() == 0) {
 			this.actorService.setAuthorityUserAccount(Authority.PROVIDER, provider);
 			result = this.providerRepository.save(provider);
-			//			this.folderService.setFoldersByDefault(result);
 		} else {
 			this.actorService.checkForSpamWords(provider);
 			final Actor principal = this.actorService.findByPrincipal();

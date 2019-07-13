@@ -75,7 +75,6 @@ public class RookyService {
 			rooky.setFinder(finder);
 			this.actorService.setAuthorityUserAccount(Authority.ROOKY, rooky);
 			result = this.rookyRepository.save(rooky);
-			//			this.folderService.setFoldersByDefault(result);
 
 			final Curricula curricula = this.curriculaService.createForNewRooky();
 			curricula.setRooky(result);
