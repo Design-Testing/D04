@@ -1892,7 +1892,7 @@
 		<property name="score" value="8" />
 		<property name="moment" value="2019/04/23 16:30" />
 		<property name="auditor" ref="auditor2" />
-		<property name="position" ref="position2" />
+		<property name="position" ref="position1" />
 		<property name="isDraft" value="true" />
 	</bean>
 	
@@ -1901,7 +1901,7 @@
 		<property name="score" value="7" />
 		<property name="moment" value="2019/03/16 15:20" />
 		<property name="auditor" ref="auditor1" />
-		<property name="position" ref="position1" />
+		<property name="position" ref="position4" />
 		<property name="isDraft" value="true" />
 	</bean>
 
@@ -1919,7 +1919,7 @@
 		<property name="score" value="4" />
 		<property name="moment" value="2019/03/16 15:20" />
 		<property name="auditor" ref="auditor2" />
-		<property name="position" ref="position5" />
+		<property name="position" ref="position6" />
 		<property name="isDraft" value="true" />
 	</bean>
 
@@ -1937,7 +1937,7 @@
 		<property name="score" value="8" />
 		<property name="moment" value="2019/04/23 16:30" />
 		<property name="auditor" ref="auditor2" />
-		<property name="position" ref="position10" />
+		<property name="position" ref="position6" />
 		<property name="isDraft" value="false" />
 	</bean>
 	
