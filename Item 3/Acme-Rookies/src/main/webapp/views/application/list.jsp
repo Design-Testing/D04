@@ -55,7 +55,13 @@
 					<acme:button url="application/rooky/edit.do?applicationId=${row.id}"
 						name="submit" code="application.submit" />
 				</jstl:if>
-			</display:column>
+	</display:column>
+	<display:column>
+				<jstl:if test="${row.status eq 'PENDING'}">
+					<acme:button url="problem/rooky/display.do?problemId=${row.problem.id}"
+						name="submit" code="application.see.problem" />
+				</jstl:if>
+	</display:column>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('COMPANY')">	

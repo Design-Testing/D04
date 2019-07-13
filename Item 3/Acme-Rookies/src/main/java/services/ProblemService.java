@@ -176,4 +176,9 @@ public class ProblemService {
 		return res;
 	}
 
+	public Collection<Problem> findAllByRooky(final int rookyId) {
+		final Collection<Problem> res = this.problemRepository.findAllByRooky(rookyId);
+		Assert.notNull(res);
+		return res;
+	}
 }

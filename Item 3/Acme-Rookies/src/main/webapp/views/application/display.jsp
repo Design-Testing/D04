@@ -67,6 +67,19 @@
 
 <br><br>
 
+
+<security:authorize access="hasRole('COMPANY')">
+	<acme:button url="/position/company/display.do?positionId=${application.position.id }" name="back"
+	code="application.show.position" />
+</security:authorize>
+
+<security:authorize access="hasRole('ROOKY')">
+	<acme:button url="/position/rooky/display.do?applicationId=${application.position.id }" name="back"
+	code="application.show.position" />
+</security:authorize>
+
+<br><br>
+
 <security:authorize access="hasRole('ROOKY')">
 
 <jstl:if test="${application.status eq 'PENDING'}">
@@ -100,6 +113,5 @@
 	code="application.list.button" />
 </jstl:if>
 </security:authorize>
-
 
 
