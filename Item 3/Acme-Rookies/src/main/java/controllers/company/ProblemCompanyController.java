@@ -4,10 +4,12 @@ package controllers.company;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,20 +48,12 @@ public class ProblemCompanyController extends AbstractController {
 	//Create
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int positionId) {
+	public ModelAndView create() {
 		ModelAndView result;
 		Problem problem;
-		final Position position = this.positionService.findOne(positionId);
-		if (position.getMode().equals("DRAFT")) {
-			problem = this.problemService.create();
-			result = this.createEditModelAndView(problem, positionId);
-			result.addObject("problem", problem);
-			result.addObject("positionId", positionId);
-		} else {
-			result = new ModelAndView("problem/error");
-			result.addObject("ok", "Cannot create a new problem in position whose mode is not DRAFT.");
-		}
-
+		problem = this.problemService.create();
+		result = new ModelAndView("problem/edit");
+		result.addObject("problem", problem);
 		return result;
 	}
 
@@ -138,7 +132,7 @@ public class ProblemCompanyController extends AbstractController {
 
 	// EDIT 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int problemId, @RequestParam final int positionId) {
+	public ModelAndView edit(@RequestParam final int problemId) {
 		ModelAndView result;
 		Problem problem;
 
@@ -146,38 +140,35 @@ public class ProblemCompanyController extends AbstractController {
 
 		final Company company = this.companyService.findByPrincipal();
 
-		if ((problem.getMode().equals("DRAFT") && problem.getCompany().equals(company)))
-			result = this.createEditModelAndView(problem, positionId);
-		else
+		if ((problem.getMode().equals("DRAFT") && problem.getCompany().equals(company))) {
+			result = new ModelAndView("problem/edit");
+			result.addObject("problem", problem);
+		} else
 			result = new ModelAndView("redirect:/misc/403.jsp");
 
 		return result;
 	}
-
 	// SAVE --------------------------------------------------------
 
-	/*
-	 * @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	 * public ModelAndView save(@Valid final Problem problem, final BindingResult binding, final HttpServletRequest request) {
-	 * ModelAndView result;
-	 * String paramPositionId;
-	 * 
-	 * paramPositionId = request.getParameter("positionId");
-	 * final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
-	 * 
-	 * if (binding.hasErrors())
-	 * result = this.createEditModelAndView(problem, positionId);
-	 * else
-	 * try {
-	 * this.problemService.save(problem, positionId);
-	 * result = this.positionCompanyController.display(positionId);
-	 * } catch (final Throwable oops) {
-	 * result = this.createEditModelAndView(problem, "problem.commit.error", positionId);
-	 * }
-	 * 
-	 * return result;
-	 * }
-	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid final Problem problem, final BindingResult binding, final HttpServletRequest request) {
+		ModelAndView result;
+
+		if (binding.hasErrors()) {
+			result = new ModelAndView("problem/edit");
+			result.addObject("problem", problem);
+		} else
+			try {
+				this.problemService.save(problem);
+				result = this.list();
+			} catch (final Throwable oops) {
+				result = new ModelAndView("problem/edit");
+				result.addObject("problem", problem);
+				result.addObject("message", "problem.commit.error");
+			}
+
+		return result;
+	}
 
 	// TO FINAL MODE 
 
