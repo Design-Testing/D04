@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import cz.jirutka.validator.collection.constraints.EachNotBlank;
+import cz.jirutka.validator.collection.constraints.EachURL;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -67,6 +68,7 @@ public class Problem extends DomainEntity {
 
 	@ElementCollection
 	@EachNotBlank
+	@EachURL
 	public Collection<String> getAttachments() {
 		return this.attachments;
 	}

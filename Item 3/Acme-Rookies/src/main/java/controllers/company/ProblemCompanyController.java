@@ -191,17 +191,12 @@ public class ProblemCompanyController extends AbstractController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam final int problemId, final HttpServletRequest request) {
 		ModelAndView result;
-		String paramPositionId;
 
-		paramPositionId = request.getParameter("positionId");
-		final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
 		final Collection<Application> applications = this.applicationService.findAllByProblem(problemId);
 		if (applications.isEmpty()) {
 			final Problem problem = this.problemService.findOne(problemId);
 			this.problemService.delete(problem);
-			result = new ModelAndView("redirect:/position/company/display.do?positionId=" + positionId);
-			result.addObject("trace", "problem.deleted");
-			result.addObject("problemdeleted", problem.getTitle());
+			result = this.list();
 		} else {
 			result = new ModelAndView("problem/error");
 			result.addObject("ok", "not.empty.applications");

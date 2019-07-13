@@ -25,15 +25,25 @@
 	</ul>
 </jstl:forEach>
 <br>
-<jstl:if test="${empty applications}">
-	<acme:button url="problem/company/delete.do?problemId=${problem.id}&positionId=${position.id}" name="delete" code="problem.delete"/>	
-</jstl:if>
 
+<jstl:choose>
+<jstl:when test="${empty applications and problem.position.mode ne 'FINAL'}">
+	<acme:button url="problem/company/delete.do?positionId=${position.id}" name="delete" code="problem.delete"/>	
+</jstl:when>
+<jstl:otherwise>
+	<h4 style="color: red"><spring:message code="problem.not.delete"/></h4>
+</jstl:otherwise>
+</jstl:choose>
+
+<br>
 <jstl:if test="${not empty problem.position}">
 	
 <acme:button url="position/company/display.do?positionId=${problem.position.id}" name="back"
 		code="problem.position.associated" />
 </jstl:if>
+
+
+<br>
 
 <jstl:if test="${not empty errortrace}">
 	<h3 style="color: red;"><spring:message code="${errortrace}"/></h3>

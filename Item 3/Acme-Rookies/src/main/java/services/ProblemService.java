@@ -110,6 +110,8 @@ public class ProblemService {
 		Assert.isTrue(this.problemRepository.exists(problem.getId()));
 		final Collection<Application> applications = this.applicationService.findAllByProblem(retrieved.getId());
 		Assert.isTrue(applications.isEmpty(), "No puedes borrar este problema, ya que tiene solicitudes asociadas.");
+		if (problem.getPosition() != null)
+			Assert.isTrue(!problem.getPosition().getMode().equals("FINAL"), "Not possible to delete a problem associated to a position in final mode");
 		this.problemRepository.delete(retrieved.getId());
 
 	}
