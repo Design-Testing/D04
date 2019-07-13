@@ -26,6 +26,8 @@
 </jstl:forEach>
 <br>
 
+<security:authorize access="hasRole('COMPANY')">
+
 <jstl:choose>
 <jstl:when test="${empty applications and problem.position.mode ne 'FINAL'}">
 	<acme:button url="problem/company/delete.do?problemId=${problem.id}" name="delete" code="problem.delete"/>	
@@ -43,6 +45,7 @@
 </jstl:if>
 
 
+
 <br>
 
 <jstl:if test="${not empty errortrace}">
@@ -50,3 +53,12 @@
 </jstl:if>
 
 <br />
+
+</security:authorize>
+
+
+
+<security:authorize access="hasRole('ROOKY')">
+	<acme:button url="application/rooky/listPending.do" name="back"
+		code="problem.back.pending" />
+</security:authorize>

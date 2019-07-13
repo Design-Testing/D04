@@ -33,7 +33,7 @@ public interface ProblemRepository extends JpaRepository<Problem, Integer> {
 	//@Query("select pro from Problem pro join pro.position pos where exists (select a from Application a join a.position pos2 where a.rooky.id=?1 and pos2.id=pos.id)")
 	//Collection<Problem> findAllByRooky(int rookyId);
 
-	@Query("select p from Application a join a.problem p where a.rooky.id?1")
+	@Query("select p from Application a join a.problem p where a.rooky.id=?1")
 	Collection<Problem> findAllByRooky(int rookyId);
 
 }
