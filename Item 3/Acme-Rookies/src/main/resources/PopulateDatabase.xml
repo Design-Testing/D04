@@ -1301,7 +1301,7 @@
 		<property name="ticker" value="COMM-1784" />
 		<property name="profile" value="Profile for position 7" />
 		<property name="salary" value="1750.0" />
-		<property name="mode" value="FINAL" />
+		<property name="mode" value="DRAFT" />
 		<property name="skills">
 			<list>
 				<value>Skill1 for position 7</value>
@@ -1324,7 +1324,7 @@
 		<property name="ticker" value="COMM-1783" />
 		<property name="profile" value="Profile for position 8" />
 		<property name="salary" value="1750.0" />
-		<property name="mode" value="FINAL" />
+		<property name="mode" value="DRAFT" />
 		<property name="skills">
 			<list>
 				<value>Skill1 for position 8</value>
@@ -1347,7 +1347,7 @@
 		<property name="ticker" value="COMM-1782" />
 		<property name="profile" value="Profile for position 9" />
 		<property name="salary" value="1750.0" />
-		<property name="mode" value="FINAL" />
+		<property name="mode" value="DRAFT" />
 		<property name="skills">
 			<list>
 				<value>Skill1 for position 9</value>
@@ -1370,7 +1370,7 @@
 		<property name="ticker" value="COMM-1781" />
 		<property name="profile" value="Profile for position 10" />
 		<property name="salary" value="1750.0" />
-		<property name="mode" value="FINAL" />
+		<property name="mode" value="DRAFT" />
 		<property name="skills">
 			<list>
 				<value>Skill1 for position 10</value>

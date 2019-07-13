@@ -63,7 +63,7 @@ img.resize {
 
 <security:authorize access="hasRole('COMPANY')">
 <jstl:if test="${position.mode eq 'DRAFT' and (company.id eq position.company.id)}">
-<acme:button url="problem/company/create.do?positionId=${position.id}" name="create" code="position.create" />
+<acme:button url="problem/company/listFinal.do?positionId=${position.id}" name="list" code="choose.problem" />
 <br>
 </jstl:if>
 </security:authorize>

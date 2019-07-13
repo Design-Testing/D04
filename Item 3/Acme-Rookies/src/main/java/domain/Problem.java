@@ -21,9 +21,7 @@ import cz.jirutka.validator.collection.constraints.EachNotBlank;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "position"), 
-	@Index(columnList = "company"), 
-	@Index(columnList = "position, mode")
+	@Index(columnList = "position"), @Index(columnList = "company"), @Index(columnList = "position, mode")
 })
 public class Problem extends DomainEntity {
 
@@ -98,7 +96,7 @@ public class Problem extends DomainEntity {
 	}
 
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	public Position getPosition() {
 		return this.position;
 	}

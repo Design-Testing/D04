@@ -4,12 +4,10 @@ package controllers.company;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,6 +63,24 @@ public class ProblemCompanyController extends AbstractController {
 		return result;
 	}
 
+	//Asign
+
+	@RequestMapping(value = "/asign", method = RequestMethod.GET)
+	public ModelAndView asign(@RequestParam final int positionId, @RequestParam final int problemId) {
+		ModelAndView result;
+		final Problem problem = this.problemService.findOne(problemId);
+		final Position position = this.positionService.findOne(positionId);
+		if (position.getMode().equals("DRAFT")) {
+			this.problemService.asign(problem, positionId);
+			result = this.positionCompanyController.display(positionId);
+		} else {
+			result = new ModelAndView("problem/error");
+			result.addObject("ok", "Cannot create asign problem to a position whose mode is not DRAFT.");
+		}
+
+		return result;
+	}
+
 	//Display
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -103,6 +119,23 @@ public class ProblemCompanyController extends AbstractController {
 		return res;
 	}
 
+	//List final
+
+	@RequestMapping(value = "/listFinal", method = RequestMethod.GET)
+	public ModelAndView listFinal(@RequestParam final int positionId) {
+		final ModelAndView res;
+		final Company company = this.companyService.findByPrincipal();
+		final Collection<Problem> problems = this.problemService.findFinalNotAsignedProblemsByCompany();
+
+		res = new ModelAndView("problem/listFinal");
+		res.addObject("company", company);
+		res.addObject("problems", problems);
+		res.addObject("positionId", positionId);
+		res.addObject("requestURI", "/problem/company/listFinal");
+
+		return res;
+	}
+
 	// EDIT 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int problemId, @RequestParam final int positionId) {
@@ -123,26 +156,28 @@ public class ProblemCompanyController extends AbstractController {
 
 	// SAVE --------------------------------------------------------
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Problem problem, final BindingResult binding, final HttpServletRequest request) {
-		ModelAndView result;
-		String paramPositionId;
-
-		paramPositionId = request.getParameter("positionId");
-		final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
-
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(problem, positionId);
-		else
-			try {
-				this.problemService.save(problem, positionId);
-				result = this.positionCompanyController.display(positionId);
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(problem, "problem.commit.error", positionId);
-			}
-
-		return result;
-	}
+	/*
+	 * @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	 * public ModelAndView save(@Valid final Problem problem, final BindingResult binding, final HttpServletRequest request) {
+	 * ModelAndView result;
+	 * String paramPositionId;
+	 * 
+	 * paramPositionId = request.getParameter("positionId");
+	 * final Integer positionId = paramPositionId.isEmpty() ? null : Integer.parseInt(paramPositionId);
+	 * 
+	 * if (binding.hasErrors())
+	 * result = this.createEditModelAndView(problem, positionId);
+	 * else
+	 * try {
+	 * this.problemService.save(problem, positionId);
+	 * result = this.positionCompanyController.display(positionId);
+	 * } catch (final Throwable oops) {
+	 * result = this.createEditModelAndView(problem, "problem.commit.error", positionId);
+	 * }
+	 * 
+	 * return result;
+	 * }
+	 */
 
 	// TO FINAL MODE 
 

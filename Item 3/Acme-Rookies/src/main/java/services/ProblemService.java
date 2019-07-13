@@ -60,28 +60,42 @@ public class ProblemService {
 		return result;
 	}
 
-	public Problem save(final Problem problem, final int positionId) {
+	public Problem save(final Problem problem) {
 		Assert.notNull(problem);
-		Assert.isTrue(positionId != 0);
 		final Problem res;
 		final Company company = this.companyService.findByPrincipal();
 		this.actorService.checkAuthority(company, Authority.COMPANY);
 		if (problem.getId() == 0) {
-			final Position position = this.positionService.findOne(positionId);
-			final Collection<Position> positions = this.positionService.findAllByCompany();
-			Assert.isTrue(positions.contains(position));
-			problem.setPosition(position);
+			Assert.isTrue(problem.getPosition() == null);
 			problem.setCompany(company);
 			problem.setMode("DRAFT");
 		} else {
-			final Position position = this.positionService.findOne(positionId);
+			final Position position = problem.getPosition();
+			final Collection<Position> positions = this.positionService.findAllByCompany();
+			Assert.isTrue(positions.contains(position));
 			Assert.isTrue(problem.getMode().equals("DRAFT"), "No puedes modificar un problem que estï¿½ en FINAL MODE");
 			Assert.isTrue(problem.getCompany().equals(company), "No puede modificar un problem que no le pertenezca");
-			Assert.isTrue(problem.getPosition().equals(position), "Ese problema no pertenece a esa posición.");
 
 		}
 		res = this.problemRepository.save(problem);
 		return res;
+	}
+
+	public void asign(final Problem problem, final int positionId) {
+		Assert.notNull(problem);
+		Assert.isTrue(positionId != 0);
+		Assert.isTrue(problem.getPosition() == null, "The problem has already been asigned to a position");
+		final Company company = this.companyService.findByPrincipal();
+		this.actorService.checkAuthority(company, Authority.COMPANY);
+		Assert.isTrue(problem.getId() != 0);
+		Assert.isTrue(problem.getMode().equals("FINAL"));
+		Assert.isTrue(problem.getCompany().equals(company), "No puede modificar un problem que no le pertenezca");
+		final Position position = this.positionService.findOne(positionId);
+		final Collection<Position> positions = this.positionService.findAllByCompany();
+		Assert.isTrue(positions.contains(position));
+		problem.setPosition(position);
+		problem.setCompany(company);
+		this.problemRepository.save(problem);
 	}
 
 	public void delete(final Problem problem) {
@@ -150,6 +164,12 @@ public class ProblemService {
 
 	public void flush() {
 		this.problemRepository.flush();
+	}
+
+	public Collection<Problem> findFinalNotAsignedProblemsByCompany() {
+		Collection<Problem> res = new ArrayList<>();
+		res = this.problemRepository.findFinalNotAsignedProblemsByCompany(this.companyService.findByPrincipal().getUserAccount().getId());
+		return res;
 	}
 
 }
