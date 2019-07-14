@@ -243,25 +243,28 @@ public class CompanyService {
 
 		Assert.notNull(a);
 
+		final Double normRes;
+
 		this.administratorService.findByPrincipal();
 
 		final Integer min = this.companyRepository.getMinScore(a.getId());
 		final Integer max = this.companyRepository.getMaxScore(a.getId());
 
-		final int range = max - min;
-		final Double res = this.companyRepository.getAvgScore(a.getId());
+		if (min != null && max != null) {
+			final int range = max - min;
+			final Double res = this.companyRepository.getAvgScore(a.getId());
 
-		final Double normRes;
+			if (range != 0)
+				normRes = (res - min) / (max - min);
+			else
+				normRes = 0.;
 
-		if (range != 0)
-			normRes = (res - min) / (max - min);
-		else
+			final Company company = this.findOne(a.getId());
+			company.setScore(normRes);
+
+			this.companyRepository.save(company);
+		} else
 			normRes = 0.;
-
-		final Company company = this.findOne(a.getId());
-		company.setScore(normRes);
-
-		this.companyRepository.save(company);
 
 		return normRes;
 	}
