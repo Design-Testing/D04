@@ -44,6 +44,9 @@ public class PersonalDataController extends AbstractController {
 	@Autowired
 	private CompanyService					companyService;
 
+	@Autowired
+	private CurriculaController				curriculaController;
+
 
 	/*
 	 * @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -81,14 +84,13 @@ public class PersonalDataController extends AbstractController {
 		else
 			try {
 				this.personalDataService.save(personalData);
-
 				final Curricula curricula = this.curriculaService.findCurriculaByPersonalData(personalData.getId());
 
 				result = new ModelAndView("curricula/display");
 				result.addObject("curricula", curricula);
 				result.addObject("curriculaId", curricula.getId());
-				result.addObject("messages", null);
-				result.addObject("buttons", false);
+				result.addObject("message", null);
+				result.addObject("buttons", true);
 
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(personalData, "general.commit.error");
