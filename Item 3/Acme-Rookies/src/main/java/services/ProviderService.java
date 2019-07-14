@@ -37,6 +37,9 @@ public class ProviderService {
 	private UserAccountService	userAccountService;
 
 	@Autowired
+	private FolderService		folderService;
+
+	@Autowired
 	private Validator			validator;
 
 
@@ -70,7 +73,6 @@ public class ProviderService {
 		return result;
 	}
 
-	// TODO: delete all information but name including folders and their messages (but no as senders!!)
 	public void delete(final Provider provider) {
 		Assert.notNull(provider);
 		Assert.isTrue(this.findByPrincipal().equals(provider));
@@ -97,6 +99,7 @@ public class ProviderService {
 		ban.setAuthority(Authority.BANNED);
 		principal.getUserAccount().getAuthorities().add(ban);
 		this.providerRepository.save(principal);
+		this.folderService.deleteActorFolders(principal);
 	}
 
 	/* ========================= OTHER METHODS =========================== */

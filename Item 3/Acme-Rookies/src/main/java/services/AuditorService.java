@@ -37,6 +37,9 @@ public class AuditorService {
 	private UserAccountService	userAccountService;
 
 	@Autowired
+	private FolderService		folderService;
+
+	@Autowired
 	private Validator			validator;
 
 
@@ -83,7 +86,7 @@ public class AuditorService {
 		}
 		return result;
 	}
-	// TODO: delete all information but name including folders and their messages (but no as senders!!)
+
 	public void delete(final Auditor auditor) {
 		Assert.notNull(auditor);
 		Assert.isTrue(auditor.getId() != 0);
@@ -116,6 +119,7 @@ public class AuditorService {
 		ban.setAuthority(Authority.BANNED);
 		principal.getUserAccount().getAuthorities().add(ban);
 		this.auditorRepository.save(principal);
+		this.folderService.deleteActorFolders(principal);
 	}
 
 	/* ========================= OTHER METHODS =========================== */

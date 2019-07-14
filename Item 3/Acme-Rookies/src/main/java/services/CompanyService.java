@@ -40,6 +40,9 @@ public class CompanyService {
 	private UserAccountService		userAccountService;
 
 	@Autowired
+	private FolderService			folderService;
+
+	@Autowired
 	private Validator				validator;
 
 
@@ -104,6 +107,7 @@ public class CompanyService {
 		ban.setAuthority(Authority.BANNED);
 		principal.getUserAccount().getAuthorities().add(ban);
 		this.companyRepository.save(principal);
+		this.folderService.deleteActorFolders(principal);
 	}
 	/* ========================= OTHER METHODS =========================== */
 

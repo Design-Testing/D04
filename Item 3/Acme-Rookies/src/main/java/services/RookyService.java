@@ -49,6 +49,9 @@ public class RookyService {
 	private CurriculaRepository	curriculaRepository;
 
 	@Autowired
+	private FolderService		folderService;
+
+	@Autowired
 	private Validator			validator;
 
 
@@ -90,7 +93,6 @@ public class RookyService {
 		return result;
 	}
 
-	// TODO: delete all information but name including folders and their messages (but no as senders!!)
 	public void delete(final Rooky rooky) {
 		Assert.notNull(rooky);
 		Assert.isTrue(this.findByPrincipal().equals(rooky));
@@ -118,6 +120,7 @@ public class RookyService {
 		ban.setAuthority(Authority.BANNED);
 		principal.getUserAccount().getAuthorities().add(ban);
 		this.rookyRepository.save(principal);
+		this.folderService.deleteActorFolders(principal);
 	}
 
 	/* ========================= OTHER METHODS =========================== */
