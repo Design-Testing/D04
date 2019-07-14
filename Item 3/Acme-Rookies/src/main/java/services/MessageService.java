@@ -146,7 +146,7 @@ public class MessageService {
 		Assert.notNull(m);
 		this.administratorService.findByPrincipal();
 
-		final Collection<Actor> actors = this.actorService.findAll();
+		final Collection<Actor> actors = this.actorService.findAllNotBanned();
 		final Actor actor = this.actorService.findByPrincipal();
 		actors.remove(this.administratorService.findSystem());
 		actors.remove(actor);
@@ -300,7 +300,7 @@ public class MessageService {
 		m.setPriority("HIGH");
 		m.setSender(sender);
 
-		final Collection<Actor> actors = this.actorService.findAll();
+		final Collection<Actor> actors = this.actorService.findAllNotBanned();
 		actors.remove(this.administratorService.findSystem());
 		actors.remove(actor);
 		m.setRecipients(actors);
@@ -374,7 +374,7 @@ public class MessageService {
 		m.setPriority("HIGH");
 		m.setSender(sender);
 
-		final Collection<Actor> actors = this.actorService.findAll();
+		final Collection<Actor> actors = this.actorService.findAllNotBanned();
 		actors.remove(this.administratorService.findSystem());
 		actors.remove(actor);
 		m.setRecipients(actors);
@@ -411,7 +411,7 @@ public class MessageService {
 		m.setPriority("HIGH");
 		m.setSender(sender);
 
-		final Collection<Actor> actors = this.actorService.findAll();
+		final Collection<Actor> actors = this.actorService.findAllNotBanned();
 		actors.remove(this.administratorService.findSystem());
 		actors.remove(actor);
 		m.setRecipients(actors);
