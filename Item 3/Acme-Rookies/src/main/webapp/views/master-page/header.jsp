@@ -84,7 +84,7 @@
 
 			<li><a href="item/provider/list.do"><spring:message code="master.page.my.items" /></a></li>
 			<%-- POSITION --%>
-			<li><a href="position/provider/list.do"><spring:message code="master.page.position.myPositions" /></a></li>
+			<li><a href="position/provider/list.do"><spring:message code="master.page.position.provider.myPositions" /></a></li>
 			<%-- SPONSORSHIP --%>
 			<li><a href="sponsorship/provider/list.do"><spring:message code="master.page.provider.sponsorship" /></a></li>
 		

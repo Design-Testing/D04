@@ -26,6 +26,6 @@
 <br>
 <acme:button url="provider/list.do" name="listProviders" code="listProviders"/>
 
-<input type="button" name="providerList" value="<spring:message code="providerList" /> ${provider.make}" onclick="javascript: relativeRedir('position/providerList.do?providerId=${provider.id}');" />
+<!--  <input type="button" name="providerList" value="<spring:message code="providerList" /> ${provider.make}" onclick="javascript: relativeRedir('position/providerList.do?providerId=${provider.id}');" />-->
 
-<input type="button" name="itemList" value="<spring:message code="itemList" />" onclick="javascript: relativeRedir('item/provider/listAll.do');" />
+<!-- <input type="button" name="itemList" value="<spring:message code="itemList" />" onclick="javascript: relativeRedir('item/provider/listAll.do');" />-->

@@ -100,11 +100,11 @@ img.resize {
         
 </display:table>
 <br><br>
-<!--<jstl:if test="${not empty imgbanner}">
+<jstl:if test="${not empty imgbanner}">
 	<a href="<jstl:out value="${targetpage}"/>">
 		<img class="resize" src="${imgbanner}" alt="Banner"/>
 	</a><br /><br />
-</jstl:if> -->
+</jstl:if> 
 
 <jstl:choose>
 	<jstl:when test="${rol eq 'company' }">
