@@ -52,7 +52,7 @@ public class ApplicationServiceTest extends AbstractTest {
 				//			solicitudes a todos los problemas posibles.
 				//			C: 97,95% Recorre 48 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"rooky1", "position1", IllegalArgumentException.class
+				"rooky1", "position1", null
 			}
 		};
 
@@ -119,6 +119,7 @@ public class ApplicationServiceTest extends AbstractTest {
 
 			final Integer applicationId = this.getEntityId(application);
 			final Application find = this.applicationService.findOne(applicationId);
+			System.out.println("AQUI" + find.getPosition());
 			this.applicationService.save(find, find.getPosition().getId());
 
 			this.applicationService.flush();
