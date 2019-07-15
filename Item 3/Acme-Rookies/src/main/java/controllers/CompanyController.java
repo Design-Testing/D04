@@ -83,7 +83,7 @@ public class CompanyController extends AbstractController {
 	@RequestMapping(value = "/computeScores", method = RequestMethod.GET)
 	public ModelAndView computeScores() {
 		final ModelAndView res;
-		final Collection<Company> companies = this.companyService.findAll();
+		final Collection<Company> companies = this.companyService.findAllNotBanned();
 
 		this.companyService.computeScores();
 
