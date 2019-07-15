@@ -286,4 +286,18 @@ public class CompanyService {
 		this.companyRepository.flush();
 	}
 
+	public Collection<Company> findAllNotBanned() {
+		final Collection<Company> result = new ArrayList<Company>();
+		final Collection<Company> all = this.findAll();
+		Assert.notNull(all);
+		final Authority authBanned = new Authority();
+		authBanned.setAuthority("BANNED");
+		for (final Company a : all)
+			if (!a.getUserAccount().getAuthorities().contains(authBanned))
+				result.add(a);
+		Assert.notNull(result);
+		return result;
+
+	}
+
 }
