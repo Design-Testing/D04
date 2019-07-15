@@ -29,7 +29,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 	private MiscellaneousDataService	miscellaneousDataService;
 
 	@Autowired
-	private RookyService				hackerService;
+	private RookyService				rookyService;
 
 	@Autowired
 	private CurriculaService			curriculaService;
@@ -41,27 +41,27 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 	@Test
 	public void driverCreateSave() {
 		final Collection<String> attachments = new ArrayList<String>();
-		attachments.add("AttachmentTest1");
-		attachments.add("AttachmentTest2");
+		attachments.add("http://www.attachment1.com");
+		attachments.add("http://www.attachment1.com");
 		final Object testingData[][] = {
 			{
 				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Positivo: Rooky crea MiscellaneousData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "freeText1", attachments, null
+				"rooky1", "freeText1", attachments, null
 			}, {
 				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Negativo: Un hacker intenta crear una MiscellaneousData con el texto vacío
+				//			B: Test Negativo: Un rooky intenta crear una MiscellaneousData con el texto vacío
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "", attachments, javax.validation.ConstraintViolationException.class
+				"rooky1", "", attachments, javax.validation.ConstraintViolationException.class
 			}, {
 				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Positivo: Rooky intenta crear MiscellaneousData sin archivos adjuntos
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "freeText1", null, org.springframework.dao.DataIntegrityViolationException.class
+				"rooky1", "freeText1", null, org.springframework.dao.DataIntegrityViolationException.class
 			},
 		};
 
@@ -108,13 +108,13 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 				//			B: Test Positivo: Rooky edita MiscellaneousData 
 				//			C: 100% Recorre 49 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "freeText1", attachments, null
+				"rooky1", "freeText1", attachments, null
 			}, {
 				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
-				//			B: Test Negativo: Un hacker intenta editar una MiscellaneousData con el texto vacío
+				//			B: Test Negativo: Un rooky intenta editar una MiscellaneousData con el texto vacío
 				//			C: 32,65% Recorre 16 de las 49 lineas posibles
 				//			D: cobertura de datos=6/405
-				"hacker1", "", attachments, javax.validation.ConstraintViolationException.class
+				"rooky1", "", attachments, javax.validation.ConstraintViolationException.class
 			}
 		};
 
@@ -126,7 +126,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(user);
-			final Rooky principal = this.hackerService.findByPrincipal();
+			final Rooky principal = this.rookyService.findByPrincipal();
 			final Collection<Curricula> curriculas = this.curriculaService.findCurriculaByRooky(principal.getId());
 			final Curricula curricula = curriculas.iterator().next();
 			final MiscellaneousData lR = curricula.getMiscellaneous().iterator().next();
@@ -153,7 +153,7 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 				//			B: Test Positivo: Rooky borra MiscellaneousData 
 				//			C: 100% Recorre 78 de las 78 lineas posibles
 				//			D: cobertura de datos=1/3
-				"hacker2", null
+				"rooky2", null
 			}, {
 				//			A: Acme RookyRank Req. 17 -> Rookys can manage their history
 				//			B: Test Negativo: Company intenta borrar MiscellaneousData 
@@ -171,8 +171,8 @@ public class MiscellaneousDataServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 			this.authenticate(actor);
-			final Rooky hacker = this.hackerService.findByPrincipal();
-			final MiscellaneousData lRec = this.curriculaService.findCurriculaByRooky(hacker.getId()).iterator().next().getMiscellaneous().iterator().next();
+			final Rooky rooky = this.rookyService.findByPrincipal();
+			final MiscellaneousData lRec = this.curriculaService.findCurriculaByRooky(rooky.getId()).iterator().next().getMiscellaneous().iterator().next();
 			this.miscellaneousDataService.delete(lRec);
 			this.miscellaneousDataService.flush();
 			this.unauthenticate();

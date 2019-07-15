@@ -275,7 +275,7 @@ public class CompanyService {
 
 	public void computeScores() {
 
-		final Collection<Company> companies = this.findAll();
+		final Collection<Company> companies = this.findAllNotBanned();
 		if (!companies.isEmpty())
 			for (final Company c : companies)
 				this.computeScore(c);
