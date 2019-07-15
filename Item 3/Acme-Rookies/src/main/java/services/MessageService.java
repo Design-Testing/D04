@@ -111,7 +111,7 @@ public class MessageService {
 		final boolean containsSpamWords = this.checkForSpamWords(m);
 
 		final Collection<Actor> recipients = m.getRecipients();
-		Folder inbox;
+		Folder notification;
 		Folder spambox;
 
 		final Message sent = this.save(m);
@@ -132,11 +132,11 @@ public class MessageService {
 			}
 		} else
 			for (final Actor r : recipients) {
-				inbox = this.folderService.findInboxByUserId(r.getUserAccount().getId());
-				final Collection<Message> inboxMessages = inbox.getMessages();
-				inboxMessages.add(sent);
-				inbox.setMessages(inboxMessages);
-				this.folderService.save(inbox, r);
+				notification = this.folderService.findNotificationboxByUserId(r.getUserAccount().getId());
+				final Collection<Message> notificationMessages = notification.getMessages();
+				notificationMessages.add(sent);
+				notification.setMessages(notificationMessages);
+				this.folderService.save(notification, r);
 			}
 
 		return sent;
