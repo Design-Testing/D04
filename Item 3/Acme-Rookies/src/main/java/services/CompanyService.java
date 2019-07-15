@@ -45,6 +45,9 @@ public class CompanyService {
 	@Autowired
 	private Validator				validator;
 
+	@Autowired
+	private CreditCardService		creditCardService;
+
 
 	//METODOS CRUD
 
@@ -70,9 +73,10 @@ public class CompanyService {
 		Assert.notNull(company);
 		Company result;
 
-		if (company.getId() == 0)
+		if (company.getId() == 0) {
 			this.actorService.setAuthorityUserAccount(Authority.COMPANY, company);
-		else {
+			Assert.isTrue(!this.creditCardService.tarjetaCaducada(company.getCreditCard()), "expired credit card");
+		} else {
 			final Actor principal = this.actorService.findByPrincipal();
 			Assert.isTrue(principal.getId() == company.getId(), "You only can edit your info");
 		}

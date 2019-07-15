@@ -18,6 +18,7 @@ import security.Authority;
 import security.UserAccount;
 import services.CompanyService;
 import services.ConfigurationParametersService;
+import services.CreditCardService;
 import services.UserAccountService;
 import services.auxiliary.RegisterService;
 import domain.Company;
@@ -35,6 +36,9 @@ public class CompanyController extends AbstractController {
 
 	@Autowired
 	private UserAccountService				userAccountService;
+
+	@Autowired
+	private CreditCardService				creditCardService;
 
 	@Autowired
 	private ConfigurationParametersService	configurationParametersService;
@@ -164,6 +168,10 @@ public class CompanyController extends AbstractController {
 				this.registerService.saveCompany(company, binding);
 				result.addObject("alert", "company.edit.correct");
 				result.addObject("companyForm", companyForm);
+				if (company.getCreditCard() != null)
+					if (this.creditCardService.tarjetaCaducada(company.getCreditCard()))
+						result.addObject("expiredCreditCard", true);
+
 			} catch (final ValidationException oops) {
 				result.addObject("errors", binding.getAllErrors());
 				companyForm.setTermsAndCondicions(false);
@@ -171,6 +179,8 @@ public class CompanyController extends AbstractController {
 			} catch (final Throwable e) {
 				if (e.getMessage().contains("username is register"))
 					result.addObject("alert", "company.edit.usernameIsUsed");
+				if (e.getMessage().contains("expired credit card"))
+					result.addObject("alert", "expired.credit.card");
 				result.addObject("errors", binding.getAllErrors());
 				companyForm.setTermsAndCondicions(false);
 				result.addObject("companyForm", companyForm);
@@ -179,7 +189,6 @@ public class CompanyController extends AbstractController {
 		result.addObject("countryPhoneCode", this.configurationParametersService.find().getCountryPhoneCode());
 		return result;
 	}
-
 	// GDPR -----------------------------------------------------------
 	@RequestMapping(value = "/deletePersonalData")
 	public ModelAndView deletePersonalData() {
