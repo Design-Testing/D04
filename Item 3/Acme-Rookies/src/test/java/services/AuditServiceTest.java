@@ -35,19 +35,19 @@ public class AuditServiceTest extends AbstractTest {
 				//				B: Test Positivo: Creación correcta de un audit
 				//				C: % Recorre 16 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"auditor1", "position8", "text test", 6, null
+				"auditor1", "position1", "text test", 6, null
 			}, {
 				//			    A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
 				//				B: Test Negativo: Text en blanco
 				//				C: % Recorre 17 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"auditor1", "position9", "", 5, javax.validation.ConstraintViolationException.class
+				"auditor1", "position1", "", 5, javax.validation.ConstraintViolationException.class
 			}, {
 				//              A: Acme Rookies Req 3.1 An auditor is able to self-assign a position to audit it
 				//				B: Test Negativo : Score nula
 				//				C: % Recorre 17 de la 20 lineas posibles
 				//				D: cobertura de datos = 12/29
-				"auditor2", "position10", "test text", null, java.lang.IllegalArgumentException.class
+				"auditor1", "position1", "test text", null, javax.validation.ConstraintViolationException.class
 			}
 		};
 
